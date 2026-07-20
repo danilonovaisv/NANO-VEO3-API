@@ -1,238 +1,319 @@
 ---
 name: video-editing
-description: "Edit existing videos with AI using each::sense. Apply effects, color grading, speed changes, trimming, transitions, style transfer, and visual enhancements. Transform raw footage into polished content. Use for: color grading, speed ramping, style transfer, video enhancement, social media edits, content post-production. Triggers: edit video, video editing, color grade, speed change, video effects, trim video, video filter, slow motion, timelapse, video style, video enhance, post production"
-allowed-tools: Bash(curl *), WebFetch
+description: AI-assisted video editing workflows for cutting, structuring, and augmenting real footage. Covers the full pipeline from raw capture through FFmpeg, Remotion, ElevenLabs, fal.ai, and final polish in Descript or CapCut. Use when the user wants to edit video, cut footage, create vlogs, or build video content.
+origin: ECC
 ---
 
 # Video Editing
 
-Edit and transform existing videos with AI-powered tools using [each::sense](https://docs.eachlabs.ai/sense/overview) — the intelligent AI agent that automatically selects the best model for your request.
+AI-assisted editing for real footage. Not generation from prompts. Editing existing video fast.
 
-## Quick Start
+## When to Activate
 
-> Requires an each::labs API key. Get one at [eachlabs.ai](https://eachlabs.ai).
+- User wants to edit, cut, or structure video footage
+- Turning long recordings into short-form content
+- Building vlogs, tutorials, or demo videos from raw capture
+- Adding overlays, subtitles, music, or voiceover to existing video
+- Reframing video for different platforms (YouTube, TikTok, Instagram)
+- User says "edit video", "cut this footage", "make a vlog", or "video workflow"
 
-### Using curl
+## Core Thesis
 
-```bash
-curl -X POST https://eachsense-agent.core.eachlabs.run/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: $EACHLABS_API_KEY" \
-  -d '{
-    "messages": [{"role": "user", "content": [
-              {"type": "text", "text": "Apply a warm cinematic color grade to this video. Boost the orange tones in highlights and teal in the shadows, add slight film grain."},
-              {"type": "image_url", "image_url": {"url": "https://example.com/raw-footage.mp4"}}
-            ]
-          }
-    ],
-    "stream": false
-  }'
+AI video editing is useful when you stop asking it to create the whole video and start using it to compress, structure, and augment real footage. The value is not generation. The value is compression.
+
+## The Pipeline
+
+```
+Screen Studio / raw footage
+  → Claude / Codex
+  → FFmpeg
+  → Remotion
+  → ElevenLabs / fal.ai
+  → Descript or CapCut
 ```
 
-### Using Python (OpenAI SDK)
+Each layer has a specific job. Do not skip layers. Do not try to make one tool do everything.
+
+## Layer 1: Capture (Screen Studio / Raw Footage)
+
+Collect the source material:
+
+- **Screen Studio**: polished screen recordings for app demos, coding sessions, browser workflows
+- **Raw camera footage**: vlog footage, interviews, event recordings
+- **Desktop capture via VideoDB**: session recording with real-time context (see `videodb` skill)
+
+Output: raw files ready for organization.
+
+## Layer 2: Organization (Claude / Codex)
+
+Use Claude Code or Codex to:
+
+- **Transcribe and label**: generate transcript, identify topics and themes
+- **Plan structure**: decide what stays, what gets cut, what order works
+- **Identify dead sections**: find pauses, tangents, repeated takes
+- **Generate edit decision list**: timestamps for cuts, segments to keep
+- **Scaffold FFmpeg and Remotion code**: generate the commands and compositions
+
+```
+Example prompt:
+"Here's the transcript of a 4-hour recording. Identify the 8 strongest segments
+for a 24-minute vlog. Give me FFmpeg cut commands for each segment."
+```
+
+This layer is about structure, not final creative taste.
+
+## Layer 3: Deterministic Cuts (FFmpeg)
+
+FFmpeg handles the boring but critical work: splitting, trimming, concatenating, and preprocessing.
+
+### Extract segment by timestamp
+
+```bash
+ffmpeg -i raw.mp4 -ss 00:12:30 -to 00:15:45 -c copy segment_01.mp4
+```
+
+### Batch cut from edit decision list
+
+```bash
+#!/bin/bash
+# cuts.txt: start,end,label
+while IFS=, read -r start end label; do
+  ffmpeg -i raw.mp4 -ss "$start" -to "$end" -c copy "segments/${label}.mp4"
+done < cuts.txt
+```
+
+### Concatenate segments
+
+```bash
+# Create file list
+for f in segments/*.mp4; do echo "file '$f'"; done > concat.txt
+ffmpeg -f concat -safe 0 -i concat.txt -c copy assembled.mp4
+```
+
+### Create proxy for faster editing
+
+```bash
+ffmpeg -i raw.mp4 -vf "scale=960:-2" -c:v libx264 -preset ultrafast -crf 28 proxy.mp4
+```
+
+### Extract audio for transcription
+
+```bash
+ffmpeg -i raw.mp4 -vn -acodec pcm_s16le -ar 16000 audio.wav
+```
+
+### Normalize audio levels
+
+```bash
+ffmpeg -i segment.mp4 -af loudnorm=I=-16:TP=-1.5:LRA=11 -c:v copy normalized.mp4
+```
+
+## Layer 4: Programmable Composition (Remotion)
+
+Remotion turns editing problems into composable code. Use it for things that traditional editors make painful:
+
+### When to use Remotion
+
+- Overlays: text, images, branding, lower thirds
+- Data visualizations: charts, stats, animated numbers
+- Motion graphics: transitions, explainer animations
+- Composable scenes: reusable templates across videos
+- Product demos: annotated screenshots, UI highlights
+
+### Basic Remotion composition
+
+```tsx
+import { AbsoluteFill, Sequence, Video, useCurrentFrame } from 'remotion';
+
+export const VlogComposition: React.FC = () => {
+  const frame = useCurrentFrame();
+
+  return (
+    <AbsoluteFill>
+      {/* Main footage */}
+      <Sequence from={0} durationInFrames={300}>
+        <Video src="/segments/intro.mp4" />
+      </Sequence>
+
+      {/* Title overlay */}
+      <Sequence from={30} durationInFrames={90}>
+        <AbsoluteFill
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <h1
+            style={{
+              fontSize: 72,
+              color: 'white',
+              textShadow: '2px 2px 8px rgba(0,0,0,0.8)',
+            }}
+          >
+            The AI Editing Stack
+          </h1>
+        </AbsoluteFill>
+      </Sequence>
+
+      {/* Next segment */}
+      <Sequence from={300} durationInFrames={450}>
+        <Video src="/segments/demo.mp4" />
+      </Sequence>
+    </AbsoluteFill>
+  );
+};
+```
+
+### Render output
+
+```bash
+npx remotion render src/index.ts VlogComposition output.mp4
+```
+
+See the [Remotion docs](https://www.remotion.dev/docs) for detailed patterns and API reference.
+
+## Layer 5: Generated Assets (ElevenLabs / fal.ai)
+
+Generate only what you need. Do not generate the whole video.
+
+### Voiceover with ElevenLabs
 
 ```python
-from openai import OpenAI
+import os
+import requests
 
-client = OpenAI(
-    api_key="YOUR_EACHLABS_API_KEY",
-    base_url="https://eachsense-agent.core.eachlabs.run/v1"
+resp = requests.post(
+    f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}",
+    headers={
+        "xi-api-key": os.environ["ELEVENLABS_API_KEY"],
+        "Content-Type": "application/json"
+    },
+    json={
+        "text": "Your narration text here",
+        "model_id": "eleven_turbo_v2_5",
+        "voice_settings": {"stability": 0.5, "similarity_boost": 0.75}
+    }
 )
-
-response = client.chat.completions.create(
-    model="eachsense/beta",
-    messages=[{"role": "user", "content": "Apply a warm cinematic color grade to this video. Boost the orange tones in highlights and teal in the shadows, add slight film grain."}],
-    # Images are included in the message content array above
-)
-
-print(response.choices[0].message.content)
+with open("voiceover.mp3", "wb") as f:
+    f.write(resp.content)
 ```
 
-### With Reference Image
+### Music and SFX with fal.ai
+
+Use the `fal-ai-media` skill for:
+
+- Background music generation
+- Sound effects (ThinkSound model for video-to-audio)
+- Transition sounds
+
+### Generated visuals with fal.ai
+
+Use for insert shots, thumbnails, or b-roll that doesn't exist:
+
+```
+generate(model_name: "fal-ai/nano-banana-pro", input: {
+  "prompt": "professional thumbnail for tech vlog, dark background, code on screen",
+  "image_size": "landscape_16_9"
+})
+```
+
+### VideoDB generative audio
+
+If VideoDB is configured:
+
+```python
+voiceover = coll.generate_voice(text="Narration here", voice="alloy")
+music = coll.generate_music(prompt="lo-fi background for coding vlog", duration=120)
+sfx = coll.generate_sound_effect(prompt="subtle whoosh transition")
+```
+
+## Layer 6: Final Polish (Descript / CapCut)
+
+The last layer is human. Use a traditional editor for:
+
+- **Pacing**: adjust cuts that feel too fast or slow
+- **Captions**: auto-generated, then manually cleaned
+- **Color grading**: basic correction and mood
+- **Final audio mix**: balance voice, music, and SFX levels
+- **Export**: platform-specific formats and quality settings
+
+This is where taste lives. AI clears the repetitive work. You make the final calls.
+
+## Social Media Reframing
+
+Different platforms need different aspect ratios:
+
+| Platform       | Aspect Ratio | Resolution          |
+| -------------- | ------------ | ------------------- |
+| YouTube        | 16:9         | 1920x1080           |
+| TikTok / Reels | 9:16         | 1080x1920           |
+| Instagram Feed | 1:1          | 1080x1080           |
+| X / Twitter    | 16:9 or 1:1  | 1280x720 or 720x720 |
+
+### Reframe with FFmpeg
 
 ```bash
-curl -X POST https://eachsense-agent.core.eachlabs.run/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: $EACHLABS_API_KEY" \
-  -d '{
-    "messages": [{"role": "user", "content": [
-              {"type": "text", "text": "Apply the color grading and visual style from this reference image to my video clip"},
-              {"type": "image_url", "image_url": {"url": "https://example.com/my-video.mp4"}},
-              {"type": "image_url", "image_url": {"url": "https://example.com/style-reference.jpg"}}
-            ]
-          }
-    ],
-    "stream": false
-  }'
+# 16:9 to 9:16 (center crop)
+ffmpeg -i input.mp4 -vf "crop=ih*9/16:ih,scale=1080:1920" vertical.mp4
+
+# 16:9 to 1:1 (center crop)
+ffmpeg -i input.mp4 -vf "crop=ih:ih,scale=1080:1080" square.mp4
 ```
 
-> Images are sent inside messages using the OpenAI multimodal content format. Maximum 4 images per request.
+### Reframe with VideoDB
 
-### Streaming
-
-Set `"stream": true` for real-time SSE responses, or `"stream": false` for complete result in a single response. Streaming is useful for showing progress in UIs; non-streaming is simpler for scripts and automation.
-
-## Editing Capabilities
-
-| Category | What You Can Do | Example Instruction |
-|----------|----------------|---------------------|
-| **Color Grading** | Adjust colors, contrast, mood | "Apply a moody teal and orange color grade" |
-| **Speed Control** | Slow motion, timelapse, ramping | "Convert to smooth slow motion at 0.5x speed" |
-| **Style Transfer** | Apply artistic styles | "Make this look like a Wes Anderson film" |
-| **Enhancement** | Sharpen, denoise, stabilize | "Stabilize the shaky handheld footage" |
-| **Trimming** | Cut and select portions | "Keep only the first 5 seconds of this clip" |
-| **Effects** | Add visual effects | "Add a subtle lens flare when the sun appears" |
-| **Format** | Change aspect ratio, crop | "Crop to 9:16 vertical for TikTok, focus on the center subject" |
-| **Transitions** | Add transition effects | "Add a smooth fade-in at the start and fade-out at the end" |
-
-## Prompt Tips
-
-### Describe the Target Look
-
-Be specific about the visual outcome you want:
-
-```
-"Make this look like it was shot on 35mm Kodak Portra 400 film.
-Desaturate slightly, add warm highlights, lift the blacks,
-and include subtle film grain."
+```python
+# Smart reframe (AI-guided subject tracking)
+reframed = video.reframe(start=0, end=60, target="vertical", mode=ReframeMode.smart)
 ```
 
-### Specify Temporal Changes
+## Scene Detection and Auto-Cut
 
-When edits should apply to specific moments:
-
-```
-"Slow motion from 0:02 to 0:04 when the ball is in the air,
-then return to normal speed."
-```
-
-### Reference-Based Editing
-
-Use a second image or frame as a style reference:
-
-```
-"Match the color grading of the reference image.
-Apply the same contrast, saturation, and color temperature."
-```
-
-## Examples
-
-### Cinematic Color Grade
+### FFmpeg scene detection
 
 ```bash
-curl -X POST https://eachsense-agent.core.eachlabs.run/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: $EACHLABS_API_KEY" \
-  -d '{
-    "messages": [{"role": "user", "content": [
-              {"type": "text", "text": "Apply a cinematic color grade inspired by Blade Runner 2049. Push shadows toward deep blue, highlights toward warm amber. High contrast, slightly desaturated midtones, add atmospheric haze effect."},
-              {"type": "image_url", "image_url": {"url": "https://example.com/city-footage.mp4"}}
-            ]
-          }
-    ],
-    "stream": false
-  }'
+# Detect scene changes (threshold 0.3 = moderate sensitivity)
+ffmpeg -i input.mp4 -vf "select='gt(scene,0.3)',showinfo" -vsync vfr -f null - 2>&1 | grep showinfo
 ```
 
-### Slow Motion Effect
+### Silence detection for auto-cut
 
 ```bash
-curl -X POST https://eachsense-agent.core.eachlabs.run/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: $EACHLABS_API_KEY" \
-  -d '{
-    "messages": [{"role": "user", "content": [
-              {"type": "text", "text": "Convert this video to smooth slow motion at 0.25x speed. Use frame interpolation to keep the motion fluid and artifact-free. Maintain the original resolution."},
-              {"type": "image_url", "image_url": {"url": "https://example.com/action-clip.mp4"}}
-            ]
-          }
-    ],
-    "stream": false
-  }'
+# Find silent segments (useful for cutting dead air)
+ffmpeg -i input.mp4 -af silencedetect=noise=-30dB:d=2 -f null - 2>&1 | grep silence
 ```
 
-### Style Transfer to Animation
+### Highlight extraction
 
-```bash
-curl -X POST https://eachsense-agent.core.eachlabs.run/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: $EACHLABS_API_KEY" \
-  -d '{
-    "messages": [{"role": "user", "content": [
-              {"type": "text", "text": "Transform this real-world video into a Studio Ghibli anime style. Keep the motion and composition, but render everything as hand-painted animation with soft colors and visible brushstrokes."},
-              {"type": "image_url", "image_url": {"url": "https://example.com/nature-walk.mp4"}}
-            ]
-          }
-    ],
-    "stream": false
-  }'
+Use Claude to analyze transcript + scene timestamps:
+
+```
+"Given this transcript with timestamps and these scene change points,
+identify the 5 most engaging 30-second clips for social media."
 ```
 
-### Social Media Reformat
+## What Each Tool Does Best
 
-```bash
-curl -X POST https://eachsense-agent.core.eachlabs.run/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: $EACHLABS_API_KEY" \
-  -d '{
-    "messages": [{"role": "user", "content": [
-              {"type": "text", "text": "Reformat this 16:9 landscape video to 9:16 vertical for TikTok. Intelligently crop to keep the main subject centered. Add a quick zoom-in effect at the beginning for engagement."},
-              {"type": "image_url", "image_url": {"url": "https://example.com/horizontal-clip.mp4"}}
-            ]
-          }
-    ],
-    "stream": false
-  }'
-```
+| Tool              | Strength                                                     | Weakness                       |
+| ----------------- | ------------------------------------------------------------ | ------------------------------ |
+| Claude / Codex    | Organization, planning, code generation                      | Not the creative taste layer   |
+| FFmpeg            | Deterministic cuts, batch processing, format conversion      | No visual editing UI           |
+| Remotion          | Programmable overlays, composable scenes, reusable templates | Learning curve for non-devs    |
+| Screen Studio     | Polished screen recordings immediately                       | Only screen capture            |
+| ElevenLabs        | Voice, narration, music, SFX                                 | Not the center of the workflow |
+| Descript / CapCut | Final pacing, captions, polish                               | Manual, not automatable        |
 
-### Vintage Film Effect
+## Key Principles
 
-```bash
-curl -X POST https://eachsense-agent.core.eachlabs.run/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: $EACHLABS_API_KEY" \
-  -d '{
-    "messages": [{"role": "user", "content": [
-              {"type": "text", "text": "Make this video look like it was recorded on a VHS camcorder from the 1990s. Add scan lines, tracking artifacts, slight color bleeding, a date stamp in the corner reading 08/15/1994, and lower the resolution slightly."},
-              {"type": "image_url", "image_url": {"url": "https://example.com/modern-video.mp4"}}
-            ]
-          }
-    ],
-    "stream": false
-  }'
-```
-
-## Color Grading Presets
-
-Common color grading descriptions to use in your prompts:
-
-| Style | Description |
-|-------|-------------|
-| **Teal & Orange** | Cool shadows, warm highlights, popular blockbuster look |
-| **Film Noir** | High contrast black and white, deep shadows, sharp highlights |
-| **Vintage Film** | Lifted blacks, faded highlights, warm muted tones |
-| **Neon Cyberpunk** | Saturated magentas and cyans, high contrast, dark blacks |
-| **Pastel Dream** | Desaturated, lifted shadows, soft pink and blue tones |
-| **Documentary** | Natural colors, slight desaturation, neutral contrast |
-| **Golden Hour** | Warm amber tones, soft contrast, glowing highlights |
-| **Nordic Minimal** | Cool desaturated blues and grays, low contrast, clean |
-
-## Common Pitfalls
-
-- **Vague instructions** like "make it look cool" give inconsistent results. Describe the specific look.
-- **Ignoring temporal context** when the edit should apply to specific moments in the clip.
-- **Expecting frame-accurate cuts** from natural language. For precise trimming, include timestamps.
-- **Over-processing** by requesting too many effects at once. Apply edits in stages for best results.
-- **Forgetting source quality** matters. Low-resolution input limits what enhancements can achieve.
+1. **Edit, don't generate.** This workflow is for cutting real footage, not creating from prompts.
+2. **Structure before style.** Get the story right in Layer 2 before touching anything visual.
+3. **FFmpeg is the backbone.** Boring but critical. Where long footage becomes manageable.
+4. **Remotion for repeatability.** If you'll do it more than once, make it a Remotion component.
+5. **Generate selectively.** Only use AI generation for assets that don't exist, not for everything.
+6. **Taste is the last layer.** AI clears repetitive work. You make the final creative calls.
 
 ## Related Skills
 
-- [Video Generation](../video-generation/SKILL.md) — Generate videos from scratch
-- [Image Editing](../image-editing/SKILL.md) — Edit individual frames or thumbnails
-- [Sound Effects](../sound-effects/SKILL.md) — Add audio effects to edited videos
-- [Music Generation](../music-generation/SKILL.md) — Create background music for video edits
-
-## Documentation
-
-- [each::sense Overview](https://docs.eachlabs.ai/sense/overview)
-- [each::labs API](https://docs.eachlabs.ai)
+- `fal-ai-media` — AI image, video, and audio generation
+- `videodb` — Server-side video processing, indexing, and streaming
+- `content-engine` — Platform-native content distribution
