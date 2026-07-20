@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "nano-banana-pro": {
+      "source": "elizaOS/eliza",
+      "sourceType": "github",
+      "skillPath": "packages/skills/skills/nano-banana-pro/SKILL.md",
+      "computedHash": "3ebff0791f2e55c3729e16ee911e372f15f649e5711aad819baf62af2e5b122e"
+    },
+    "nano-banana-pro-openrouter": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/nano-banana-pro-openrouter/SKILL.md",
+      "computedHash": "7f46510390d2871286717f8db72edd123fdefcfeec771ec608b3da48e2abe09c"
+    }
+  }
+}
