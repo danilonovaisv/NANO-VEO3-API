@@ -12,6 +12,12 @@
       "sourceType": "github",
       "skillPath": "skills/nano-banana-pro-openrouter/SKILL.md",
       "computedHash": "7f46510390d2871286717f8db72edd123fdefcfeec771ec608b3da48e2abe09c"
+    },
+    "nano-banana-pro-prompts-recommend-skill": {
+      "source": "YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "5cc0a5987254c9c853ee991c928796524c5483aac59e03d3f8c8dfabf50c1e67"
     }
   }
 }

@@ -1,47 +1,25 @@
-# Node.js Rules for everything-claude-code
+# Node.js & Next.js 15 Rules for NANO-VEO3-API
 
-> Project-specific rules for the ECC codebase. Extends common rules.
+> Regras de runtime, ambiente Node.js e execução de scripts no projeto NANO-VEO3-API.
 
-## Stack
+## Stack Detectada
 
-- **Runtime**: Node.js >=18 (no transpilation, plain CommonJS)
-- **Test runner**: `node tests/run-all.js` — individual files via `node tests/**/*.test.js`
-- **Linter**: ESLint (`@eslint/js`, flat config)
-- **Coverage**: c8
-- **Lint**: markdownlint-cli for `.md` files
+- **Runtime**: Node.js >= 18 (ESM / TypeScript 5)
+- **Framework**: Next.js 15 (App Router)
+- **Gerenciador de Pacotes**: npm (`package.json`, `package-lock.json`)
+- **Linter**: ESLint (Flat Config `eslint.config.mjs`, `eslint-config-next`)
+- **Build & Execução**: `npm run dev`, `npm run build`, `npm run lint`
 
-## File Conventions
+## Convenções de Código Node.js / TypeScript
 
-- `scripts/` — Node.js utilities, hooks. CommonJS (`require`/`module.exports`)
-- `agents/`, `commands/`, `skills/`, `rules/` — Markdown with YAML frontmatter
-- `tests/` — Mirror the `scripts/` structure. Test files named `*.test.js`
-- File naming: **lowercase with hyphens** (e.g. `session-start.js`, `post-edit-format.js`)
+- Utilize ESM (`import` / `export`) em todo o codebase TypeScript.
+- Scripts utilitários em `scripts/` ou `.agents/skills/*/scripts/` devem ser executados com `npx tsx <script>.ts`.
+- Mantenha scripts utilitários modulares e focados em tarefas únicas.
+- Prefira `const` sobre `let`; nunca utilize `var`.
+- Todos os scripts automatizados devem finalizar com `exit 0` em caso de sucesso ou `exit 1` e log estruturado em `stderr` em falhas fatais.
 
-## Code Style
+## Execução de Comandos em Terminal
 
-- CommonJS only — no ESM (`import`/`export`) unless file ends in `.mjs`
-- No TypeScript — plain `.js` throughout
-- Prefer `const` over `let`; never `var`
-- Keep hook scripts under 200 lines — extract helpers to `scripts/lib/`
-- All hooks must `exit 0` on non-critical errors (never block tool execution unexpectedly)
-
-## Hook Development
-
-- Hook scripts normally receive JSON on stdin, but hooks routed through `scripts/hooks/run-with-flags.js` can export `run(rawInput)` and let the wrapper handle parsing/gating
-- Async hooks: mark `"async": true` in `settings.json` with a timeout ≤30s
-- Blocking hooks (PreToolUse, stop): keep fast (<200ms) — no network calls
-- Use `run-with-flags.js` wrapper for all hooks so `ECC_HOOK_PROFILE` and `ECC_DISABLED_HOOKS` runtime gating works
-- Always exit 0 on parse errors; log to stderr with `[HookName]` prefix
-
-## Testing Requirements
-
-- Run `node tests/run-all.js` before committing
-- New scripts in `scripts/lib/` require a matching test in `tests/lib/`
-- New hooks require at least one integration test in `tests/hooks/`
-
-## Markdown / Agent Files
-
-- Agents: YAML frontmatter with `name`, `description`, `tools`, `model`
-- Skills: sections — When to Use, How It Works, Examples
-- Commands: `description:` frontmatter line required
-- Run `npx markdownlint-cli '**/*.md' --ignore node_modules` before committing
+- Para validação de código: `npm run lint`
+- Para verificação de tipos: `npx tsc --noEmit`
+- Para execução de scripts TypeScript: `npx tsx <caminho_do_script>`

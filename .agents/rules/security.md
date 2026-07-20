@@ -1,42 +1,40 @@
 ---
 trigger: always_on
+description: Security & Secret Protection Guardrails for NANO-VEO3-API
+globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.json"]
 ---
 
-# SECURITY.MD - Security Guardrails
+# SECURITY.MD - Security & Secret Protection Guardrails
 
-> **Mục tiêu**: Bảo vệ hệ thống khỏi các lỗ hổng phổ biến và sai sót của con người.
-
----
-
-## 🚫 1. FORBIDDEN ACTIONS (Cấm tuyệt đối)
-
-1. **Hardcode Secrets**: 
-   - Không bao giờ viết API Key, Password, Token trực tiếp vào code.
-   - Luôn sử dụng `process.env` hoặc biến môi trường.
-2. **Commit Token**: 
-   - Kiểm tra file `.gitignore` trước khi commit.
-   - Đảm bảo `.env` nằm trong `.gitignore`.
-3. **Delete Database**: 
-   - Không bao giờ chạy lệnh `DROP TABLE` hoặc xóa file `.sqlite` nếu không có lệnh rõ ràng từ người dùng và BA bước xác nhận.
+> **Objetivo**: Proteger credenciais da API Google GenAI/Veo 3, env vars e impor execução segura em ambiente sandbox.
 
 ---
 
-## 🛡️ 2. CODING STANDARDS (Tiêu chuẩn Code An toàn)
+## 🚫 1. FORBIDDEN ACTIONS (Cấm / Proibições)
 
-1. **SQL Injection**:
-   - Luôn sử dụng Parameterized Queries (hoặc ORM như Prisma/TypeORM).
-   - Cấm nối chuỗi trực tiếp vào câu lệnh SQL.
-2. **XSS (Cross-Site Scripting)**:
-   - Sanitize mọi dữ liệu đầu vào từ người dùng hoặc API.
-   - Sử dụng các thư viện như `dompurify` khi render HTML.
-3. **Authentication**:
-   - Luôn hash mật khẩu (Bcrypt/Argon2).
+1. **Hardcode de Credenciais & API Keys**:
+   - NUNCA insira `GEMINI_API_KEY`, senhas ou tokens diretamente no código ou scripts de teste.
+   - Sempre consuma via `process.env.GEMINI_API_KEY`.
+2. **Exposição em Logs e Console**:
+   - NUNCA imprima valores inteiros de API keys ou URLs de assinatura de mídia privada em `console.log` ou logs de exceção.
+3. **Commit de Arquivos Sensíveis**:
+   - Garanta que `.env`, `.env.local` e arquivos de chaves estejam listados no `.gitignore`.
+4. **Comandos Destrutivos Sem Validação**:
+   - Quaisquer comandos no terminal que executem limpeza de repositório (`rm -rf`) ou alterações destrutivas requerem verificação previa.
 
 ---
 
-## 🚨 3. INCIDENT PROTOCOL (Quy trình sự cố)
+## 🛡️ 2. CODING & API STANDARDS
 
-Khi phát hiện lỗ hổng hoặc nghi ngờ lộ secret:
-1. **DỪNG**: Ngừng mọi tác vụ hiện tại.
-2. **BÁO CÁO**: Thông báo ngay cho người dùng bằng cảnh báo đ (RED ALERT).
-3. **KHẮC PHỤC**: Đề xuất phương án xoay key (rotation) hoặc vá lỗi.
+1. **Sanitização de Inputs**:
+   - Todo parâmetro enviado para a API do Veo 3 deve ser higienizado contra injeções de script ou caracteres de controle maliciosos.
+2. **Execução de Comandos**:
+   - Agentes e scripts automatizados devem executar comandos terminal dentro de contêineres sandbox ou com flags sem privilégios de root.
+
+---
+
+## 🚨 3. INCIDENT PROTOCOL
+
+Se uma API key ou secret for detectado em arquivos commitados ou em logs:
+1. **DỪNG / PARAR**: Interromper a execução imediatamente.
+2. **REPORTAR**: Notificar a necessidade de revogação/rotação imediata da `GEMINI_API_KEY`.

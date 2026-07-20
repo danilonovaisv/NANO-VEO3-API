@@ -1,16 +1,15 @@
 ---
 trigger: always_on
-description: Padrões e limites de animação visual
-globs: ["*.js", "*.html"]
+description: Padrões de animação e transições de UI com Tailwind CSS v4 no NANO-VEO3-API
+globs: ["app/**/*.tsx", "components/**/*.tsx", "app/globals.css"]
 ---
 
 # Objetivo
 
-Garantir animações fluidas e dentro da linguagem de motion do HyperFrames.
+Garantir micro-interações fluidas na interface do NANO-VEO3-API com Tailwind CSS v4 e CSS modern standards.
 
 # Regras
 
-- Use os Spring Intents definidos: `entry` (back.out), `gentle` (power2.inOut), `snappy`, `heavy`, `slam`.
-- Animações de CSS devem usar propriedades aceleradas por GPU (`transform`, `opacity`, `filter`).
-- ❌ Nunca anime `width`, `height`, `top`, `left`.
-- Efeitos contínuos (idle breathing) devem usar `onUpdate` multiplicativo ou funções matemáticas (`Math.sin`), atreladas à timeline.
+- **Propriedades Aceleradas**: Animações de UI devem utilizar propriedades otimizadas por GPU (`transform`, `opacity`, `filter`).
+- **Transições Suaves**: Utilize utilitários de transição do Tailwind (`transition-all`, `duration-200`, `ease-in-out`).
+- **Sem 3D Invasivo**: Evite efeitos de rotação 3D de câmera que prejudiquem a usabilidade da grade de vídeos.

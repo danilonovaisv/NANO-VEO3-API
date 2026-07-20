@@ -1,15 +1,12 @@
 ---
 trigger: always_on
-description: Comandos para diagnóstico e resolução de problemas
+description: Diretrizes de solução de problemas e diagnóstico de erros no NANO-VEO3-API
 globs: ["*"]
 ---
 
-# Objetivo
+# Diagnóstico de Problemas (NANO-VEO3-API)
 
-Fluxo de debugging padrão do HyperFrames.
-
-# Regras
-
-- Falhas de compilação: Execute `npx hyperframes lint` e `npx hyperframes validate`.
-- Verificação de frames específicos: Execute `npx hyperframes snapshot --at 1,2.5,5`.
-- Se o servidor de preview falhar por porta ocupada: `npx hyperframes preview --port 4567`.
+## Fluxo de Debugging
+- **Erros de Payload / API**: Inicie executando o teste determinístico `.agents/skills/veo3-api-integration/scripts/test_payload.ts`.
+- **Erros de Tipos ou Build**: Execute `npx tsc --noEmit` e `npm run lint`.
+- **Erros no SDK @google/genai**: Verifique se a variável de ambiente `GEMINI_API_KEY` está corretamente configurada no arquivo `.env` ou `.env.local`.

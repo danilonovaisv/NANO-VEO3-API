@@ -1,24 +1,16 @@
 ---
 trigger: always_on
+description: Regras de design system, tipografia e cores no NANO-VEO3-API
+globs: ["app/**/*.tsx", "components/**/*.tsx", "app/globals.css"]
 ---
 
 # Objetivo
 
-Garantir a consistência visual em vídeos gerados.
-
----
-description: Regras de tipografia, cores e design system
-globs: ["*.css", "*.html", "design.md"]
----
+Garantir a consistência visual da interface e mídias no NANO-VEO3-API.
 
 # Regras
 
-- **Cores**: Siga a proporção 60-30-10 (60% fundo/canvas, 30% estrutural, 10% acento).
-- **Tipografia**: O tamanho mínimo da fonte para fontes proporcionais é 96px; para monospace é 64-72px.
-- Use `window.__hyperframes.fitTextFontSize()` para evitar overflow.
-- A paleta deve ser lida de `capture/extracted/tokens.json` ou `design.md`.
-
-# Anti-patterns
-
-- ❌ Adicionar texto flutuando em espaço vazio (ancore nas bordas ou centralize de forma robusta).
-- ❌ Fundo preto puro `#000` (Use `#0a0a0a` ou tintas escuras).
+- **Cores**: Proporção 60-30-10 (60% canvas/fundo `#040013`, 30% estrutural, 10% acento `#0048ff` / `#4fe6ff`).
+- **Tipografia**: Fontes legíveis com escalonamento fluido (`clamp()`).
+- **Layouts**: Layouts em grids planos responsivos Tailwind CSS sem distorções de proporção.
+- **Integridade Visual**: Logos de marcas devem se manter intactos e sem deformações.
