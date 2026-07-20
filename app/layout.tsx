@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${manrope.variable} ${sourceCodePro.variable}`}>
         <div className="bg-gray-200 text-stone-900">
           <main>{children}</main>

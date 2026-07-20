@@ -54,7 +54,9 @@ export default function VideoPlayer({
   const [isRecording, setIsRecording] = useState(false);
 
   // Reset trim UI when the source changes
-  useEffect(() => {
+  const [prevSrc, setPrevSrc] = useState(src);
+  if (prevSrc !== src) {
+    setPrevSrc(src);
     setIsTrimmed(false);
     setTrimRange([0, 0]);
     setDuration(0);
@@ -62,6 +64,9 @@ export default function VideoPlayer({
     setEffectiveStartTime(0);
     setPlayed(0);
     setSeeking(false);
+  }
+
+  useEffect(() => {
     try {
       playerRef.current?.load?.();
     } catch {}

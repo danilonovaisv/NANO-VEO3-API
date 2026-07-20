@@ -31,7 +31,9 @@ const VeoStudio: React.FC = () => {
   const [selectedModel, setSelectedModel] = useState("veo-3.0-generate-001");
 
   // Update selected model when mode changes
-  useEffect(() => {
+  const [prevMode, setPrevMode] = useState(mode);
+  if (prevMode !== mode) {
+    setPrevMode(mode);
     if (mode === "create-video") {
       setSelectedModel("veo-3.0-generate-001");
     } else if (mode === "edit-image" || mode === "compose-image") {
@@ -44,7 +46,7 @@ const VeoStudio: React.FC = () => {
         setSelectedModel("gemini-2.5-flash-image-preview");
       }
     }
-  }, [mode, selectedModel]);
+  }
 
   // Image generation prompts
   const [imagePrompt, setImagePrompt] = useState("");
@@ -52,11 +54,14 @@ const VeoStudio: React.FC = () => {
   const [composePrompt, setComposePrompt] = useState("");
 
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
   const [multipleImageFiles, setMultipleImageFiles] = useState<File[]>([]);
   const [imagenBusy, setImagenBusy] = useState(false);
   const [geminiBusy, setGeminiBusy] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null); // data URL
+
+  const uploadedImageUrl = useMemo(() => {
+    return imageFile ? URL.createObjectURL(imageFile) : null;
+  }, [imageFile]);
 
   // Debug multipleImageFiles state
   useEffect(() => {
@@ -68,20 +73,12 @@ const VeoStudio: React.FC = () => {
   }, [multipleImageFiles]);
 
   useEffect(() => {
-    let objectUrl: string | null = null;
-    if (imageFile) {
-      objectUrl = URL.createObjectURL(imageFile);
-      setUploadedImageUrl(objectUrl);
-    } else {
-      setUploadedImageUrl(null);
-    }
-
     return () => {
-      if (objectUrl) {
-        URL.revokeObjectURL(objectUrl);
+      if (uploadedImageUrl) {
+        URL.revokeObjectURL(uploadedImageUrl);
       }
     };
-  }, [imageFile]);
+  }, [uploadedImageUrl]);
 
   const [operationName, setOperationName] = useState<VeoOperationName>(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -154,11 +151,16 @@ const VeoStudio: React.FC = () => {
   );
 
   // Advance loading message while any generation is happening
-  useEffect(() => {
+  const [prevIsLoadingUI, setPrevIsLoadingUI] = useState(isLoadingUI);
+  if (prevIsLoadingUI !== isLoadingUI) {
+    setPrevIsLoadingUI(isLoadingUI);
     if (!isLoadingUI) {
       setLoadingIndex(0);
-      return;
     }
+  }
+
+  useEffect(() => {
+    if (!isLoadingUI) return;
     const id = setInterval(() => {
       setLoadingIndex((i) => (i + 1) % loadingMessages.length);
     }, 2200);
