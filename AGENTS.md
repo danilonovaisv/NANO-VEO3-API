@@ -33,6 +33,7 @@ Este repositório (**NANO-VEO3-API**) é a infraestrutura de backend API e inter
 ## 🛠️ Orquestração de Agentes
 
 Agentes operam em sinergia a partir de `.agents/`:
+
 - **Orquestrador de API**: `@api-orchestrator` (`.agents/agents/api-orchestrator.md`)
 - **Especialista Veo 3**: `@veo-integration-specialist` (`.agents/agents/veo-integration-specialist.md`)
 - **Especialista Frontend**: `@frontend-specialist` (`.agents/agents/frontend-specialist.md`)
@@ -41,6 +42,18 @@ Agentes operam em sinergia a partir de `.agents/`:
 
 ## ⚡ Slash Commands & Workflows
 
-- `/audit-api`: Executa a auditoria de tipos e endpoints em `app/api/`.
-- `/test`: Executa os testes determinísticos de payload Zod e linter.
-- `/deploy-check`: Executa a validação pre-flight de build Next.js 15.
+- `/01-audit-api` (ou `/audit-api`): Auditoria de tipos e endpoints em `app/api/`.
+- `/02-test-endpoints` (ou `/test`): Testes determinísticos de payload Zod e linter.
+- `/03-deploy-check` (ou `/deploy-check`): Validação pre-flight de build Next.js 15.
+- `/calibragem-descoberta`: Calibração e validação de contexto do ambiente (Boot).
+- `/workflows-refresh`: Auditoria, testes e sincronização de todos os workflows.
+- `/agents-orquestrator`: Coordenação e governança do Swarm de Agentes.
+- `/video-agent-orchestration`: Orquestração de sub-personas no pipeline de vídeo.
+- `/institutional-video`: Pipeline completo de produção de vídeo institucional cinematográfico.
+- `/write-script`: Criação de roteiros e scripts para vídeo.
+- `/storyboard`: Roteiro visual e prompts visuais para geração.
+- `/generate-media`: Disparo de APIs de IA para mídia do storyboard.
+- `/generate-audio`: Geração de locução, áudio e efeitos sonoros.
+- `/render-final`: Renderização final, adição de legendas e composição.
+- `/scene-generation`: Pipeline de criação de cenas 3D.
+- `/workflow-orchestrator`: Automação e gerenciamento de workflows complexos.

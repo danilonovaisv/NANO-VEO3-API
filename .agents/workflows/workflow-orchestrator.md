@@ -21,6 +21,7 @@ Create and manage complex automation workflows with dependency management, sched
 ## Workflow Definition Structure
 
 ### Basic Workflow Schema
+
 ```json
 {
   "name": "deployment-workflow",
@@ -88,6 +89,7 @@ Create and manage complex automation workflows with dependency management, sched
 ## Advanced Workflow Features
 
 ### 1. **Conditional Execution**
+
 ```json
 {
   "id": "conditional-deploy",
@@ -106,6 +108,7 @@ Create and manage complex automation workflows with dependency management, sched
 ```
 
 ### 2. **Parallel Task Execution**
+
 ```json
 {
   "id": "parallel-tests",
@@ -131,6 +134,7 @@ Create and manage complex automation workflows with dependency management, sched
 ```
 
 ### 3. **Loop and Iteration**
+
 ```json
 {
   "id": "deploy-multiple-envs",
@@ -148,6 +152,7 @@ Create and manage complex automation workflows with dependency management, sched
 ```
 
 ### 4. **File and Data Processing**
+
 ```json
 {
   "id": "process-data",
@@ -171,6 +176,7 @@ Create and manage complex automation workflows with dependency management, sched
 ## Workflow Orchestration Engine
 
 ### Core Engine Implementation
+
 ```javascript
 class WorkflowOrchestrator {
   constructor(config) {
@@ -296,6 +302,7 @@ class WorkflowOrchestrator {
 ### Task Types Implementation
 
 #### Shell Task
+
 ```javascript
 async executeShellTask(task) {
   const { spawn } = require('child_process');
@@ -339,6 +346,7 @@ async executeShellTask(task) {
 ```
 
 #### HTTP Task
+
 ```javascript
 async executeHttpTask(task) {
   const axios = require('axios');
@@ -371,10 +379,10 @@ async executeHttpTask(task) {
 }
 ```
 
-
 ## Monitoring and Alerting
 
 ### Workflow Metrics Dashboard
+
 ```javascript
 class WorkflowMonitor {
   constructor() {
@@ -438,6 +446,7 @@ class WorkflowMonitor {
 ```
 
 ### Alert Configuration
+
 ```json
 {
   "alerts": [
@@ -466,6 +475,7 @@ class WorkflowMonitor {
 ## CLI Interface
 
 ### Command-line Usage
+
 ```bash
 # Create new workflow
 workflow create --name "deployment" --template "web-app"
@@ -493,7 +503,5 @@ workflow generate --type "ci-cd" --output ci-workflow.json
 ```
 
 ## Integration Examples
-
-
 
 This workflow orchestrator provides enterprise-grade automation capabilities with dependency management, monitoring, and cross-platform execution support.

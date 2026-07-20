@@ -36,5 +36,6 @@ globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.json"]
 ## 🚨 3. INCIDENT PROTOCOL
 
 Se uma API key ou secret for detectado em arquivos commitados ou em logs:
+
 1. **DỪNG / PARAR**: Interromper a execução imediatamente.
 2. **REPORTAR**: Notificar a necessidade de revogação/rotação imediata da `GEMINI_API_KEY`.
