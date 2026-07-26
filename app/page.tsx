@@ -16,10 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 type VeoOperationName = string | null;
 
 type StudioMode =
-  | "create-image"
-  | "edit-image"
-  | "compose-image"
-  | "create-video";
+  "create-image" | "edit-image" | "compose-image" | "create-video";
 
 const POLL_INTERVAL_MS = 5000;
 

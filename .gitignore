@@ -32,6 +32,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...mas o template SEM segredos precisa ser versionado
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +41,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# uploads gerados em runtime (não versionar mídia de usuário)
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+# artefatos locais de agentes/IA
+.agents/data/*.local.json
+.claude/settings.local.json

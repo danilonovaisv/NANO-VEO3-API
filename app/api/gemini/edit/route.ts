@@ -38,8 +38,7 @@ export async function POST(req: Request) {
     );
 
     const contents: (
-      | { text: string }
-      | { inlineData: { mimeType: string; data: string } }
+      { text: string } | { inlineData: { mimeType: string; data: string } }
     )[] = [];
 
     // Add the prompt as text

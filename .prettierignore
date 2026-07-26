@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+build
+coverage
+package-lock.json
+
+# conteúdo de agentes/IA: 700+ arquivos markdown de fontes externas,
+# reformatá-los geraria diffs enormes e sem valor
+.agents
+.claude
+guides

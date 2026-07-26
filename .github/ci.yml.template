@@ -1,0 +1,67 @@
+# ---------------------------------------------------------------------------
+# Workflow de CI — pronto para uso, aguardando ativação.
+#
+# Este arquivo está como `.template` porque o GitHub App usado para abrir esta
+# branch não tem a permissão `workflows`, necessária para criar arquivos em
+# `.github/workflows/`. Para ativar, rode localmente:
+#
+#   mkdir -p .github/workflows
+#   git mv .github/ci.yml.template .github/workflows/ci.yml
+#   git commit -m "ci: ativa workflow de CI" && git push
+#
+# O conteúdo abaixo já foi validado: lint, typecheck, format:check e build
+# passam neste repositório.
+# ---------------------------------------------------------------------------
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Cancela runs antigos da mesma ref quando um novo push chega
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Lint, typecheck e build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Build
+        # As rotas em app/api/** instanciam o SDK no escopo do módulo e lançam
+        # erro se a chave não existir, o que quebra o passo "Collecting page
+        # data" do next build. Usamos um placeholder: nenhuma chamada real à
+        # Gemini API acontece durante o build.
+        env:
+          GEMINI_API_KEY: dummy-key-for-build
+        run: npm run build
