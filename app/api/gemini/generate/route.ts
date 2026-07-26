@@ -36,7 +36,10 @@ export async function POST(req: Request) {
     }
 
     if (!imageData) {
-      return NextResponse.json({ error: "No image generated" }, { status: 500 });
+      return NextResponse.json(
+        { error: "No image generated" },
+        { status: 500 }
+      );
     }
 
     return NextResponse.json({

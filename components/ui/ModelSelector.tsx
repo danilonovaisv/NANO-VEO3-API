@@ -2,10 +2,7 @@ import React from "react";
 import { ChevronDown } from "lucide-react";
 
 type StudioMode =
-  | "create-image"
-  | "edit-image"
-  | "compose-image"
-  | "create-video";
+  "create-image" | "edit-image" | "compose-image" | "create-video";
 
 interface ModelSelectorProps {
   selectedModel: string;

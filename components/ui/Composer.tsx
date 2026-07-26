@@ -18,10 +18,7 @@ import {
 } from "@/components/ui/tooltip";
 
 type StudioMode =
-  | "create-image"
-  | "edit-image"
-  | "compose-image"
-  | "create-video";
+  "create-image" | "edit-image" | "compose-image" | "create-video";
 
 interface ComposerProps {
   mode: StudioMode;
@@ -217,10 +214,10 @@ const Composer: React.FC<ComposerProps> = ({
               mode === "create-image"
                 ? "Generate Image"
                 : mode === "edit-image"
-                ? "Edit Image"
-                : mode === "compose-image"
-                ? "Compose Image"
-                : "Generate Video"
+                  ? "Edit Image"
+                  : mode === "compose-image"
+                    ? "Compose Image"
+                    : "Generate Video"
             }
           >
             {isGenerating || geminiBusy ? (
@@ -244,8 +241,8 @@ const Composer: React.FC<ComposerProps> = ({
                   mode === "create-image"
                     ? "bg-indigo-400/30 text-slate-900 backdrop-blur-sm"
                     : isTabDisabled("create-image")
-                    ? "text-slate-400 cursor-not-allowed opacity-50"
-                    : "text-slate-700 hover:bg-white/30 hover:text-slate-900"
+                      ? "text-slate-400 cursor-not-allowed opacity-50"
+                      : "text-slate-700 hover:bg-white/30 hover:text-slate-900"
                 }`}
               >
                 <ImageIcon className="w-4 h-4" aria-hidden="true" />
@@ -269,8 +266,8 @@ const Composer: React.FC<ComposerProps> = ({
                   mode === "edit-image"
                     ? "bg-blue-400/30 text-slate-900 backdrop-blur-sm"
                     : isTabDisabled("edit-image")
-                    ? "text-slate-400 cursor-not-allowed opacity-50"
-                    : "text-slate-700 hover:bg-white/30 hover:text-slate-900"
+                      ? "text-slate-400 cursor-not-allowed opacity-50"
+                      : "text-slate-700 hover:bg-white/30 hover:text-slate-900"
                 }`}
               >
                 <Edit className="w-4 h-4" />
@@ -294,8 +291,8 @@ const Composer: React.FC<ComposerProps> = ({
                   mode === "compose-image"
                     ? "bg-green-400/30 text-slate-900 backdrop-blur-sm"
                     : isTabDisabled("compose-image")
-                    ? "text-slate-400 cursor-not-allowed opacity-50"
-                    : "text-slate-700 hover:bg-white/30 hover:text-slate-900"
+                      ? "text-slate-400 cursor-not-allowed opacity-50"
+                      : "text-slate-700 hover:bg-white/30 hover:text-slate-900"
                 }`}
               >
                 <Palette className="w-4 h-4" />
@@ -319,8 +316,8 @@ const Composer: React.FC<ComposerProps> = ({
                   mode === "create-video"
                     ? "bg-purple-400/30 text-slate-900 backdrop-blur-sm"
                     : isTabDisabled("create-video")
-                    ? "text-slate-400 cursor-not-allowed opacity-50"
-                    : "text-slate-700 hover:bg-white/30 hover:text-slate-900"
+                      ? "text-slate-400 cursor-not-allowed opacity-50"
+                      : "text-slate-700 hover:bg-white/30 hover:text-slate-900"
                 }`}
               >
                 <Video className="w-4 h-4" />
