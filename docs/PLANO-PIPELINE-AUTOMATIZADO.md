@@ -2,6 +2,11 @@
 
 > **Projeto:** NANO-VEO3-API · **Data:** 26/07/2026 · **Branch:** `arena/019f9d65-nano-veo3-api`
 > **Status:** proposta para revisão — **nenhum código de aplicação foi alterado nesta etapa**.
+>
+> **➜ As 3 decisões pendentes deste plano já foram resolvidas em
+> [`DECISOES-TECNICAS.md`](./DECISOES-TECNICAS.md):** container no Railway, Inngest como
+> orquestrador e Veo 3.1 Lite 720p como padrão de custo. Esse documento também registra um achado
+> urgente: **os modelos `veo-3.0-*` e `veo-2.0-*` usados no código foram desligados em 30/06/2026**.
 
 ## Convenção de rotulagem das afirmações
 
