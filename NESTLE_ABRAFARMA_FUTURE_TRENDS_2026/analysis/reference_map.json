@@ -1,0 +1,10 @@
+{
+  "references": [
+    {"source": "../../sources/Nestlé - Abrafarma Future Trends V5.pdf", "type": "briefing_conceptual", "applies_to": ["PROJECT", "ALL_VIDEOS"], "use": ["conceito", "objetivos", "pilares", "direcao espacial"]},
+    {"source": "../../sources/Lemon_Nestlé_Abrafarma_R00.pdf", "type": "architecture", "applies_to": ["ALL_VIDEOS"], "use": ["posicionamento das telas", "contexto de instalacao", "proporcoes aparentes"]},
+    {"source": "../../sources/NESTLÉ_DETALHAMENTO_REV01.pdf", "type": "technical_detailing", "applies_to": ["ALL_VIDEOS"], "use": ["medidas tecnicas", "implantacao", "validacao de superficies"]},
+    {"source": "../sources/PixelMap_P1.9_8x6Mod.pdf", "type": "pixel_map", "applies_to": ["LED_SYSTEMS"], "use": ["resolucao", "mapeamento", "proporcao final"]},
+    {"source": "https://docs.google.com/spreadsheets/d/1GTcezA40mf3rVn8VO5gaqtJ4ebC8JcQc6DA8kUYhjiU/edit", "type": "asset_control", "applies_to": ["ALL_VIDEOS", "PRODUCTS"], "use": ["status de assets", "claims de trabalho", "links", "responsabilidades"]},
+    {"source": "../PROMPT_AGENTE_IDE_ORGANIZACAO_VIDEOS_NESTLE_ABRAFARMA_2026.md", "type": "workflow", "applies_to": ["PROJECT"], "use": ["organizacao", "versionamento", "estrutura JSON", "validacao"]}
+  ]
+}

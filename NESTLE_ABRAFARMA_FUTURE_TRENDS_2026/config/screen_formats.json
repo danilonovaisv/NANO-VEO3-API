@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "project": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026",
+  "formats": {
+    "P1_9_7x6_MOD": {
+      "id": "P1_9_7x6_MOD",
+      "label": "P1.9 7x6 Mod",
+      "screen_name": "LED 1 Curvo",
+      "resolution_px": "1792x1536",
+      "resolution_w": 1792,
+      "resolution_h": 1536,
+      "physical_mm": "3500x3040",
+      "fps": 60,
+      "codec": "H.264",
+      "extension": ".mp4",
+      "audio": false,
+      "duration_seconds": 15,
+      "clip_split_strategy": [
+        "8s",
+        "7s"
+      ],
+      "safe_area_percent": 10,
+      "aspect_ratio_native": "7:6",
+      "status": "CONFIRMED",
+      "note": "Primary format for this project. Two clips required per 15s rotation."
+    },
+    "ASCENDA": {
+      "id": "ASCENDA",
+      "label": "Ascenda",
+      "screen_name": "Ascenda",
+      "resolution_px": "TBD",
+      "fps": "TBD",
+      "codec": "H.264",
+      "extension": ".mp4",
+      "audio": "PENDING",
+      "duration_seconds_source": 10,
+      "duration_seconds_adapted": 15,
+      "status": "OBSERVED",
+      "note": "Adapt from 10s to 15s. Resolution and audio pending briefing confirmation."
+    }
+  },
+  "resolution_constraints": {
+    "note": "1792x1536 is NOT a standard Veo 3 output resolution. Clips may need upscaling/resampling in post-production. Veo 3.1 outputs: 720p or 1080p. Post-processing required to reach 1792x1536 for LED delivery.",
+    "recommended_post_pipeline": "Generate at 1080p -> Topaz Video Upscaler -> export 1792x1536 H.264 60fps"
+  }
+}

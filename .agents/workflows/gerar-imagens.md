@@ -46,11 +46,15 @@ Este arquivo documenta as regras operacionais associadas ao comando `/gerar-imag
    - **Imagem de Entrada (`/medias/inputs/`)**: Antes de rodar qualquer modelo generativo, verifica-se se há arquivos de imagem pré-existentes na pasta de inputs. Se houver, o pipeline adota essa imagem diretamente, ignorando a geração inicial para poupar recursos e créditos, e copia o arquivo para a pasta de saídas `/medias/outputs/`.
    - **Instruções de Prompt (`/medias/prompts/`)**: Verifica-se a presença de arquivos de prompt ou diretrizes textuais (ex: arquivos `.txt` ou `.md`). Caso existam, o conteúdo deles é lido para parametrizar e refinar as instruções do prompt que guiará a geração de imagem.
 
-2. **Engenharia de Prompts**:
-   - Se nenhuma imagem de entrada for fornecida, o pipeline formula prompts de imagem com base nas especificações coletadas.
-   - Força-se o cumprimento de duas regras fundamentais:
-     - **Sem elementos de texto**: Aplica-se um prompt negativo restrito para evitar marcas d'água, letras, assinaturas ou textos sobrepostos.
-     - **Alta fidelidade visual**: Resolução mínima de 2K ou superior, adaptando a proporção conforme as diretrizes lidas da pasta de prompts.
+2. **Engenharia de Prompts com Grounding NotebookLM**:
+   - Se nenhuma imagem de entrada for fornecida, o pipeline consulta o caderno `nano-banana-ecosystem-&-visual-engineering-manual` via `@notebooklm-knowledge-sentinel`:
+     ```bash
+     python .agents/skills/notebooklm/scripts/ask_question.py --notebook-id nano-banana-ecosystem-&-visual-engineering-manual --question "Como estruturar os prompts usando SCALIST e SCHEMA para esta imagem?"
+     ```
+   - Força-se o cumprimento das regras do ecossistema Nano Banana:
+     - **Framework SCALIST / SCHEMA**: Aplicação de Sujeito, Composição, Ação, Localização, Estilo, Lentes, Temperatura de Cor e Identity Lock.
+     - **Sem elementos de texto indesejados**: Aplica-se um prompt negativo restrito para evitar marcas d'água, assinaturas ou artefatos indesejados.
+     - **Alta fidelidade visual**: Resolução mínima de 2K a 4K, com especificação precisa de lentes e renderização de luz.
 
 3. **Invocação de Mídia e Fallbacks**:
    - O pipeline tenta executar o script de geração.

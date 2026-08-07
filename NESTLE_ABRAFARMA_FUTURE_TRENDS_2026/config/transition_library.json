@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "project": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026",
+  "transitions": [
+    {
+      "id": "foreground_wipe",
+      "description": "Branded element (bird, light beam) passes in front of lens to transition between states.",
+      "safe_for_led": true
+    },
+    {
+      "id": "luminous_pulse",
+      "description": "Bright light pulse from product center triggers a scene state change.",
+      "safe_for_led": true
+    },
+    {
+      "id": "particle_dissolve",
+      "description": "Scene elements dissolve into particles, which reform into the next state.",
+      "safe_for_led": true
+    },
+    {
+      "id": "vertical_rise_chain",
+      "description": "Sequential product entries, each rise triggering the next after a settle delay.",
+      "safe_for_led": true
+    },
+    {
+      "id": "hard_cut",
+      "description": "Instant cut between clips. Use at clip boundary (end of 8s clip, start of 7s clip).",
+      "safe_for_led": true,
+      "note": "Preferred at LED 1 Curvo clip join — avoids transition artifacts."
+    },
+    {
+      "id": "cross_dissolve",
+      "description": "Gradual opacity blend between states. Use only when visual language supports it.",
+      "safe_for_led": true,
+      "duration_max_frames": 30
+    }
+  ]
+}

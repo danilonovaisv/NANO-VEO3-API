@@ -1,0 +1,4 @@
+{
+  "references": [],
+  "instructions": "Adicionar links e arquivos de video somente depois de relaciona-los a um video_id, descrevendo movimento, camera, ritmo e aplicacao. Nao solicitar copia literal."
+}

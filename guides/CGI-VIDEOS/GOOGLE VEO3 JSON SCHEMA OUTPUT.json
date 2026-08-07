@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/veo3_prompt.schema.json",
+  "title": "VEO3 Prompt Object",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "subject",
+    "camera_position",
+    "location",
+    "action",
+    "visual_style_and_lighting",
+    "movement_quality",
+    "camera_motion_and_composition",
+    "ambiance_or_mood",
+    "aspect_ratio",
+    "fps",
+    "resolution",
+    "quality",
+    "motion_intensity",
+    "lighting",
+    "color_palette",
+    "audio_elements",
+    "negative_prompt",
+    "final_prompt"
+  ],
+  "properties": {
+    "subject": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Specific description of who/what is in the scene (age, appearance, clothing, personality)."
+    },
+    "camera_position": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Precise description of where the camera is relative to the subject (use phrasing that clarifies perspective)."
+    },
+    "location": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Environment/setting with time of day and architectural or environmental elements."
+    },
+    "action": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Sequential actions: “this happens, then that happens”."
+    },
+    "visual_style_and_lighting": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Aesthetic (cinematic, documentary, noir) and lighting (golden hour, studio, etc.)."
+    },
+    "movement_quality": {
+      "type": "string",
+      "enum": [
+        "natural",
+        "energetic",
+        "slow_and_deliberate",
+        "graceful",
+        "robotic",
+        "tense",
+        "playful"
+      ],
+      "description": "How the subject moves."
+    },
+    "camera_motion_and_composition": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Shot types and movement (dolly, tracking, gimbal) and composition (rule of thirds, DoF, etc.)."
+    },
+    "dialogue": {
+      "type": "string",
+      "description": "Format: \"[speaking style] saying: [user dialogue]\". Omit if no dialogue.",
+      "minLength": 0
+    },
+    "audio_elements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ambience"
+      ],
+      "properties": {
+        "ambience": {
+          "type": "string",
+          "minLength": 2,
+          "description": "Ambient room tone/environmental sound."
+        },
+        "music": {
+          "type": "string",
+          "description": "Music mood/genre/instrumentation.",
+          "minLength": 0
+        },
+        "sfx": {
+          "type": "string",
+          "description": "Sound effects that sync with actions.",
+          "minLength": 0
+        }
+      }
+    },
+    "ambiance_or_mood": {
+      "type": "string",
+      "minLength": 2,
+      "description": "Emotional tone and atmosphere."
+    },
+    "negative_prompt": {
+      "type": "string",
+      "description": "Elements to avoid. Keep crisp (‘no hands’, ‘no text’, etc.).",
+      "minLength": 0
+    },
+    "aspect_ratio": {
+      "type": "string",
+      "enum": [
+        "16:9",
+        "9:16",
+        "1:1",
+        "4:5",
+        "2.39:1"
+      ],
+      "description": "Width:height ratio."
+    },
+    "fps": {
+      "type": "integer",
+      "enum": [
+        24,
+        25,
+        30
+      ],
+      "description": "Frames per second."
+    },
+    "resolution": {
+      "type": "string",
+      "enum": [
+        "1280x720",
+        "1920x1080",
+        "2560x1440",
+        "3840x2160"
+      ],
+      "description": "Video resolution."
+    },
+    "duration_sec": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 60,
+      "default": 5,
+      "description": "Clip duration (helps pacing, optional)."
+    },
+    "style": {
+      "type": "string",
+      "description": "Optional shorthand for style/genre (e.g., 'cinematic product ad').",
+      "minLength": 0
+    },
+    "quality": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "standard",
+        "high",
+        "ultra"
+      ],
+      "description": "Output quality setting."
+    },
+    "motion_intensity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "description": "Overall motion strength (subject+camera)."
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Random seed for reproducibility."
+    },
+    "lighting": {
+      "type": "string",
+      "description": "Lighting conditions summary (complements visual_style_and_lighting)."
+    },
+    "mood": {
+      "type": "string",
+      "description": "Alias to ambiance_or_mood (optional); if set, it should match or refine that field."
+    },
+    "color_palette": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "string",
+        "pattern": "^#([0-9a-fA-F]{6})$"
+      },
+      "description": "Dominant colors as HEX."
+    },
+    "subject_focus": {
+      "type": "string",
+      "description": "Main subject details (alias of subject for compatibility).",
+      "minLength": 0
+    },
+    "background": {
+      "type": "string",
+      "description": "Background description (can be derived from location).",
+      "minLength": 0
+    },
+    "effects": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 2
+      },
+      "maxItems": 6,
+      "description": "Special effects to include (e.g., 'subtle particle bloom')."
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "no_subtitles": {
+          "type": "boolean",
+          "default": true
+        },
+        "no_text_overlay": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "final_prompt": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Fully assembled prompt string following the mandated structure and ending with 'No subtitles, no text overlay.'"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "dialogue": {
+            "minLength": 1
+          }
+        },
+        "required": [
+          "dialogue"
+        ]
+      },
+      "then": {
+        "properties": {
+          "dialogue": {
+            "pattern": "^[\\s\\S]*?saying:\\s.+"
+          }
+        }
+      }
+    }
+  ]
+}

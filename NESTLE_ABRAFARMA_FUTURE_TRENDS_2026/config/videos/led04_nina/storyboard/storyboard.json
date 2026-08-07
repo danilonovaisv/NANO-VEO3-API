@@ -1,0 +1,15 @@
+{
+  "video_id": "LED04_NINA",
+  "status": "draft",
+  "narrative_summary": "Pendente de consolidacao a partir do roteiro e dos assets aprovados.",
+  "scenes": [],
+  "continuity_notes": [],
+  "missing_information": [
+    "design oficial da Nina",
+    "voz e roteiro",
+    "logica de interacao",
+    "dimensoes e pixels da tela",
+    "duracao"
+  ],
+  "last_updated": "2026-08-06"
+}

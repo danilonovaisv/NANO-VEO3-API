@@ -1,0 +1,36 @@
+{
+  "video_id": "LED02_RECEITAS",
+  "video_name": "Receitas e produtos proteinados",
+  "screen_name": "LED horizontal de receitas 3.5 x 1.0 m",
+  "screen_dimensions": null,
+  "pixel_dimensions": null,
+  "communication_objective": "Demonstrar possibilidades de receitas e consumo com produtos proteinados.",
+  "main_message": "Nutricao pode fazer parte de experiencias praticas e atraentes.",
+  "products": [
+    "Nutren Protein RTD",
+    "Puravida Whey Concentrado"
+  ],
+  "approved_claims": [],
+  "mandatory_elements": [
+    "fidelidade aos assets oficiais",
+    "consistencia visual entre cenas"
+  ],
+  "restrictions": [
+    "Nao usar claims sem validacao final.",
+    "Nao alterar caracteristicas fisicas dos produtos."
+  ],
+  "reference_files": [
+    "../../../sources/Nestlé - Abrafarma Future Trends V5.pdf",
+    "../../../sources/NESTLÉ_DETALHAMENTO_REV01.pdf"
+  ],
+  "reference_links": [],
+  "scene_order": [],
+  "status": "awaiting_assets",
+  "missing_information": [
+    "receitas aprovadas",
+    "produtos e sabores finais",
+    "modo de preparo",
+    "duracao e pixels finais"
+  ],
+  "last_updated": "2026-08-06"
+}

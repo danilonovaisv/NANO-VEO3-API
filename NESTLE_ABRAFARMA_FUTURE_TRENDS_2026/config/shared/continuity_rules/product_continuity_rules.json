@@ -1,0 +1,3 @@
+{
+  "rules": ["usar o mesmo packshot aprovado em toda a sequencia", "travar geometria, rotulo, logo, tampa, cor e escala relativa", "manter direcao de luz e temperatura de cor entre planos conectados", "preservar eixo de camera e direcao do movimento", "alinhar o ultimo frame de uma cena ao primeiro frame da proxima quando houver transicao direta", "usar apenas um movimento principal de camera por plano", "aplicar tipografia e claims finais em pos-producao quando necessario"]
+}

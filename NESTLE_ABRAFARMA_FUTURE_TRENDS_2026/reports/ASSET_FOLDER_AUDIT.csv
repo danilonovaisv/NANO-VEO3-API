@@ -1,0 +1,4 @@
+Asset ID,Brand/Product,Placement,Screen Format,Resolution,FPS,Duration,Available Files,Missing Files,Briefing Status,KV Status,Packshot Status,Claim Status,Technical Blockers,Production Readiness,Next Action
+FT26-LED01-NAN-COMFOR-001,NAN COMFOR Familia Comfor,LED 1 Curvo,P1.9 7x6 Mod,1792x1536,60,15s (8s+7s),FRAME-1+FRAME-2+scripts,None for this asset,OBSERVED,CONFIRMED,CONFIRMED,NEEDS VERIFY (#1 badge),Upscaling 1080p→1792x1536,READY_FOR_PREPROD,Run validation then dispatch
+FT26-ASCENDA-ALL-001,All Nestle Brands,Ascenda,UNKNOWN,TBD,TBD,10s→15s,None,All,MISSING,MISSING,MISSING,UNKNOWN,Screen spec missing,BLOCKED,Confirm Ascenda format
+FT26-OTHER-ALL-001,All Nestle Brands,Other Screens,UNKNOWN,TBD,TBD,TBD,None,All,MISSING,MISSING,MISSING,UNKNOWN,Full spec missing,BLOCKED,Obtain screen matrix from ABRAFARMA

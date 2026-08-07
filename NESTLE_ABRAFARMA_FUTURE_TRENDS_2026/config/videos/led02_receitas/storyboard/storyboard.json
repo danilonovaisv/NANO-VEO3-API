@@ -1,0 +1,14 @@
+{
+  "video_id": "LED02_RECEITAS",
+  "status": "draft",
+  "narrative_summary": "Pendente de consolidacao a partir do roteiro e dos assets aprovados.",
+  "scenes": [],
+  "continuity_notes": [],
+  "missing_information": [
+    "receitas aprovadas",
+    "produtos e sabores finais",
+    "modo de preparo",
+    "duracao e pixels finais"
+  ],
+  "last_updated": "2026-08-06"
+}

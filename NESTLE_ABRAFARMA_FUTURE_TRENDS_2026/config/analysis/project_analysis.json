@@ -1,0 +1,19 @@
+{
+  "project_id": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026",
+  "summary": "Experiencia de marca Nestle Nutrition & Health para a Abrafarma Future Trends 2026, combinando arquitetura, conteudo, tecnologia e portfolio em uma comunicacao B2B.",
+  "communication_objectives": ["apresentar o portfolio de nutricao e saude", "organizar a comunicacao por jornadas e necessidades", "integrar conteudo audiovisual ao estande"],
+  "creative_concept": "Nutricao que conecta o futuro",
+  "spatial_direction": ["arquitetura aberta e fluida", "curvas e estruturas suspensas", "paleta clara", "materiais naturais", "iluminacao acolhedora", "integracao entre tecnologia, conteudo e arquitetura"],
+  "pillars": ["Performance Esportiva", "Nutricao Diaria", "Saude e Longevidade", "Bem-estar Feminino", "Jornada GLP-1 / Suporte Nutricional"],
+  "video_systems": [
+    {"video_id": "LED01_CURVO", "purpose": "portfolio principal no LED frontal curvo"},
+    {"video_id": "LED02_RECEITAS", "purpose": "receitas e produtos proteinados"},
+    {"video_id": "LED03_GLP1", "purpose": "jornada GLP-1 e suporte nutricional"},
+    {"video_id": "LED04_NINA", "purpose": "Nina e painel interativo"},
+    {"video_id": "GONDOLAS", "purpose": "loops de nichos e grupos de produtos"},
+    {"video_id": "LED_NINHO", "purpose": "adaptacao Ninho Patrulha Canina"},
+    {"video_id": "TV_SALA_VIP", "purpose": "filme institucional Nutrition & Health"}
+  ],
+  "sources": ["../../sources/Nestlé - Abrafarma Future Trends V5.pdf", "../../sources/Lemon_Nestlé_Abrafarma_R00.pdf", "../../sources/NESTLÉ_DETALHAMENTO_REV01.pdf", "../../sources/PixelMap_P1.9_8x6Mod.pdf", "https://docs.google.com/spreadsheets/d/1GTcezA40mf3rVn8VO5gaqtJ4ebC8JcQc6DA8kUYhjiU/edit"],
+  "missing_information": ["pasta guides", "duracoes finais", "roteiros finais", "mapa consolidado de pixels e safe areas", "assets locais de Dropbox e SharePoint"]
+}

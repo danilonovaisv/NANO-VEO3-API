@@ -1,0 +1,35 @@
+{
+  "video_id": "LED04_NINA",
+  "video_name": "Nina interativa",
+  "screen_name": "Painel Nina interativo",
+  "screen_dimensions": null,
+  "pixel_dimensions": null,
+  "communication_objective": "Conectar a personagem Nina a uma experiencia interativa no estande.",
+  "main_message": "Pendente de roteiro e assets oficiais.",
+  "products": [],
+  "approved_claims": [],
+  "mandatory_elements": [
+    "fidelidade aos assets oficiais",
+    "consistencia visual entre cenas"
+  ],
+  "restrictions": [
+    "Nao inventar aparencia, voz ou personalidade da Nina.",
+    "Nao usar claims sem validacao final.",
+    "Nao alterar caracteristicas fisicas dos produtos."
+  ],
+  "reference_files": [
+    "../../../sources/Nestlé - Abrafarma Future Trends V5.pdf",
+    "../../../sources/Lemon_Nestlé_Abrafarma_R00.pdf"
+  ],
+  "reference_links": [],
+  "scene_order": [],
+  "status": "awaiting_assets",
+  "missing_information": [
+    "design oficial da Nina",
+    "voz e roteiro",
+    "logica de interacao",
+    "dimensoes e pixels da tela",
+    "duracao"
+  ],
+  "last_updated": "2026-08-06"
+}

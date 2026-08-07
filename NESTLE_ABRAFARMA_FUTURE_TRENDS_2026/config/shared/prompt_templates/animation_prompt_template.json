@@ -1,0 +1,13 @@
+{
+  "metadata": {"project_id": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026", "video_id": "", "scene_id": "", "prompt_version": "v001", "status": "draft", "source_files": [], "created_at": "", "updated_at": ""},
+  "input_frames": {"first_frame": null, "last_frame": null, "reference_images": []},
+  "objective": "",
+  "locked_elements": [],
+  "animation": {"primary_action": "", "secondary_actions": [], "camera": {"movement": "", "lens_character": "", "framing": "", "focus_behavior": ""}, "lighting_change": "", "timing_and_rhythm": "", "transition_to_last_frame": ""},
+  "cgi_direction": {"environment": "", "materials": [], "particles_and_fluids": "", "realism_level": "", "depth_and_atmosphere": ""},
+  "technical": {"aspect_ratio": null, "duration_seconds": null, "resolution": null, "frame_rate": null, "loop": null, "safe_area": null, "audio": null},
+  "negative_prompt": [],
+  "continuity_rules": [],
+  "validation_criteria": [],
+  "missing_information": []
+}

@@ -1,0 +1,8 @@
+{
+  "references": [
+    {"file": "../../sources/Nestlé - Abrafarma Future Trends V5.pdf", "applies_to": ["ALL_VIDEOS"], "aspects": ["conceito", "pilares", "linguagem visual"]},
+    {"file": "../../sources/Lemon_Nestlé_Abrafarma_R00.pdf", "applies_to": ["ALL_VIDEOS"], "aspects": ["arquitetura", "escala", "integracao das telas"]},
+    {"file": "../../sources/NESTLÉ_DETALHAMENTO_REV01.pdf", "applies_to": ["ALL_VIDEOS"], "aspects": ["implantacao", "medidas tecnicas"]},
+    {"file": "../../sources/PixelMap_P1.9_8x6Mod.pdf", "applies_to": ["LED_SYSTEMS"], "aspects": ["pixel map", "resolucao", "enquadramento"]}
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "project": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026",
+  "brand_safety": [
+    "Preserve official packshots exactly as supplied — no shape, color, or label alterations",
+    "Preserve official logos, typography, and brand identity at every frame",
+    "Do not invent claims, benefits, or regulatory language not present in approved briefing",
+    "Do not generate fake regulatory text (ANVISA, RDC, nutrition facts, etc.)",
+    "Do not use direct celebrity likeness — convert to generic casting descriptions",
+    "Never overwrite source files in 02_SOURCE_MATERIALS",
+    "Never move an asset to production unless all required inputs are confirmed present"
+  ],
+  "visual_style": [
+    "Ultra-premium CGI product advertising — photorealistic, high micro-contrast",
+    "Cinematic lighting with soft volumetric fills and branded gradient backgrounds",
+    "Clean product readability — packaging legible at every frame",
+    "LED-safe composition — high contrast, no overexposure, readable claims at safe margins",
+    "Product-first framing — packshot is always the visual anchor",
+    "Anamorphic lens language permitted for cinematic depth — no distortion of product",
+    "Safe area: 10% margin on all edges for LED panel edge bleed",
+    "Floating ingredient particles, light arcs, molecular overlays allowed as supporting elements only"
+  ],
+  "technical_rules": [
+    "Primary format: 1792x1536 for P1.9 7x6 Mod (LED 1 Curvo)",
+    "FPS: 60 for all LED outputs",
+    "Codec: H.264",
+    "Container: MP4",
+    "Audio: None for LED 1 Curvo (15s no audio). AAC2 if required by specific screen",
+    "Duration: 15s LED 1 Curvo — split into two clips: 8s + 7s",
+    "Max clip per generation: 8 seconds (Veo 3.1 model limit)",
+    "Each clip must be self-contained"
+  ],
+  "model_strategy": {
+    "first_last_frame_workflow": {
+      "model": "veo3-1-first-last-frame-to-video",
+      "api_provider": "eachlabs.ai OR @google/genai SDK",
+      "max_duration_seconds": 8,
+      "supports_audio": true,
+      "note": "CONFIRMED to support first + last frame. Use for LED 1 Curvo 8s clips."
+    },
+    "text_to_video_workflow": {
+      "model": "veo-3.0-generate-001",
+      "api_provider": "@google/genai SDK via GEMINI_API_KEY",
+      "max_duration_seconds": 8,
+      "supports_audio": true,
+      "first_last_frame": false,
+      "note": "Veo 3 Highest Quality does NOT support first+last frame. Use for text-only scenes."
+    },
+    "fast_test_model": "veo3-1-first-last-frame-to-video-fast",
+    "image_generation_model": "Imagen 4 via @google/genai SDK"
+  },
+  "approval_gates": [
+    "Gate 1 — Asset audit complete and signed off",
+    "Gate 2 — Briefing alignment complete and signed off",
+    "Gate 3 — Script approved by user",
+    "Gate 4 — Scene descriptions approved by user",
+    "Gate 5 — Initial/final frame prompts approved by user",
+    "Gate 6 — JSON prompt approved by user",
+    "Gate 7 — Video generation complete and raw output stored",
+    "Gate 8 — QA passed (technical + creative + brand)",
+    "Gate 9 — Tracker updated with CONFIRMED status",
+    "Gate 10 — Final delivery packaged and handed off"
+  ],
+  "negative_prompt_global": [
+    "deformed packaging",
+    "incorrect proportions",
+    "label distortion",
+    "illegible text",
+    "brand replacement",
+    "logo alteration",
+    "unauthorized color shift",
+    "additional unlisted products",
+    "extra objects",
+    "people",
+    "hands",
+    "utensils",
+    "subtitles",
+    "watermarks",
+    "camera cuts within single clip",
+    "background replacement",
+    "physics glitches",
+    "identity drift",
+    "hallucinated graphics",
+    "hallucinated text",
+    "motion blur obscuring labels",
+    "excessive bloom",
+    "lens dirt",
+    "chromatic aberration"
+  ]
+}

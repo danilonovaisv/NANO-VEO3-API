@@ -20,6 +20,12 @@ Example: _"Ative /write-script para criar um roteiro de 2 minutos sobre as 5 ten
 
 ### Steps
 
+0. **NotebookLM Grounding & Research**
+   - Delegate to `@notebooklm-knowledge-sentinel` to query the relevant notebook for domain-grounded narrative guidelines, tone, audio tags (*Says:*, *SFX:*, *Ambient:*), and technical terms:
+     ```bash
+     python .agents/skills/notebooklm/scripts/ask_question.py --notebook-id google-veo-3.1-manual-&-prompt-engineering-guide --question "Quais as diretrizes narrativas, ritmo de pacing e tags de audio nativo indicadas para este roteiro?"
+     ```
+
 1. **Understand the Brief**
    - Extract: topic, target platform, tone, duration, audience
    - Determine: format (YouTube long-form, Shorts, Reels, UGC)

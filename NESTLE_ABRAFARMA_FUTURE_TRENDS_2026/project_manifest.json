@@ -1,0 +1,96 @@
+{
+  "project_id": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026",
+  "project_name": "Nestlé Nutrition & Health — ABRAFARMA Future Trends 2026",
+  "version": "1.0.0",
+  "status": "in_production",
+  "created_at": "2026-08-06T14:30:00Z",
+  "last_updated": "2026-08-06T17:30:00Z",
+  "lead_architecture": {
+    "orchestrator": "@api-orchestrator",
+    "video_engineer": "@ai-video-engineer",
+    "veo_specialist": "@veo-integration-specialist",
+    "ide_agent": "@ghost-commander"
+  },
+  "video_registry": [
+    {
+      "video_id": "LED01_CURVO_COMFOR",
+      "folder_name": "01_FAMILIA_COMFOR",
+      "asset_id": "FT26-LED01-NAN-COMFOR-001",
+      "brand": "NAN COMFOR",
+      "screen": "LED 1 Curvo",
+      "status": "GATE_6_READY"
+    },
+    {
+      "video_id": "LED01_CURVO_SUPREME",
+      "folder_name": "02_FAMILIA_SUPREME",
+      "asset_id": "FT26-LED01_CURVO-002",
+      "brand": "NAN SUPREME",
+      "screen": "LED 1 Curvo",
+      "status": "GATE_6_READY"
+    },
+    {
+      "video_id": "LED01_CURVO_NESTONUTRI",
+      "folder_name": "03_FAMILIA_NESTONUTRI",
+      "asset_id": "FT26-LED01_CURVO-003",
+      "brand": "Nestonutri",
+      "screen": "LED 1 Curvo",
+      "status": "WAITING_INPUT"
+    },
+    {
+      "video_id": "LED02_RECEITAS",
+      "folder_name": "led02_receitas",
+      "asset_id": "FT26-LED02_RECEITAS-001",
+      "brand": "Receitas Proteinadas",
+      "screen": "LED 2 Receitas",
+      "status": "WAITING_INPUT"
+    },
+    {
+      "video_id": "LED03_GLP1",
+      "folder_name": "led03_glp1",
+      "asset_id": "FT26-LED03_GLP1-001",
+      "brand": "Jornada GLP-1",
+      "screen": "LED 3 GLP1",
+      "status": "WAITING_INPUT"
+    },
+    {
+      "video_id": "LED04_NINA",
+      "folder_name": "led04_nina",
+      "asset_id": "FT26-LED04_NINA-001",
+      "brand": "Nina",
+      "screen": "LED 4 Nina",
+      "status": "WAITING_INPUT"
+    },
+    {
+      "video_id": "GONDOLAS",
+      "folder_name": "gondolas",
+      "asset_id": "FT26-GONDOLAS-001",
+      "brand": "Gôndolas Nestlé",
+      "screen": "Telas Gôndola",
+      "status": "WAITING_INPUT"
+    },
+    {
+      "video_id": "LED_NINHO",
+      "folder_name": "led_ninho",
+      "asset_id": "FT26-LED_NINHO-001",
+      "brand": "Ninho Patrulha Canina",
+      "screen": "LED Ninho",
+      "status": "WAITING_INPUT"
+    },
+    {
+      "video_id": "TV_SALA_VIP",
+      "folder_name": "tv_sala_vip",
+      "asset_id": "FT26-TV_SALA_VIP-001",
+      "brand": "Institucional Nutrition & Health",
+      "screen": "TV Sala VIP",
+      "status": "WAITING_INPUT"
+    }
+  ],
+  "technical_delivery_default": {
+    "resolution": "1792x1536",
+    "fps": 60,
+    "codec": "H.264",
+    "container": "mp4",
+    "color_space": "Rec.709",
+    "audio": false
+  }
+}

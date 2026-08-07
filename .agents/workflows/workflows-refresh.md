@@ -13,12 +13,14 @@ description: Workflow para auditoria e refatoração de todos os workflows em .a
 1. Listar os arquivos `.md` presentes no diretório.
 2. Confirmar se as instruções utilizam `npm` (não bun ou yarn), Next.js 15, Zod Schemas e o SDK `@google/genai`.
 
-## Passo 2: Executar Verificação de Qualidade
+## Passo 2: Executar Verificação de Qualidade & Biblioteca
 ```bash
+python .agents/skills/notebooklm/scripts/notebook_manager.py list
 npm run lint
 npx tsc --noEmit
 npx tsx .agents/skills/veo3-api-integration/scripts/test_payload.ts
 ```
 
-## Passo 3: Atualizar Referências
-Garantir que todas as slash commands estajam mapeadas em `AGENTS.md`.
+## Passo 3: Atualizar Referências & Grounding
+1. Garantir que todas as slash commands estejam mapeadas em `AGENTS.md`.
+2. Confirmar que workflows de mídia (`generate-media.md`, `storyboard.md`, `write-script.md`) incluem etapas de pesquisa no banco de conhecimento do NotebookLM via `@notebooklm-knowledge-sentinel`.

@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0.0",
+  "project": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026",
+  "swarm_owner": "@router-orchestrator",
+  "agents": [
+    {
+      "id": "project-orchestrator",
+      "persona": "@router-orchestrator",
+      "role": "Project Orchestrator",
+      "description": "Controls the full workflow, checks blockers, assigns tasks, prevents premature production. Reads project_config.json and generation_rules.json before any action.",
+      "inputs": [
+        "user_request",
+        "briefing_files",
+        "asset_audit_reports"
+      ],
+      "outputs": [
+        "execution_plan",
+        "blocker_report",
+        "task_assignments"
+      ],
+      "prohibited": [
+        "generating_video_directly",
+        "skipping_gates"
+      ],
+      "source_file": ".agents/agents/router-orchestrator.md"
+    },
+    {
+      "id": "asset-auditor",
+      "persona": "@asset-manager",
+      "role": "Asset Auditor",
+      "description": "Reads 02_SOURCE_MATERIALS/MARCAS, identifies received/missing assets, compares each folder with the Master Tracker.",
+      "inputs": [
+        "source_materials_folder",
+        "master_tracker"
+      ],
+      "outputs": [
+        "ASSET_FOLDER_AUDIT.csv",
+        "MISSING_INPUTS_AND_BLOCKERS.md"
+      ],
+      "source_file": ".agents/agents/asset-manager.md"
+    },
+    {
+      "id": "briefing-interpreter",
+      "persona": "@router-orchestrator",
+      "role": "Briefing Interpreter",
+      "description": "Extracts objectives, mandatory messages, screen placement, claims, duration, and creative direction from briefings.",
+      "inputs": [
+        "briefing_files_01_briefings"
+      ],
+      "outputs": [
+        "structured_briefing_json",
+        "claims_list",
+        "screen_placements_list"
+      ],
+      "source_file": ".agents/agents/router-orchestrator.md"
+    },
+    {
+      "id": "cgi-reference-analyst",
+      "persona": "@ai-video-engineer",
+      "role": "CGI Reference Analyst",
+      "description": "Studies example files from guides/CGI-VIDEOS and builds reusable CGI visual systems.",
+      "inputs": [
+        "guides/CGI-VIDEOS"
+      ],
+      "outputs": [
+        "CGI_REFERENCE_ANALYSIS.md",
+        "CGI_STYLE_LIBRARY.json",
+        "MOTION_PATTERN_LIBRARY.json"
+      ],
+      "source_file": ".agents/agents/ai-video-engineer.md"
+    },
+    {
+      "id": "script-writer",
+      "persona": "@ai-video-engineer",
+      "role": "Script Writer",
+      "description": "Creates concise scripts per product and placement. Requires approved briefing alignment before execution.",
+      "inputs": [
+        "approved_briefing",
+        "product_assets",
+        "creative_direction"
+      ],
+      "outputs": [
+        "04_prompts/script_prompts/[ASSET_ID]_script.json"
+      ],
+      "gate_required": "Gate 2 — Briefing alignment complete",
+      "source_file": ".agents/agents/ai-video-engineer.md"
+    },
+    {
+      "id": "scene-description",
+      "persona": "@ai-video-engineer",
+      "role": "Scene Description Agent",
+      "description": "Transforms approved scripts into cinematic scene descriptions. Requires Gate 3.",
+      "inputs": [
+        "approved_script_json"
+      ],
+      "outputs": [
+        "04_prompts/scene_descriptions/[ASSET_ID]_scenes.md"
+      ],
+      "gate_required": "Gate 3 — Script approved",
+      "source_file": ".agents/agents/ai-video-engineer.md"
+    },
+    {
+      "id": "keyframe-prompt",
+      "persona": "@ai-video-engineer",
+      "role": "Keyframe Prompt Agent",
+      "description": "Creates initial frame, final frame, and optional bridge frame prompts. Preserves product identity, packshot accuracy, brand palette, claim placement.",
+      "inputs": [
+        "approved_scene_descriptions"
+      ],
+      "outputs": [
+        "05_keyframes/initial_frames/",
+        "05_keyframes/final_frames/",
+        "05_keyframes/bridge_frames/"
+      ],
+      "gate_required": "Gate 4 — Scene descriptions approved",
+      "source_file": ".agents/agents/ai-video-engineer.md"
+    },
+    {
+      "id": "video-json-prompt",
+      "persona": "@ai-video-engineer",
+      "role": "Video JSON Prompt Agent",
+      "description": "Converts approved scripts and keyframe descriptions into structured JSON for Veo 3.1 generation.",
+      "inputs": [
+        "approved_keyframe_prompts",
+        "approved_scene_descriptions",
+        "screen_formats.json"
+      ],
+      "outputs": [
+        "04_prompts/video_json_prompts/[ASSET_ID]_veo3_payload.json"
+      ],
+      "gate_required": "Gate 5 — Keyframe prompts approved",
+      "source_file": ".agents/agents/ai-video-engineer.md"
+    },
+    {
+      "id": "generation-operator",
+      "persona": "@veo-integration-specialist",
+      "role": "Generation Operator",
+      "description": "Generates videos ONLY after scripts, keyframes, and JSON prompts are approved. Runs validation script before dispatch.",
+      "inputs": [
+        "approved_json_prompt",
+        "first_frame_image",
+        "last_frame_image"
+      ],
+      "outputs": [
+        "06_PRODUCTION/06_GENERATIONS_RAW/"
+      ],
+      "gate_required": "Gate 6 — JSON prompt approved",
+      "pre_dispatch_validation": "npx tsx .agents/skills/veo3-api-integration/scripts/test_payload.ts",
+      "source_file": ".agents/agents/veo-integration-specialist.md"
+    },
+    {
+      "id": "qa-agent",
+      "persona": "@router-orchestrator",
+      "role": "QA Agent",
+      "description": "Validates resolution, duration, fps, codec, format, brand accuracy, packshot accuracy, claim accuracy, safe area, motion quality, scene continuity, transition quality.",
+      "inputs": [
+        "raw_generated_video",
+        "qa_checklist_json"
+      ],
+      "outputs": [
+        "06_PRODUCTION/09_QA/[ASSET_ID]_qa_report.md"
+      ],
+      "gate_required": "Gate 7 — Video generation complete",
+      "source_file": ".agents/agents/router-orchestrator.md"
+    },
+    {
+      "id": "tracker-sync",
+      "persona": "@asset-manager",
+      "role": "Tracker Sync Agent",
+      "description": "Updates the Master Tracker only after QA status is confirmed. Must preserve formulas and never overwrite formula columns.",
+      "inputs": [
+        "qa_report",
+        "master_tracker"
+      ],
+      "outputs": [
+        "updated_master_tracker"
+      ],
+      "gate_required": "Gate 8 — QA approved",
+      "source_file": ".agents/agents/asset-manager.md"
+    }
+  ]
+}

@@ -28,12 +28,19 @@ cat AGENTS.md
 | `@veo-integration-specialist` | `.agents/agents/veo-integration-specialist.md` | Chamadas ao SDK `@google/genai`, Veo 3 e polling de operações |
 | `@frontend-specialist` | `.agents/agents/frontend-specialist.md` | Interface React 19, Tailwind CSS v4 e player de vídeo |
 | `@ai-video-engineer` | `.agents/agents/ai-video-engineer.md` | Engenharia de prompt cinematográfico para Veo 3 e Imagen |
+| `@prompt-engineer` | `.agents/agents/prompt-engineer.md` | Aplicação de frameworks SCALIST/SCHEMA e visual prompts |
+| `@notebooklm-knowledge-sentinel` | `.agents/agents/notebooklm-knowledge-sentinel.md` | Pesquisa grounded nos cadernos de conhecimento Veo 3.1 & Nano Banana |
 
 ---
 
-## FASE 1: Verificação de Contratos & Testes
+## FASE 1: Verificação de Contratos, Biblioteca & Testes
 
-1. Executar a checagem determinística do payload do Veo 3:
+1. Executar a checagem da biblioteca de conhecimento NotebookLM:
+```bash
+python .agents/skills/notebooklm/scripts/notebook_manager.py list
+```
+
+2. Executar a checagem determinística do payload do Veo 3:
 ```bash
 npx tsx .agents/skills/veo3-api-integration/scripts/test_payload.ts
 ```

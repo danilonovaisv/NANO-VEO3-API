@@ -1,0 +1,10 @@
+Placement_Code,Placement_Name,Width_px,Height_px,FPS,Video_Codec,Container,Audio_Codec,Notes
+LED01_CURVO,LED 1 — Frente / Curvo,,,,,,,Referência 2025 960x960; pixel map final pendente
+LED02_BALCAO_RECEITAS,LED 2 — Balcão de Receitas,,,,,,,Formato horizontal; pixel map pendente
+LED03_CORREDOR_GLP1,LED 3 — Corredor / GLP-1,960,1344,,,,,Referência 2025 identificada; homologação 2026 pendente
+LED04_PAINEL_INTERATIVO,LED 4 — Painel Interativo,,,,,,,Confirmar vídeo linear versus aplicação interativa
+LEDS_GONDOLAS,LEDs de Gôndolas,,,,,,,10 nichos arquitetônicos e 13 grupos de conteúdo mapeados
+LED_NINHO,LED Ninho — Patrulha Canina,,,,,,,Pixel map e materiais pendentes
+TV_SALA_VIP,TV Sala VIP — 4K QLED,3840,2160,,,,,4K informado no título; confirmar playback e FPS
+P1_9_8X6MOD,Pixel map anexado,2048,1536,60,H.264,MP4,AAC,Especificação confirmada no PDF anexado
+REGUAS_SHELF_BAR_P125,RéguasShelf Bar de LED P1.25 GOB - 300mm X 60mm,240,48,60,H.264,MP4,AAC,Especificação confirmada: 300mm X 60mm; Resolução: 240px x 48px; Total: 11.520 pixels

@@ -21,6 +21,17 @@ User types: `/generate-media` (only after `/storyboard` has been approved)
 
 ### Steps
 
+0. **NotebookLM Grounding & Knowledge Query**
+   - Delegate to `@notebooklm-knowledge-sentinel` to query the relevant notebook before generation:
+     - For Veo 3 / Veo 3.1 video prompts:
+       ```bash
+       python .agents/skills/notebooklm/scripts/ask_question.py --notebook-id google-veo-3.1-manual-&-prompt-engineering-guide --question "Qual a melhor estrutura de prompt JSON, parametros cinematograficos e sintaxe de audio nativo para esta cena?"
+       ```
+     - For Nano Banana / Imagen image prompts:
+       ```bash
+       python .agents/skills/notebooklm/scripts/ask_question.py --notebook-id nano-banana-ecosystem-&-visual-engineering-manual --question "Como aplicar os frameworks SCALIST e SCHEMA para esta cena?"
+       ```
+
 1. **Load the Storyboard**
    - Read `artifacts/storyboard.md`
    - Parse scene list with prompts, durations, and asset types

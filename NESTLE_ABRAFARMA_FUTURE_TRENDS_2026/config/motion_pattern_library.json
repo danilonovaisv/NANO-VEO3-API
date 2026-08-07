@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "project": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026",
+  "patterns": [
+    {
+      "pattern_name": "vertical_rise_ease_in",
+      "timing": "0.8-1.0s",
+      "easing": "cubic ease-in-out",
+      "description": "Product rises from below frame, decelerates to rest. Premium standard entrance."
+    },
+    {
+      "pattern_name": "lateral_slide_settle",
+      "timing": "0.6-0.8s",
+      "easing": "ease-out",
+      "description": "Package slides left or right, settles into position. Used for flanking units in family compositions."
+    },
+    {
+      "pattern_name": "luminous_pulse_on_entry",
+      "timing": "0.3-0.5s",
+      "description": "Single luminous pulse from product base on landing. Marks the hero unit entry."
+    },
+    {
+      "pattern_name": "bird_flight_controlled",
+      "timing": "2-3s",
+      "description": "Branded bird mascot performs controlled arc flight above product, lands on artwork. Subtly animated post-landing."
+    },
+    {
+      "pattern_name": "particle_convergence",
+      "timing": "1.0-1.5s",
+      "description": "Floating particles converge toward a single point — used to reveal a seal, badge, or claim element."
+    },
+    {
+      "pattern_name": "wipe_foreground_creature",
+      "timing": "0.5-1.0s",
+      "description": "Branded mascot or element passes close to lens creating a foreground wipe transition. Followed by zoom recovery."
+    },
+    {
+      "pattern_name": "locked_camera_anchor",
+      "timing": "throughout",
+      "description": "Camera remains completely static. All motion is product or element motion only. Use for LED readability."
+    },
+    {
+      "pattern_name": "crash_zoom_recovery",
+      "timing": "0.3-0.5s",
+      "description": "Brief dynamic zoom follows a fast element (bird), then returns to locked hero framing. Adds energy without chaos."
+    },
+    {
+      "pattern_name": "slow_background_drift",
+      "timing": "continuous",
+      "description": "Background graphic elements (particles, arcs) drift slowly. Creates depth illusion. Max speed: 5% frame width per second."
+    }
+  ]
+}

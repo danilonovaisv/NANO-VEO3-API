@@ -1,0 +1,42 @@
+{
+  "video_id": "GONDOLAS",
+  "video_name": "Loops de gondolas",
+  "screen_name": "Telas dos nichos de gondola",
+  "screen_dimensions": null,
+  "pixel_dimensions": null,
+  "communication_objective": "Destacar produtos e familias em loops curtos associados aos nichos fisicos.",
+  "main_message": "Cada familia de produto responde a uma necessidade especifica do portfolio.",
+  "products": [
+    "Comfor",
+    "Supreme",
+    "Formulas Especiais",
+    "Ninho Fases 1+",
+    "Materna",
+    "Nestle Vital",
+    "Nestogeno"
+  ],
+  "approved_claims": [],
+  "mandatory_elements": [
+    "fidelidade aos assets oficiais",
+    "consistencia visual entre cenas"
+  ],
+  "restrictions": [
+    "Nao usar claims sem validacao final.",
+    "Nao alterar caracteristicas fisicas dos produtos."
+  ],
+  "reference_files": [
+    "../../../sources/Nestlé - Abrafarma Future Trends V5.pdf",
+    "../../../sources/Lemon_Nestlé_Abrafarma_R00.pdf"
+  ],
+  "reference_links": [],
+  "scene_order": [],
+  "status": "awaiting_assets",
+  "missing_information": [
+    "numero final de nichos",
+    "associacao produto por tela",
+    "duracao dos loops",
+    "dimensoes e pixels",
+    "packshots finais"
+  ],
+  "last_updated": "2026-08-06"
+}

@@ -1,0 +1,109 @@
+{
+  "project": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026",
+  "asset_id": "FT26-LED01-NAN-COMFOR-001",
+  "scene_id": "S05",
+  "scene_number": 5,
+  "scene_title": "High-Impact Scientific Emergence",
+  "brand_product": "Nestlé NAN COMFOR — Família Comfor",
+  "placement": "LED 1 Curvo",
+  "screen_format": {
+    "name": "P1.9 7x6 Mod",
+    "resolution_delivery": "1792x1536 (upscaled from 1080p Veo 3.1 output)",
+    "resolution_generation": "1080p",
+    "fps": 60,
+    "codec": "H.264",
+    "extension": ".mp4",
+    "audio": false
+  },
+  "duration_seconds": 5,
+  "model_strategy": {
+    "requires_initial_frame": true,
+    "requires_final_frame": true,
+    "recommended_model": "veo3-1-first-last-frame-to-video",
+    "api_provider": "eachlabs.ai",
+    "reason": "Veo 3 Highest Quality (veo-3.0-generate-001) does NOT support first+last frame. Use veo3-1-first-last-frame-to-video exclusively.",
+    "fast_test_model": "veo3-1-first-last-frame-to-video-fast",
+    "pre_dispatch_validation": "npx tsx .agents/skills/veo3-api-integration/scripts/test_payload.ts"
+  },
+  "input_frames": {
+    "first_frame_path": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/01_FAMILIA_COMFOR/01_INPUT/FRAME-1-Família_Comfor_FT26-LED01_CURVO-001_1792×1536px.png",
+    "last_frame_path": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/01_FAMILIA_COMFOR/01_INPUT/FRAME-2-Família_Comfor_FT26-LED01_CURVO-001_1792×1536px.png",
+    "first_frame_role": "Initial state anchor — scene opens matching FRAME-1 exactly",
+    "last_frame_role": "Final state anchor — scene resolves matching FRAME-2 exactly"
+  },
+  "video_generation_prompt": "Ultra-premium CGI commercial for Nestlé NAN COMFOR Família Comfor. Five-second sequence with locked frontal composition, 70mm equivalent. HIGH ENERGY — high-impact motion with controlled precision. Seamless first-to-last frame interpolation starting exactly as FRAME-1 and ending exactly as FRAME-2. STRICT BRAND PRESERVATION: preserve exact NAN COMFOR package geometry, proportions, scale, label placement, typography, magenta-to-purple gradient background, and the exact reference bird from packaging artwork: flat white silhouette body, deep magenta-burgundy outline contour lines, long pointed sharp beak, stylized curved head crest, rounded compact chest, broad angular wings with deep magenta edging, elegant tail at every frame. TIMELINE: 0.00-0.45s: high-speed magenta data lines, molecular nodes and circular technology graphics surge inward from both sides, then slow into controlled background motion — energetic open to calm precision. 0.45-1.10s: powerful vortex of natural white milk erupts smoothly from the base, carrying bright vitamin particles, probiotics and nucleotides in a spiraling scientific flow. 1.10-1.60s: left NAN COMFOR can shoots upward from the vortex quickly and settles rear-left, label legible. 1.60-2.10s: right NAN COMFOR can rises immediately after. 2.10-2.70s: central NAN COMFOR can emerges last with stronger liquid pulse and takes dominant front position. 2.70-3.45s: exact stylized reference bird rises rapidly from behind the camera — its large white wing with deep magenta contours passes extremely close to the lens in a dramatic Face Punch motion — then it arcs toward the center and lands inside the front can. 3.45-4.15s: milk vortex expands briefly around the products then stabilizes into elegant base as side cans shift outward and luminous molecular elements orbit faster. 4.15-5.00s: concentrated flash crystallizes into the final seal, ending on the exact final product layout with bold sense of technological advancement and nutritional science, resolving exactly into FRAME-2. No subtitles. No text overlay.",
+  "negative_prompt": "deformed packaging, incorrect proportions, label distortion, illegible text, brand replacement, logo alteration, unauthorized color shift, additional products, extra objects, people, hands, utensils, subtitles, watermarks, camera cuts within clip, background replacement, physics glitches, identity drift, hallucinated graphics, hallucinated text, motion blur obscuring labels, excessive bloom, lens dirt, chromatic aberration, incorrect bird design, bird color changes, package intersection, floating packages after settling, particle explosion",
+  "camera": "Locked frontal, 70mm. No camera movement. Bird performs dramatic Face Punch — wing passes extremely close to lens at 2.70-2.85s. High impact moment.",
+  "lighting": "High-impact studio. Energetic: bright specular on cans. Milk vortex has strong backlight. Molecular elements faster and brighter than other scenes. Concentrated flash for seal crystallization.",
+  "motion": "high-speed data surge (calming), powerful milk eruption, rapid can shoots, dramatic bird Face Punch wing close to lens + arc + landing, vortex expansion + orbit faster, concentrated flash seal crystallize",
+  "motion_intensity": "high",
+  "timeline_beats": [
+    {
+      "t": "0.00-0.45s",
+      "beat": "High-speed data lines surge inward, slow to controlled motion"
+    },
+    {
+      "t": "0.45-1.10s",
+      "beat": "Powerful white milk erupts, bright scientific particles in spiral"
+    },
+    {
+      "t": "1.10-1.60s",
+      "beat": "Left can shoots up fast from vortex"
+    },
+    {
+      "t": "1.60-2.10s",
+      "beat": "Right can rises immediately"
+    },
+    {
+      "t": "2.10-2.70s",
+      "beat": "Central can with stronger liquid pulse, dominant front position"
+    },
+    {
+      "t": "2.70-3.45s",
+      "beat": "FACE PUNCH: bird wing extremely close to lens, arcs, lands in front can"
+    },
+    {
+      "t": "3.45-4.15s",
+      "beat": "Vortex expands then stabilizes, side cans shift out, elements orbit faster"
+    },
+    {
+      "t": "4.15-5.00s",
+      "beat": "Concentrated flash → seal crystallizes → exact FRAME-2"
+    }
+  ],
+  "bird_identity_lock": "exact reference bird from packaging artwork: flat white silhouette body, deep magenta-burgundy outline contour lines, long pointed sharp beak, stylized curved head crest, rounded compact chest, broad angular wings with deep magenta edging, elegant tail",
+  "generate_audio": false,
+  "qa_checklist": [
+    "All three NAN COMFOR can labels fully legible throughout",
+    "NAN COMFOR brand identity preserved on all three cans (typography, colors, Nestlé logo)",
+    "Bird matches exact packaging artwork identity: white body, magenta-burgundy outlines, long pointed beak, stylized crest",
+    "Magenta-purple gradient background maintained throughout",
+    "Milk vortex is natural white — no other color",
+    "No hallucinated text or logos in scene",
+    "No people, hands, or unauthorized elements",
+    "No camera cuts within the 5-second clip",
+    "Camera remains locked frontal throughout",
+    "Bird wing lens pass is dramatic but brief — bird proceeds to land inside front-center can",
+    "Three cans in correct composition: rear-left, rear-right, front-center (larger/closer)",
+    "Final frame exactly matches FRAME-2 composition",
+    "Molecular elements, particles and arcs do not obscure can labels",
+    "Aspect ratio: 16:9",
+    "Duration: 5 seconds ±0.1s",
+    "No audio track",
+    "Motion intensity is high — confirm energy level matches scene intent",
+    "Scene title \"High-Impact Scientific Emergence\" — confirm overall visual identity matches description"
+  ],
+  "legal_blockers": {
+    "status": "BLOCKED_PENDING_LEGAL",
+    "note": "Per _ASSET_BRIEF.md: copy/claim PENDING confirmation. Claim text in FRAME-2 (badge) must be reviewed by Nestlé compliance before final delivery.",
+    "claim_observed": "Marca Líder da Categoria / Marca com maior venda (unconfirmed — from brief comments)",
+    "action_required": "Client / Responsável: Tainá Gonçalves — confirm claim before Gate 10"
+  },
+  "production_notes": {
+    "post_upscale": "Veo 3.1 generates at 1080p. Upscale to 1792x1536 via Topaz Video Upscaler before LED delivery.",
+    "fps_retime": "Retime to 60fps after upscaling.",
+    "delivery_codec": "H.264 MP4 — no audio track.",
+    "storage": "Store raw generation in 06_GENERATIONS_RAW/. Selected output in 07_GENERATIONS_SELECTED/. Final in 10_FINAL_EXPORTS/",
+    "no_overwrite": "Never overwrite previous generations. Use timestamp suffix."
+  }
+}

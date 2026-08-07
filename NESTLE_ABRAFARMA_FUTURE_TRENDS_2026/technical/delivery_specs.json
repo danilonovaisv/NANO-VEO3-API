@@ -1,0 +1,12 @@
+{
+  "default_policy": "Nao inferir especificacoes ausentes.",
+  "deliveries": [
+    {"video_id": "LED01_CURVO", "duration_seconds": null, "resolution": null, "frame_rate": null, "codec": null, "format": null, "safe_area": null},
+    {"video_id": "LED02_RECEITAS", "duration_seconds": null, "resolution": null, "frame_rate": null, "codec": null, "format": null, "safe_area": null},
+    {"video_id": "LED03_GLP1", "duration_seconds": null, "resolution": null, "frame_rate": null, "codec": null, "format": null, "safe_area": null},
+    {"video_id": "LED04_NINA", "duration_seconds": null, "resolution": null, "frame_rate": null, "codec": null, "format": null, "safe_area": null},
+    {"video_id": "GONDOLAS", "duration_seconds": null, "resolution": null, "frame_rate": null, "codec": null, "format": null, "safe_area": null},
+    {"video_id": "LED_NINHO", "duration_seconds": null, "resolution": null, "frame_rate": null, "codec": null, "format": null, "safe_area": null},
+    {"video_id": "TV_SALA_VIP", "duration_seconds": null, "resolution": {"width": 3840, "height": 2160}, "frame_rate": null, "codec": null, "format": null, "safe_area": null}
+  ]
+}

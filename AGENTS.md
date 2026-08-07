@@ -28,6 +28,9 @@ Este repositório (**NANO-VEO3-API**) é a infraestrutura de backend API e inter
    - Grids responsivos de mídia e componentes baseados em `react-player` e `react-dropzone`.
    - Manter a integridade de logos e marcas visuais sem distorções.
 
+5. **Banco de Conhecimento NotebookLM**:
+   - Prompts visuais e especificações técnicas de Veo 3.1 e Nano Banana DEVEM ser validados no banco de dados do NotebookLM via skill `.agents/skills/notebooklm` (`ask_question.py`) antes do envio de payloads à API.
+
 ---
 
 ## 🛠️ Orquestração de Agentes
@@ -36,6 +39,9 @@ Agentes operam em sinergia a partir de `.agents/`:
 
 - **Orquestrador de API**: `@api-orchestrator` (`.agents/agents/api-orchestrator.md`)
 - **Especialista Veo 3**: `@veo-integration-specialist` (`.agents/agents/veo-integration-specialist.md`)
+- **Engenheiro de Vídeo IA**: `@ai-video-engineer` (`.agents/agents/ai-video-engineer.md`)
+- **Engenheiro de Prompts**: `@prompt-engineer` (`.agents/agents/prompt-engineer.md`)
+- **Guardião de Conhecimento NotebookLM**: `@notebooklm-knowledge-sentinel` (`.agents/agents/notebooklm-knowledge-sentinel.md`)
 - **Especialista Frontend**: `@frontend-specialist` (`.agents/agents/frontend-specialist.md`)
 
 ---

@@ -1,0 +1,14 @@
+{
+  "scene_id": "S01",
+  "scene_title": "Cinematic Technology Reveal",
+  "asset_id": "FT26-LED01-NAN-COMFOR-001",
+  "generated_at": "2026-08-06T04:57:00Z",
+  "prediction_id": "FAILED_403_PERMISSION_DENIED_GOOGLE_API",
+  "model": "veo-3.0-generate-001",
+  "status": "BLOCKED_GOOGLE_API_PERMISSION",
+  "error_details": "API_KEY_SERVICE_BLOCKED: Method PredictLongRunning is blocked for the Gemini API Key.",
+  "next_steps": [
+    "Enable video generation access for the Veo model on Google Cloud Platform / AI Studio for this API key.",
+    "Retry via the generated script: node NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/01_FAMILIA_COMFOR/04_MASTER/generate_google_api.mjs"
+  ]
+}

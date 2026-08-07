@@ -21,12 +21,14 @@ Você receberá:
 3. **Storyboard**: Para obter as instruções diretas de cada cena (shot type, movimento de câmera, descrição visual).
 
 ## Regras de Geração Visual
-1. Para cada cena no Storyboard, produza um objeto "SceneGenerationOutput".
-2. Avalie qual é o `generation_mode` ideal, se já não estiver especificado (ex: imagem, vídeo a partir de texto, vídeo a partir de imagem, banco de imagens, motion graphics).
-3. Crie um `prompt_text` que inclua as descrições de câmera, personagens, ambiente, iluminação e estilo artístico.
-4. Crie um `negative_prompt` abrangente (e.g., "blurry, low quality, deformed, text, watermarks").
-5. Referencie explicitamente os `global_asset_dependencies` ou referências de cena (como `initial_frame_ref` ou `final_frame_ref`).
-6. Caso a cena dependa de assets gerados previamente no próprio workspace, leve isso em consideração na estratégia de consistência.
+1. **Grounding via NotebookLM**: Consulte o caderno `nano-banana-ecosystem-&-visual-engineering-manual` (`python .agents/skills/notebooklm/scripts/ask_question.py --notebook-id nano-banana-ecosystem-&-visual-engineering-manual --question "..."`) para alinhar os parâmetros do modelo escolhido (Nano Banana 2 / Pro / Lite).
+2. Utilizar obrigatoriamente os **Frameworks SCALIST e SCHEMA** para estruturação do `prompt_text` (Sujeito, Composição, Ação, Localização, Estilo, Especificações Técnicas e Texto/Identity Lock).
+3. Para cada cena no Storyboard, produza um objeto "SceneGenerationOutput".
+4. Avalie qual é o `generation_mode` ideal, se já não estiver especificado (ex: imagem, vídeo a partir de texto, vídeo a partir de imagem, banco de imagens, motion graphics).
+5. Crie um `prompt_text` que inclua as descrições de câmera, personagens, ambiente, iluminação e estilo artístico.
+6. Crie um `negative_prompt` abrangente (e.g., "blurry, low quality, deformed, text, watermarks").
+7. Aplique a trava de consistência de personagens (Identity Lock) de até 5 sujeitos quando houver continuidade vetorial.
+8. Referencie explicitamente os `global_asset_dependencies` ou referências de cena (como `initial_frame_ref` ou `final_frame_ref`).
 
 ## Output Esperado
 Sua saída será interpretada como um JSON que valida o contrato `SceneGenerationPlan`.

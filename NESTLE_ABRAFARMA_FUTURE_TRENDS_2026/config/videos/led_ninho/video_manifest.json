@@ -1,0 +1,37 @@
+{
+  "video_id": "LED_NINHO",
+  "video_name": "Ninho Patrulha Canina",
+  "screen_name": "LED Ninho 2.5 x 2.5 m",
+  "screen_dimensions": null,
+  "pixel_dimensions": null,
+  "communication_objective": "Adaptar a comunicacao Ninho Patrulha Canina para a superficie do estande.",
+  "main_message": "Pendente de campanha, KV e copy oficiais.",
+  "products": [
+    "Ninho Fases 1+"
+  ],
+  "approved_claims": [],
+  "mandatory_elements": [
+    "fidelidade aos assets oficiais",
+    "consistencia visual entre cenas"
+  ],
+  "restrictions": [
+    "Nao redesenhar personagens licenciados.",
+    "Nao alterar embalagem ou identidade Ninho.",
+    "Nao usar claims sem validacao final.",
+    "Nao alterar caracteristicas fisicas dos produtos."
+  ],
+  "reference_files": [
+    "../../../sources/Nestlé - Abrafarma Future Trends V5.pdf",
+    "../../../sources/NESTLÉ_DETALHAMENTO_REV01.pdf"
+  ],
+  "reference_links": [],
+  "scene_order": [],
+  "status": "awaiting_assets",
+  "missing_information": [
+    "KV oficial",
+    "assets licenciados da Patrulha Canina",
+    "copy aprovada",
+    "duracao e pixels finais"
+  ],
+  "last_updated": "2026-08-06"
+}

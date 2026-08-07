@@ -1,0 +1,90 @@
+{
+  "asset_id": "FT26-LED01-NAN-COMFOR-001",
+  "brand_product": "Nestlé NAN COMFOR — Família Comfor",
+  "placement": "LED 1 Curvo",
+  "screen_format": "P1.9 7x6 Mod — 1792x1536px — 60fps — H.264 — MP4",
+  "duration": "15s total (CLIP-A: 8s + CLIP-B: 7s)",
+  "audio": false,
+  "script_summary": "Three NAN COMFOR cans emerge sequentially from a branded magenta-purple CGI environment with futuristic molecular overlays. A stylized white bird mascot performs a controlled flight and lands on the hero front-center can. A #1 quality seal badge resolves in the final frames.",
+  "clip_strategy": "Two self-contained clips: CLIP-A covers opening sequence through product family reveal. CLIP-B covers bird landing, can spread, and badge resolution.",
+  "scene_count": 7,
+  "scenes": [
+    {
+      "scene_number": 1,
+      "clip": "CLIP-A",
+      "timecode": "0.00s - 0.80s",
+      "duration_seconds": 0.8,
+      "narrative_function": "Scene open — establish branded environment",
+      "visual_beat": "Magenta-purple gradient background with floating futuristic interface graphics, circular arcs, molecular nodes, fine luminous lines, and drifting particles. Empty product stage.",
+      "copy_or_claim": null,
+      "transition_in": "Hard cut from black (LED boot)",
+      "transition_out": "Foreground wipe by bird wing"
+    },
+    {
+      "scene_number": 2,
+      "clip": "CLIP-A",
+      "timecode": "0.80s - 1.70s",
+      "duration_seconds": 0.9,
+      "narrative_function": "Mascot entry — brand energy moment",
+      "visual_beat": "Stylized white bird with magenta outline rises from behind camera. Large wing passes close to lens creating foreground wipe. Fast creative crash zoom follows bird. Bird flies toward center with controlled wingbeats.",
+      "copy_or_claim": null,
+      "transition_in": "Foreground wing wipe",
+      "transition_out": "Camera returns to locked hero framing"
+    },
+    {
+      "scene_number": 3,
+      "clip": "CLIP-A",
+      "timecode": "1.70s - 2.60s",
+      "duration_seconds": 0.9,
+      "narrative_function": "First product entry — rear left",
+      "visual_beat": "Rear-left NAN COMFOR can rises vertically from central luminous glow, eases into rear-left position. Metallic reflections stabilize.",
+      "copy_or_claim": null,
+      "transition_in": "Product vertical rise",
+      "transition_out": "Settle into position"
+    },
+    {
+      "scene_number": 4,
+      "clip": "CLIP-A",
+      "timecode": "2.60s - 3.50s",
+      "duration_seconds": 0.9,
+      "narrative_function": "Second product entry — rear right",
+      "visual_beat": "Rear-right NAN COMFOR can emerges from central glow, rises vertically, settles into mirrored rear-right position.",
+      "copy_or_claim": null,
+      "transition_in": "Product vertical rise",
+      "transition_out": "Settle into position"
+    },
+    {
+      "scene_number": 5,
+      "clip": "CLIP-A",
+      "timecode": "3.50s - 4.50s",
+      "duration_seconds": 1.0,
+      "narrative_function": "Hero product entry — front center with luminous pulse",
+      "visual_beat": "Front-center NAN COMFOR hero can rises with strong luminous pulse, settles into foreground hero position. This is the strongest visual beat in CLIP-A.",
+      "copy_or_claim": null,
+      "transition_in": "Luminous pulse rise",
+      "transition_out": "Clip-A ends at hero lock — CLIP-B continues"
+    },
+    {
+      "scene_number": 6,
+      "clip": "CLIP-B",
+      "timecode": "0.00s - 2.20s (CLIP-B)",
+      "duration_seconds": 2.2,
+      "narrative_function": "Mascot landing — warmth and brand humanity",
+      "visual_beat": "Stylized bird performs restrained circular glide above the three cans, gently descends and lands inside the front-center can artwork. Bird remains subtly animated with slight head movement after landing.",
+      "copy_or_claim": null,
+      "transition_in": "Hard cut from CLIP-A end state",
+      "transition_out": "Continuous product composition"
+    },
+    {
+      "scene_number": 7,
+      "clip": "CLIP-B",
+      "timecode": "2.20s - 7.00s (CLIP-B)",
+      "duration_seconds": 4.8,
+      "narrative_function": "Product spread + claim resolution — final brand statement",
+      "visual_beat": "Rear-left can slides slightly farther left. Rear-right slides slightly farther right. Center hero remains stationary. Glowing particles converge in lower-right. Light rays condense into illuminated #1 seal badge — resolves exactly into FRAME-2.",
+      "copy_or_claim": "#1 — quality badge (FRAME-2)",
+      "transition_in": "Continuous",
+      "transition_out": "Scene holds on FRAME-2 final state — LED rotation loop start"
+    }
+  ]
+}

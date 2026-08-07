@@ -1,0 +1,17 @@
+﻿Risk_ID,Risk,Level,Evidence,Impact,Preventive_Action,Status
+R-001,Escopo subestimado,HIGH,55 assets + standbys + interatividade,Perda de margem e atraso,Congelar matriz final antes da proposta,Open
+R-002,Pixel maps incompletos,HIGH,Apenas um pixel map formal anexado,Recortes e rejeição técnica,Exigir homologação por placement,Open
+R-003,Briefings incompletos,HIGH,Vários direcionais e roteiros ausentes,Retrabalho e decisões subjetivas,Aprovar roteiro mínimo por asset,Open
+R-004,Aprovação fragmentada,HIGH,Múltiplas empresas e responsáveis,Feedback conflitante,Aprovador único + feedback consolidado,Open
+R-005,Responsáveis ausentes,HIGH,Muitas linhas sem owner,Bloqueios de decisão,Completar RACI e Owner,Open
+R-006,Prazo D-1,HIGH,Entrega informada para véspera,Sem homologação e contingência,Final criativo D-2; D-1 apenas técnico,Open
+R-007,Verba indefinida,HIGH,Faixa não acordada,Produção sem proteção comercial,Aprovar orçamento e sinal,Open
+R-008,Links dispersos ou quebrados,HIGH,"Dropbox, SharePoint, Box e WeTransfer",Material errado ou indisponível,Centralizar inputs versionados,Open
+R-009,Claims pendentes,HIGH,"Liderança, venda e inovação",Risco legal e reprovação,Aprovação Marketing + Legal,Open
+R-010,Interatividade ambígua,HIGH,Standby e jornada Nina,Escopo de software oculto,"Separar motion, UX e desenvolvimento",Open
+R-011,Semelhança com celebridade,HIGH,Brief inspirado em Grazi Massafera,Direito de imagem,Usar perfil genérico ou autorização,Open
+R-012,Multiplicação de versões,HIGH,Múltiplas proporções e players,Aumento de render e QA,Cobrar por família técnica,Open
+R-013,Status final vazio,MEDIUM,Entrega e aprovação não registradas,Baixa visibilidade do progresso,Workflow padronizado,Open
+R-014,Erros de copy,MEDIUM,Frases e grafia pendentes,Erro em escala,Revisão de copy antes do motion,Open
+R-015,Áudio/sincronização indefinidos,MEDIUM,Sem regra de playlist ou som,Playback inconsistente,Reunião com fornecedor técnico,Open
+R-016,Fragmentação visual,MEDIUM,Muitas campanhas diferentes,Perda de unidade do estande,Motion system institucional,Open

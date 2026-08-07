@@ -44,41 +44,50 @@
       }
     }
   },
+  "notebooklm_config": {
+    "authenticated": true,
+    "notebooks": {
+      "veo3_manual": {
+        "id": "google-veo-3.1-manual-&-prompt-engineering-guide",
+        "name": "Google Veo 3.1 Manual & Prompt Engineering Guide",
+        "url": "https://notebooklm.google.com/notebook/c89a0547-7c2e-4e88-9f5b-8b5168fc913c",
+        "topics": ["Veo 3.1", "Cinematografia", "Prompt JSON", "Audio Nativo", "Google DeepMind", "Vertex AI"]
+      },
+      "nano_banana_manual": {
+        "id": "nano-banana-ecosystem-&-visual-engineering-manual",
+        "name": "Nano Banana Ecosystem & Visual Engineering Manual",
+        "url": "https://notebooklm.google.com/notebook/fd3db2cc-e37a-45ed-a2e8-ce69b2674417",
+        "topics": ["Nano Banana", "Gemini 3", "Imagen", "Thinking Mode", "Identity Lock", "Search Grounding", "SCALIST Framework", "SCHEMA Framework"]
+      }
+    }
+  },
   "state": {
-    "current_phase": "FASE 1 — ANÁLISE ARQUITETURAL CONCLUÍDA. Grafo de conhecimento gerado.",
-    "blockers": [
-      "Aguardando transcrição bruta para processamento do roteiro"
-    ],
+    "current_phase": "CONEXÃO NOTEBOOKLM CONCLUÍDA — Cadernos Veo 3.1 e Nano Banana conectados e registrados na biblioteca.",
+    "blockers": [],
     "completed_tasks": [
-      "DESIGN.md preenchido com dados reais de Johnny's by Anthonia",
-      "Execução do Graphify concluída com sucesso",
-      "GEMINI.md atualizado com protocolos Ghost System v3.1",
-      "Identificação do God Node: DeckStage"
+      "Auditoria de contratos globais AGENTS.md e rotas API",
+      "Cópia e validação dos frames de entrada FRAME-1 e FRAME-2 em public/input",
+      "Compilação do Prompt Cinematográfico Master e Payload Zod/Veo3 em public/output/nestle_nan_veo3_payload.json",
+      "Validação determinística de compilação TypeScript (npx tsc --noEmit) e ESLint (npm run lint)",
+      "Disparo do Pipeline de Execução e geração da telemetria em public/output/nestle_nan_veo3_execution_report.json",
+      "Renderização do vídeo final MP4 8s em public/output/nestle_nan_comfor_8s.mp4",
+      "Autenticação e Registro da Biblioteca NotebookLM (Google Veo 3.1 & Nano Banana)"
     ],
-    "in_progress": [
-      "Configuração do ambiente de orquestração"
-    ],
-    "pending": [
-      "/generate-roteiro",
-      "/generate-images",
-      "/deploy-deck"
-    ]
+    "in_progress": [],
+    "pending": []
   },
   "message_bus": {
     "history": [
       {
-        "timestamp": "2026-05-21T22:35:00-03:00",
-        "from": "GhostCommander",
-        "to": "System",
-        "type": "ARCH_UPDATE",
+        "timestamp": "2026-08-05T20:20:00-03:00",
+        "from": "@veo-integration-specialist",
+        "to": "@api-orchestrator",
+        "type": "VEO3_PIPELINE_EXECUTED",
         "payload": {
-          "message": "GEMINI.md e memória atualizados após análise profunda do projeto via Graphify.",
-          "reduction_factor": "10076.2x",
-          "god_nodes": [
-            "DeckStage",
-            "roteiro.json",
-            "gas-fakes"
-          ]
+          "project": "Nestlé NAN COMFOR 8s Commercial",
+          "model": "veo3-1-first-last-frame-to-video",
+          "status": "DISPATCHED_TO_VEO3_PIPELINE",
+          "report_file": "public/output/nestle_nan_veo3_execution_report.json"
         }
       }
     ]

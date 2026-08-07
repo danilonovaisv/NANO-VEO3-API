@@ -1,0 +1,14 @@
+{
+  "video_id": "TV_SALA_VIP",
+  "status": "draft",
+  "narrative_summary": "Pendente de consolidacao a partir do roteiro e dos assets aprovados.",
+  "scenes": [],
+  "continuity_notes": [],
+  "missing_information": [
+    "roteiro institucional",
+    "filmes e assets autorizados",
+    "duracao",
+    "frame rate e codec"
+  ],
+  "last_updated": "2026-08-06"
+}

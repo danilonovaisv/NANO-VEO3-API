@@ -1,0 +1,82 @@
+{
+  "project_id": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026",
+  "summary": "Experiencia de marca Nestle Nutrition & Health para a Abrafarma Future Trends 2026, combinando arquitetura, conteudo, tecnologia e portfolio em uma comunicacao B2B.",
+  "communication_objectives": [
+    "apresentar o portfolio de nutricao e saude",
+    "organizar a comunicacao por jornadas e necessidades",
+    "integrar conteudo audiovisual ao estande"
+  ],
+  "creative_concept": "Nutricao que conecta o futuro",
+  "spatial_direction": [
+    "arquitetura aberta e fluida",
+    "curvas e estruturas suspensas",
+    "paleta clara",
+    "materiais naturais",
+    "iluminacao acolhedora",
+    "integracao entre tecnologia, conteudo e arquitetura"
+  ],
+  "pillars": [
+    "Performance Esportiva",
+    "Nutricao Diaria",
+    "Saude e Longevidade",
+    "Bem-estar Feminino",
+    "Jornada GLP-1 / Suporte Nutricional"
+  ],
+  "video_systems": [
+    {
+      "video_id": "LED01_CURVO_COMFOR",
+      "asset_id": "FT26-LED01-NAN-COMFOR-001",
+      "purpose": "portfolio principal NAN COMFOR no LED frontal curvo",
+      "status": "GATE_6_READY"
+    },
+    {
+      "video_id": "LED01_CURVO_SUPREME",
+      "asset_id": "FT26-LED01_CURVO-002",
+      "purpose": "portfolio principal NAN SUPREME no LED frontal curvo",
+      "status": "GATE_6_READY"
+    },
+    {
+      "video_id": "LED02_RECEITAS",
+      "purpose": "receitas e produtos proteinados",
+      "status": "WAITING_INPUT"
+    },
+    {
+      "video_id": "LED03_GLP1",
+      "purpose": "jornada GLP-1 e suporte nutricional",
+      "status": "WAITING_INPUT"
+    },
+    {
+      "video_id": "LED04_NINA",
+      "purpose": "Nina e painel interativo",
+      "status": "WAITING_INPUT"
+    },
+    {
+      "video_id": "GONDOLAS",
+      "purpose": "loops de nichos e grupos de produtos",
+      "status": "WAITING_INPUT"
+    },
+    {
+      "video_id": "LED_NINHO",
+      "purpose": "adaptacao Ninho Patrulha Canina",
+      "status": "WAITING_INPUT"
+    },
+    {
+      "video_id": "TV_SALA_VIP",
+      "purpose": "filme institucional Nutrition & Health",
+      "status": "WAITING_INPUT"
+    }
+  ],
+  "sources": [
+    "01_briefings/NESTLE_ABRAFARMA_FUTURE_TRENDS_V5.pdf",
+    "01_briefings/Lemon_Nestlé_Abrafarma_R00.pdf",
+    "01_briefings/NESTLÉ_DETALHAMENTO_REV01.pdf",
+    "01_briefings/PixelMap_P1.9_7x6Mod.pdf",
+    "02_SOURCE_MATERIALS/MASTER_ASSET_MATRIX.json",
+    "NESTLE_FT26_EXECUTION_CONTROL.xlsx"
+  ],
+  "missing_information": [
+    "Aprovação legal final de claims para Gate 10",
+    "Confirmação de áudio nos vídeos secundários"
+  ],
+  "last_updated": "2026-08-06T17:30:00Z"
+}

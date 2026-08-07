@@ -1,0 +1,15 @@
+{
+  "video_id": "GONDOLAS",
+  "status": "draft",
+  "narrative_summary": "Pendente de consolidacao a partir do roteiro e dos assets aprovados.",
+  "scenes": [],
+  "continuity_notes": [],
+  "missing_information": [
+    "numero final de nichos",
+    "associacao produto por tela",
+    "duracao dos loops",
+    "dimensoes e pixels",
+    "packshots finais"
+  ],
+  "last_updated": "2026-08-06"
+}

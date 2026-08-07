@@ -1,0 +1,13 @@
+{
+  "screens": [
+    {"video_id": "LED01_CURVO", "screen": "LED frontal curvo", "physical_dimensions_m": null, "pixel_dimensions": null},
+    {"video_id": "LED02_RECEITAS", "screen": "LED horizontal de receitas", "physical_dimensions_m": {"width": 3.5, "height": 1.0}, "pixel_dimensions": null},
+    {"video_id": "LED03_GLP1", "screen": "LED vertical do corredor GLP-1", "physical_dimensions_m": {"width": 2.5, "height": 3.0}, "pixel_dimensions": null},
+    {"video_id": "LED04_NINA", "screen": "painel Nina interativo", "physical_dimensions_m": null, "pixel_dimensions": null},
+    {"video_id": "GONDOLAS", "screen": "telas dos nichos de gondola", "physical_dimensions_m": null, "pixel_dimensions": null},
+    {"video_id": "LED_NINHO", "screen": "LED Ninho Patrulha Canina", "physical_dimensions_m": {"width": 2.5, "height": 2.5}, "pixel_dimensions": null},
+    {"video_id": "TV_SALA_VIP", "screen": "TV QLED 4K da sala VIP", "physical_dimensions_m": null, "pixel_dimensions": {"width": 3840, "height": 2160}}
+  ],
+  "source_files": ["../../sources/NESTLÉ_DETALHAMENTO_REV01.pdf", "../../sources/PixelMap_P1.9_8x6Mod.pdf"],
+  "validation_status": "requires_technical_consolidation"
+}

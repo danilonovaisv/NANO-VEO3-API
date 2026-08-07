@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "project": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026",
+  "extracted_from": "guides/CGI-VIDEOS — research analysis 2026-08-06",
+  "patterns": [
+    {
+      "pattern_name": "product_hero_reveal",
+      "best_for_products": [
+        "NAN COMFOR",
+        "infant nutrition cans",
+        "premium food products"
+      ],
+      "visual_description": "Single hero packshot rises from a glowing central point against a branded gradient background. Product settles into locked center frame with subtle metallic light sweep.",
+      "camera_language": "Locked frontal camera, 70mm full-frame equivalent. No camera movement during product lock.",
+      "lighting_language": "Large diffused frontal key light. Low-intensity branded fill (magenta/violet for NAN). Subtle rim light defining product edges. Soft volumetric glow at product base.",
+      "motion_language": "Vertical rise with smooth ease-in, light deceleration at rest position. Metallic reflections stabilize on lock.",
+      "safe_usage_notes": "Preserve packshot geometry exactly. No shape morphing. Label must be legible at all frames. Do not animate the product after it locks into hero position.",
+      "example_prompt_fragment": "The NAN COMFOR package rises vertically from a central luminous glow, easing into hero foreground position. Metallic reflections stabilize. Locked frontal camera. 70mm lens. Magenta-purple gradient background."
+    },
+    {
+      "pattern_name": "packshot_family_entrance",
+      "best_for_products": [
+        "product families",
+        "multi-SKU lineups",
+        "Nestlé NAN line"
+      ],
+      "visual_description": "Multiple packshots emerge sequentially: rear-left and rear-right units rise first, then the hero front-center unit rises with a stronger luminous pulse. Creates depth and hierarchy.",
+      "camera_language": "Locked frontal camera. Depth achieved through product scale and position, not camera movement.",
+      "lighting_language": "Each package receives branded ambient fill. Hero product gets stronger key light and volumetric pulse on entry.",
+      "motion_language": "Sequential vertical rises with staggered timing. Each unit settles before the next begins. Hero unit enters last with strongest motion.",
+      "safe_usage_notes": "Maintain brand identity of each SKU individually. Do not allow packages to intersect during motion. Rear packages remain slightly smaller to suggest depth.",
+      "example_prompt_fragment": "Rear-left NAN COMFOR package rises and settles. Rear-right mirrors. Front-center hero rises with luminous pulse and settles into foreground. Locked frontal camera. Sequential entrance."
+    },
+    {
+      "pattern_name": "floating_particles_premium",
+      "best_for_products": [
+        "nutrition products",
+        "pharmaceutical-adjacent brands",
+        "science-forward products"
+      ],
+      "visual_description": "Molecular structures, hexagonal overlays, fine luminous lines, and floating light particles drift across the background. Supporting element — never obscures product.",
+      "camera_language": "Locked camera. Particles move in depth layers creating parallax without camera motion.",
+      "lighting_language": "Particles are self-luminous, matching brand color (magenta/teal/gold depending on brand). Low opacity to not compete with product.",
+      "motion_language": "Slow drift from edges inward, converging near product in final frames. Subtle pulsing glow.",
+      "safe_usage_notes": "Particles must NOT obscure packshot label or logo. Keep particle density low in product safe zone (center 60% of frame). Never use particle explosion — use convergence instead.",
+      "example_prompt_fragment": "Futuristic interface graphics, circular arcs, molecular nodes, fine luminous lines and floating particles drift inward from lateral edges. Particles remain outside the product safe zone. Low opacity."
+    },
+    {
+      "pattern_name": "liquid_splash_macro",
+      "best_for_products": [
+        "beverages",
+        "nutrition drinks",
+        "dairy products",
+        "liquid supplements"
+      ],
+      "visual_description": "Product-relevant liquid (milk, formula, water) splashes in slow motion around or below the packshot. Macro lens captures droplet detail.",
+      "camera_language": "Macro push-in or locked close-up. Shallow depth of field — product remains sharp, liquid in soft focus.",
+      "lighting_language": "Strong backlight for liquid translucency. Front fill preserving packshot legibility.",
+      "motion_language": "Slow-motion splash synchronized with product reveal. Liquid does not obscure front label.",
+      "safe_usage_notes": "Liquid must match product identity (e.g., white/cream for formula). Do not splash liquid onto label zone. Confirm liquid type is consistent with actual product.",
+      "example_prompt_fragment": "Slow-motion white formula droplets rise and fall around the base of the NAN COMFOR can. Macro lens. Strong backlight. Product label remains sharp and fully legible."
+    },
+    {
+      "pattern_name": "powder_burst_reveal",
+      "best_for_products": [
+        "infant formula",
+        "nutritional powder",
+        "supplement powder"
+      ],
+      "visual_description": "Fine white/gold powder erupts from the product base or lid, disperses softly, and settles. Reveals the product in the clearing cloud.",
+      "camera_language": "Slow push-in during burst. Camera settles as powder disperses.",
+      "lighting_language": "Backlight to rim-light the powder cloud. Front key restores after dispersal.",
+      "motion_language": "Fast burst, then slow dispersal. Product emerge from center of the cloud.",
+      "safe_usage_notes": "Do not obscure label during reveal — powder disperses outward. Confirm powder color matches product. Do not suggest powder spill or waste messaging.",
+      "example_prompt_fragment": "A soft burst of fine white nutritional powder rises from the product base, disperses outward, and settles to reveal the NAN COMFOR can in full clarity. Backlit. Slow-motion."
+    },
+    {
+      "pattern_name": "premium_light_sweep",
+      "best_for_products": [
+        "all premium product categories"
+      ],
+      "visual_description": "A horizontal or diagonal light beam sweeps across the packshot from left to right, creating a premium metallic highlight pass.",
+      "camera_language": "Locked camera. Light in motion, not camera.",
+      "lighting_language": "Sharp narrow beam. High specular on metallic surfaces. Does not overexpose product label.",
+      "motion_language": "Single smooth sweep. Duration 0.4-0.8 seconds.",
+      "safe_usage_notes": "Do not let beam overexpose label typography. Keep label contrast above threshold during sweep.",
+      "example_prompt_fragment": "A premium horizontal light sweep moves across the metallic NAN COMFOR can from left to right, creating a sharp specular highlight pass. Locked camera. Single sweep."
+    },
+    {
+      "pattern_name": "cinematic_dolly_push",
+      "best_for_products": [
+        "lifestyle contexts",
+        "brand films",
+        "secondary scenes with environment"
+      ],
+      "visual_description": "Camera slowly dollies forward toward the product. Background blurs softly as product sharpens.",
+      "camera_language": "Slow dolly-in, 70mm equivalent. Bokeh background increases during push.",
+      "lighting_language": "Cinematic key-fill setup. Product stays lit throughout the dolly.",
+      "motion_language": "Smooth, unhurried forward motion. 1.5 to 3 second duration.",
+      "safe_usage_notes": "Product must remain in focus throughout. Do not dolly so close that packshot bleeds outside frame.",
+      "example_prompt_fragment": "Camera slowly dollies forward toward the NAN COMFOR hero packshot. Background gradient blurs softly. Product sharpens. 70mm cinematic lens."
+    },
+    {
+      "pattern_name": "badge_seal_reveal",
+      "best_for_products": [
+        "products with quality seals",
+        "number-one claims",
+        "award badges"
+      ],
+      "visual_description": "Light rays or particles converge in the lower-right corner to form the #1 or quality seal badge. The badge resolves from light into a solid, readable graphic element.",
+      "camera_language": "Locked camera. Badge builds in frame corner.",
+      "lighting_language": "Condensed light rays. High contrast on the badge itself for readability.",
+      "motion_language": "Convergence of particles, then resolving into solid badge. Duration 1-1.5 seconds.",
+      "safe_usage_notes": "Badge must exactly match the approved packshot artwork. Do not invent badge content. Only use if the badge is present in the source packshot.",
+      "example_prompt_fragment": "Glowing particles converge in the lower-right corner. Light rays condense into the illuminated number-1 seal, resolving precisely into the exact badge shown in the final frame artwork."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "video_id": "TV_SALA_VIP",
+  "video_name": "Institucional Nutrition & Health",
+  "screen_name": "TV QLED 4K da sala VIP",
+  "screen_dimensions": null,
+  "pixel_dimensions": {
+    "width": 3840,
+    "height": 2160
+  },
+  "communication_objective": "Apresentar institucionalmente a visao e o portfolio de Nutrition & Health.",
+  "main_message": "Nutricao que conecta o futuro.",
+  "products": [],
+  "approved_claims": [],
+  "mandatory_elements": [
+    "fidelidade aos assets oficiais",
+    "consistencia visual entre cenas"
+  ],
+  "restrictions": [
+    "Nao usar claims sem validacao final.",
+    "Nao alterar caracteristicas fisicas dos produtos."
+  ],
+  "reference_files": [
+    "../../../sources/Nestlé - Abrafarma Future Trends V5.pdf"
+  ],
+  "reference_links": [],
+  "scene_order": [],
+  "status": "awaiting_assets",
+  "missing_information": [
+    "roteiro institucional",
+    "filmes e assets autorizados",
+    "duracao",
+    "frame rate e codec"
+  ],
+  "last_updated": "2026-08-06"
+}

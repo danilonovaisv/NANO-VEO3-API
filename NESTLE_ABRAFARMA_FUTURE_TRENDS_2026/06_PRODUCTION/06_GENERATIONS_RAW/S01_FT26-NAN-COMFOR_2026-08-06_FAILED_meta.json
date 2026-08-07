@@ -1,0 +1,14 @@
+{
+  "scene_id": "S01",
+  "scene_title": "Cinematic Technology Reveal",
+  "asset_id": "FT26-LED01-NAN-COMFOR-001",
+  "generated_at": "2026-08-06T04:53:00Z",
+  "prediction_id": "FAILED_402_PAYMENT_REQUIRED",
+  "model": "veo3-1-first-last-frame-to-video",
+  "status": "BLOCKED_PAYMENT_REQUIRED",
+  "error_details": "Insufficient balance or billing disabled on EachLabs account.",
+  "next_steps": [
+    "Add credits to the EachLabs account in the console.",
+    "Run: npx tsx NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/01_FAMILIA_COMFOR/04_MASTER/generate_familia_comfor.mjs S01"
+  ]
+}

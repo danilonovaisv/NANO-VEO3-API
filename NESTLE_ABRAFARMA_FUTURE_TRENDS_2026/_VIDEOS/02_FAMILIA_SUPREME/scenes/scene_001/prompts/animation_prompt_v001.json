@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "project_id": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026",
+    "video_id": "LED01_CURVO_SUPREME",
+    "scene_id": "S01",
+    "prompt_version": "v001",
+    "status": "animation_prompt_ready",
+    "created_at": "2026-08-06T17:30:00Z",
+    "updated_at": "2026-08-06T17:30:00Z"
+  },
+  "creative_intent": {
+    "communication_objective": "Destacar Nestlé NAN SUPREME como a marca mais inovadora da categoria.",
+    "main_message": "Marca mais Inovadora da Categoria",
+    "visual_concept": "Cinematic Supreme Innovation Reveal"
+  },
+  "visual_anchors": {
+    "reference_mode": "first_last_frame",
+    "product_reference": "Nestlé NAN SUPREME",
+    "first_frame": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/_VIDEOS/02_FAMILIA_SUPREME/01_INPUT/FRAME-1_FAMILIA_SUPREME_FT26-LED01_CURVO-001_1792×1536px.png",
+    "last_frame": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/_VIDEOS/02_FAMILIA_SUPREME/01_INPUT/FRAME-2_FAMILIA_SUPREME_FT26-LED01_CURVO-001_1792×1536px.png",
+    "locked_elements": [
+      "geometry",
+      "labels",
+      "nestle logo",
+      "badge claim"
+    ]
+  },
+  "shot": {
+    "duration_seconds": 5,
+    "aspect_ratio": "16:9",
+    "resolution": "1080p",
+    "shot_type": "70mm frontal locked",
+    "camera_movement": "Static frontal locked"
+  },
+  "animation": {
+    "summary": "Cinematic Supreme Innovation Reveal",
+    "motion_intensity": "medium"
+  },
+  "audio": {
+    "enabled": false
+  },
+  "post_production": {
+    "lettering_required": false,
+    "official_logo_required": false,
+    "legal_copy_required": true,
+    "compositing_notes": "Upscale 1080p to 1792x1536 (P1.9 7x6 Mod) and retime to 60fps"
+  }
+}

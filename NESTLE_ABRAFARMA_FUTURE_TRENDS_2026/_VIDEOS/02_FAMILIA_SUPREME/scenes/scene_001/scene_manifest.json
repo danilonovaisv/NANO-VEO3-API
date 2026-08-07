@@ -1,0 +1,14 @@
+{
+  "scene_id": "S01",
+  "scene_number": 1,
+  "scene_title": "Cinematic Supreme Innovation Reveal",
+  "video_id": "LED01_CURVO_SUPREME",
+  "asset_id": "FT26-LED01_CURVO-002",
+  "status": "animation_prompt_ready",
+  "current_version": "v001",
+  "input_frames": {
+    "first_frame": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/_VIDEOS/02_FAMILIA_SUPREME/01_INPUT/FRAME-1_FAMILIA_SUPREME_FT26-LED01_CURVO-001_1792×1536px.png",
+    "last_frame": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/_VIDEOS/02_FAMILIA_SUPREME/01_INPUT/FRAME-2_FAMILIA_SUPREME_FT26-LED01_CURVO-001_1792×1536px.png"
+  },
+  "last_updated": "2026-08-06T17:30:00Z"
+}

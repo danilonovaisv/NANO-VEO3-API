@@ -1,0 +1,159 @@
+{
+  "schema_version": "1.0.0",
+  "project": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026",
+  "workflows": {
+    "A_project_setup": {
+      "id": "A",
+      "name": "Workflow A — Project Setup",
+      "trigger": "Project start or /agents-orquestrator",
+      "owner": "@router-orchestrator",
+      "steps": [
+        "Audit folders (00_governance through reports)",
+        "Audit skills and rules (.agents/skills, AGENTS.md, .context/)",
+        "Audit source materials (02_SOURCE_MATERIALS/MARCAS/)",
+        "Audit trackers (00_governance/MASTER_TRACKER)",
+        "Create config files (project_config.json, generation_rules.json, etc.)",
+        "Create agent map (config/agent_config.json)",
+        "Create blocker report (reports/MISSING_INPUTS_AND_BLOCKERS.md)"
+      ],
+      "outputs": [
+        "reports/",
+        "config/"
+      ],
+      "gate": "Gate 1"
+    },
+    "B_product_readiness": {
+      "id": "B",
+      "name": "Workflow B — Product Readiness",
+      "trigger": "New product submitted or briefing uploaded",
+      "owner": "@asset-manager",
+      "steps": [
+        "Read product folder in 02_SOURCE_MATERIALS/MARCAS/",
+        "Compare against briefing in 01_briefings/",
+        "Check KV / packshot / mockup / video base availability",
+        "Check claim and copy approval status",
+        "Confirm screen format and duration from screen_formats.json",
+        "Classify readiness: READY_FOR_PREPROD / READY_WITH_RESTRICTIONS / BLOCKED",
+        "Update reports/MISSING_INPUTS_AND_BLOCKERS.md"
+      ],
+      "outputs": [
+        "Updated ASSET_FOLDER_AUDIT.csv",
+        "Updated MISSING_INPUTS_AND_BLOCKERS.md"
+      ],
+      "gate": "Gate 1"
+    },
+    "C_script_creation": {
+      "id": "C",
+      "name": "Workflow C — Script Creation",
+      "trigger": "User submits product for scripting (Gate 2 passed)",
+      "owner": "@ai-video-engineer",
+      "steps": [
+        "Receive user input: product name, placement, creative direction",
+        "Read product assets from 02_SOURCE_MATERIALS/MARCAS/[BRAND]/",
+        "Read briefing from 01_briefings/",
+        "Read CGI patterns from config/cgi_style_library.json",
+        "Create script options (2-3 variations)",
+        "Create scene breakdown with JSON format (per Stage 3 Agent 5 spec)",
+        "Flag any missing approvals or blocked elements",
+        "Save draft to 04_prompts/script_prompts/[ASSET_ID]_script_DRAFT.json",
+        "STOP — wait for user approval before proceeding"
+      ],
+      "outputs": [
+        "04_prompts/script_prompts/[ASSET_ID]_script.json"
+      ],
+      "gate": "Gate 3"
+    },
+    "D_keyframe_creation": {
+      "id": "D",
+      "name": "Workflow D — Keyframe Creation",
+      "trigger": "Gate 3 passed (script approved)",
+      "owner": "@ai-video-engineer",
+      "steps": [
+        "Read approved script from 04_prompts/script_prompts/",
+        "Create initial frame description (includes: product, setting, lighting, camera, safe area)",
+        "Create final frame description (includes: product state, claims, badges, lighting resolve)",
+        "Create transition bridge frame if needed (middle state)",
+        "Check: lighting continuity between initial and final",
+        "Check: brand and packshot requirements vs approved source materials",
+        "Save to 05_keyframes/initial_frames/[ASSET_ID]_initial.md",
+        "Save to 05_keyframes/final_frames/[ASSET_ID]_final.md",
+        "STOP — export prompts and wait for user approval"
+      ],
+      "outputs": [
+        "05_keyframes/initial_frames/",
+        "05_keyframes/final_frames/",
+        "05_keyframes/bridge_frames/"
+      ],
+      "gate": "Gate 5"
+    },
+    "E_json_prompt_generation": {
+      "id": "E",
+      "name": "Workflow E — JSON Prompt Generation",
+      "trigger": "Gate 5 passed (keyframe prompts approved)",
+      "owner": "@ai-video-engineer",
+      "steps": [
+        "Convert approved scene descriptions to JSON format (per Stage 3 Agent 8 spec)",
+        "Attach initial and final frame file references",
+        "Define model_strategy: requires_first_frame, requires_last_frame, recommended_model",
+        "Note: if first+last frame required → use veo3-1-first-last-frame-to-video (NOT veo-3.0-generate-001)",
+        "Define scene duration (max 8s per clip)",
+        "Define technical export settings from screen_formats.json",
+        "Include negative_prompt from generation_rules.json",
+        "Save to 04_prompts/video_json_prompts/[ASSET_ID]_veo3_payload.json",
+        "Also save to public/output/ for script consumption",
+        "STOP — wait for user approval of JSON"
+      ],
+      "outputs": [
+        "04_prompts/video_json_prompts/",
+        "public/output/"
+      ],
+      "gate": "Gate 6"
+    },
+    "F_video_generation": {
+      "id": "F",
+      "name": "Workflow F — Video Generation",
+      "trigger": "Gate 6 passed (JSON prompt approved)",
+      "owner": "@veo-integration-specialist",
+      "steps": [
+        "Run: npx tsx .agents/skills/veo3-api-integration/scripts/test_payload.ts",
+        "Confirm GEMINI_API_KEY present in process.env",
+        "Confirm frame files exist at referenced paths",
+        "Dispatch generation: POST /api/veo/generate with approved JSON payload",
+        "Begin polling: GET /api/veo/operation?id=[operationId]",
+        "When done === true: collect video bytes or download URL",
+        "Store raw output to 06_PRODUCTION/06_GENERATIONS_RAW/[ASSET_ID]_[TIMESTAMP].mp4",
+        "Log generation metadata to 06_PRODUCTION/[ASSET_ID]/07_generation_log.md",
+        "Do NOT overwrite previous generations — use timestamp suffix"
+      ],
+      "outputs": [
+        "06_PRODUCTION/06_GENERATIONS_RAW/"
+      ],
+      "gate": "Gate 7"
+    },
+    "G_qa_and_delivery": {
+      "id": "G",
+      "name": "Workflow G — QA and Delivery",
+      "trigger": "Gate 7 passed (generation complete)",
+      "owner": "@evaluator + @router-orchestrator",
+      "steps": [
+        "Technical QA: verify resolution, duration, fps, codec, format",
+        "Creative QA: verify motion quality, scene continuity, transition quality",
+        "Brand QA: verify packshot accuracy, logo accuracy, brand palette",
+        "Claim QA: verify claim placement, badge accuracy, no hallucinated text",
+        "Safe area QA: verify 10% margins on all edges",
+        "Create QA report at 06_PRODUCTION/09_QA/[ASSET_ID]_qa_report.md",
+        "If QA PASS: move to 06_PRODUCTION/07_GENERATIONS_SELECTED/",
+        "If QA FAIL: document failures, return to Gate 6 or Gate 7",
+        "Post-production: upscale to 1792x1536 via Topaz Video Upscaler",
+        "Export final H.264 MP4 60fps to 06_PRODUCTION/10_FINAL_EXPORTS/",
+        "Update Master Tracker (Tracker Sync Agent — preserve formula columns)",
+        "Package delivery"
+      ],
+      "outputs": [
+        "06_PRODUCTION/09_QA/",
+        "06_PRODUCTION/10_FINAL_EXPORTS/"
+      ],
+      "gate": "Gate 10"
+    }
+  }
+}

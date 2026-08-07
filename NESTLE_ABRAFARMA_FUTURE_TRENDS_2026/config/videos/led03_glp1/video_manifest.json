@@ -1,0 +1,37 @@
+{
+  "video_id": "LED03_GLP1",
+  "video_name": "Jornada GLP-1",
+  "screen_name": "LED vertical do corredor GLP-1 2.5 x 3.0 m",
+  "screen_dimensions": null,
+  "pixel_dimensions": null,
+  "communication_objective": "Comunicar a jornada GLP-1 e o papel do suporte nutricional.",
+  "main_message": "A jornada requer suporte nutricional adequado em seus diferentes momentos.",
+  "products": [
+    "Nutren Control"
+  ],
+  "approved_claims": [],
+  "mandatory_elements": [
+    "fidelidade aos assets oficiais",
+    "consistencia visual entre cenas"
+  ],
+  "restrictions": [
+    "Nao incluir Materna sem nova aprovacao.",
+    "Nao criar alegacoes medicas ou promessas de resultado.",
+    "Nao usar claims sem validacao final.",
+    "Nao alterar caracteristicas fisicas dos produtos."
+  ],
+  "reference_files": [
+    "../../../sources/Nestlé - Abrafarma Future Trends V5.pdf",
+    "../../../sources/NESTLÉ_DETALHAMENTO_REV01.pdf"
+  ],
+  "reference_links": [],
+  "scene_order": [],
+  "status": "awaiting_assets",
+  "missing_information": [
+    "roteiro clinico aprovado",
+    "claims e produtos finais",
+    "asset correto de Nutren Control",
+    "duracao e pixels finais"
+  ],
+  "last_updated": "2026-08-06"
+}

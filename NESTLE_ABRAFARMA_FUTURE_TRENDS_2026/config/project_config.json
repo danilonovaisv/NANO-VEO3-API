@@ -1,0 +1,93 @@
+{
+  "project_name": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026",
+  "project_slug": "FT26",
+  "client": "Nestlé Nutrition & Health",
+  "event": "ABRAFARMA Future Trends 2026",
+  "created_at": "2026-08-06T04:02:46-03:00",
+  "version": "1.0.0",
+  "default_fps": 60,
+  "default_codec": "H.264",
+  "default_extension": ".mp4",
+  "audio_codec": "AAC2",
+  "primary_format": {
+    "name": "P1.9 7x6 Mod",
+    "resolution": "1792x1536",
+    "physical_mm": "3500x3040",
+    "fps": 60,
+    "codec": "H.264",
+    "extension": ".mp4",
+    "duration_rule": "15s sem áudio — LED 1 Curvo"
+  },
+  "known_screens": {
+    "LED_1_CURVO": {
+      "name": "LED 1 Curvo",
+      "format": "P1.9 7x6 Mod",
+      "resolution": "1792x1536",
+      "duration_seconds": 15,
+      "audio": false,
+      "status": "CONFIRMED"
+    },
+    "ASCENDA": {
+      "name": "Ascenda",
+      "format": "TBD",
+      "resolution": "TBD",
+      "duration_seconds_source": 10,
+      "duration_seconds_adapted": 15,
+      "audio": "PENDING_VALIDATION",
+      "status": "OBSERVED"
+    },
+    "OTHER_SCREENS": {
+      "name": "Other Screens",
+      "format": "PENDING_BRIEFING",
+      "resolution": "PENDING_BRIEFING",
+      "duration_seconds": "PENDING_BRIEFING",
+      "audio": "PENDING_BRIEFING",
+      "status": "MISSING_INFORMATION"
+    }
+  },
+  "clip_strategy": {
+    "max_clip_seconds": 8,
+    "split_15s_into": [
+      "8s",
+      "7s"
+    ],
+    "each_clip_self_contained": true,
+    "veo3_1_max_clip_seconds": 8,
+    "model_per_clip": "veo3-1-first-last-frame-to-video"
+  },
+  "generation_policy": {
+    "first_and_last_frame_required": true,
+    "use_compatible_model_for_first_last_frame": true,
+    "do_not_assume_veo3_supports_first_last_frame": true,
+    "preferred_model_first_last_frame": "veo3-1-first-last-frame-to-video",
+    "preferred_model_text_only": "veo-3.0-generate-001",
+    "preferred_api": "@google/genai SDK via GEMINI_API_KEY env var",
+    "fallback_api": "eachlabs.ai veo3-1-first-last-frame-to-video via EACHLABS_API_KEY",
+    "test_before_dispatch": "npx tsx .agents/skills/veo3-api-integration/scripts/test_payload.ts"
+  },
+  "brand_safety": {
+    "no_invented_claims": true,
+    "no_celebrity_likeness": true,
+    "no_fake_regulatory_text": true,
+    "preserve_official_packshots": true,
+    "preserve_official_logos": true,
+    "no_overwrite_source_files": true
+  },
+  "known_brands": [
+    "NAN COMFOR",
+    "Nestlé",
+    "ABRAFARMA"
+  ],
+  "known_assets_confirmed": [
+    "FRAME-1-Família_Comfor_FT26-LED01_CURVO-001_1792x1536px.png",
+    "FRAME-2-Família_Comfor_FT26-LED01_CURVO-001_1792x1536px.png"
+  ],
+  "pipeline_entrypoint": {
+    "validation_script": "npx tsx .agents/skills/veo3-api-integration/scripts/nestle_nan_payload_validation.ts",
+    "execution_script": "npx tsx .agents/skills/veo3-api-integration/scripts/execute_nestle_generation.ts",
+    "api_generate_endpoint": "/api/veo/generate",
+    "api_polling_endpoint": "/api/veo/operation",
+    "api_download_endpoint": "/api/veo/download",
+    "payload_output_path": "public/output/nestle_nan_veo3_payload.json"
+  }
+}
