@@ -11,27 +11,42 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const prompt = (body?.prompt as string) || "";
+    const model = (body?.model as string) || "gemini-2.5-flash-image-preview";
+    const aspectRatio = body?.aspectRatio as string | undefined;
+    const outputResolution = body?.outputResolution as string | undefined;
+    const thinkingBudget = body?.thinkingBudget as number | undefined;
 
     if (!prompt) {
       return NextResponse.json({ error: "Missing prompt" }, { status: 400 });
     }
 
+    const config: Record<string, unknown> = {};
+    if (aspectRatio) config.aspectRatio = aspectRatio;
+    if (outputResolution) config.outputResolution = outputResolution;
+    if (typeof thinkingBudget === "number") {
+      config.thinkingConfig = { thinkingBudget };
+    }
+
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash-image-preview",
+      model,
       contents: prompt,
+      ...(Object.keys(config).length > 0 ? { config } : {}),
     });
 
     // Process the response to extract the image
     let imageData = null;
     let imageMimeType = "image/png";
 
-    for (const part of response.candidates[0].content.parts) {
-      if (part.text) {
-        console.log("Generated text:", part.text);
-      } else if (part.inlineData) {
-        imageData = part.inlineData.data;
-        imageMimeType = part.inlineData.mimeType || "image/png";
-        break;
+    const candidate = response.candidates?.[0];
+    if (candidate?.content?.parts) {
+      for (const part of candidate.content.parts) {
+        if (part.text) {
+          console.log("Generated text:", part.text);
+        } else if (part.inlineData) {
+          imageData = part.inlineData.data;
+          imageMimeType = part.inlineData.mimeType || "image/png";
+          break;
+        }
       }
     }
 

@@ -20,6 +20,7 @@ Example: _"Ative /storyboard para criar um vídeo de 30 segundos de introdução
 
 0. **NotebookLM Knowledge Grounding**
    - Delegate to `@notebooklm-knowledge-sentinel` to query prompt frameworks (SCALIST, SCHEMA, Veo 3.1 JSON):
+
      ```bash
      python .agents/skills/notebooklm/scripts/ask_question.py --notebook-id nano-banana-ecosystem-&-visual-engineering-manual --question "Como utilizar os frameworks SCALIST e SCHEMA para estruturar estes prompts de cena?"
      python .agents/skills/notebooklm/scripts/ask_question.py --notebook-id google-veo-3.1-manual-&-prompt-engineering-guide --question "Como estruturar a cinematografia e o audio nativo para o Veo 3.1?"

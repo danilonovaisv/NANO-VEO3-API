@@ -27,6 +27,7 @@ Antes de iniciar qualquer pesquisa, o agente **DEVE** parar sua execução e sol
 Após receber as respostas do usuário, o agente deve validar a integração com o NotebookLM:
 
 1. Cheque o status da autenticação usando a skill:
+
    ```bash
    python .agents/skills/notebooklm/scripts/run.py auth_manager.py status
    ```
@@ -34,17 +35,20 @@ Após receber as respostas do usuário, o agente deve validar a integração com
 2. **Se o login for necessário:**
    - Avise o usuário: *"Estou abrindo uma janela do navegador para você realizar o login manual na sua conta do Google."*
    - Execute a configuração (isso abrirá o navegador visivelmente):
+
      ```bash
      python .agents/skills/notebooklm/scripts/run.py auth_manager.py setup
      ```
 
 3. Liste os notebooks disponíveis localmente para verificar se o caderno solicitado já existe no cache da skill:
+
    ```bash
    python .agents/skills/notebooklm/scripts/run.py notebook_manager.py list
    ```
 
 4. **Se o notebook solicitado pelo usuário NÃO estiver na lista (for novo):**
    - Use o mecanismo de adição de caderno, solicitando ao usuário descrição e tópicos se necessários (ou usando a descoberta inteligente conforme o `SKILL.md`):
+
      ```bash
      python .agents/skills/notebooklm/scripts/run.py notebook_manager.py add --url "[URL_FORNECIDA]" --name "[NOME]" --description "[DESCRIÇÃO]" --topics "[TOPICOS]"
      ```
@@ -56,11 +60,13 @@ Após receber as respostas do usuário, o agente deve validar a integração com
 Com os notebooks alvos definidos:
 
 1. Ative o notebook principal:
+
    ```bash
    python .agents/skills/notebooklm/scripts/run.py notebook_manager.py activate --id <notebook_id>
    ```
 
 2. Faça a consulta inicial sobre o objetivo da implementação:
+
    ```bash
    python .agents/skills/notebooklm/scripts/run.py ask_question.py --question "Como implementar [OBJETIVO DO USUÁRIO] baseado nestes documentos? Diga-me a arquitetura, regras de negócio e exemplos de código necessários."
    ```
@@ -75,10 +81,10 @@ Com os notebooks alvos definidos:
 
 Após sintetizar as respostas do NotebookLM, componha a análise de viabilidade no seguinte formato estruturado e apresente ao usuário:
 
-* **EVIDÊNCIA:** (Fatos e regras estritas extraídas do NotebookLM)
-* **ESTADO ATUAL:** (Como o código do projeto está atualmente, pós-inspeção)
-* **GAP:** (Diferença entre o que a documentação exige e o que está no código)
-* **PLANO DE AÇÃO:** (O que será criado/modificado, listando os arquivos e métodos)
+- **EVIDÊNCIA:** (Fatos e regras estritas extraídas do NotebookLM)
+- **ESTADO ATUAL:** (Como o código do projeto está atualmente, pós-inspeção)
+- **GAP:** (Diferença entre o que a documentação exige e o que está no código)
+- **PLANO DE AÇÃO:** (O que será criado/modificado, listando os arquivos e métodos)
 
 > **Regra do Agente:** Pergunte explicitamente ao usuário se ele aprova o Plano de Ação. Pare e aguarde a confirmação.
 
@@ -89,15 +95,17 @@ Após sintetizar as respostas do NotebookLM, componha a análise de viabilidade 
 Após o "De Acordo" do usuário:
 
 1. Aplique as alterações no código da base local (usando ferramentas de edição de arquivos).
-2. **Restrição Crítica:** O código produzido não deve inventar padrões que contrariem o que foi recuperado do NotebookLM. 
+2. **Restrição Crítica:** O código produzido não deve inventar padrões que contrariem o que foi recuperado do NotebookLM.
 3. Em caso de novos pacotes, edite o `package.json` ou execute a instalação.
 
 ## FASE 6: Validação Final e Fechamento
 
 1. Teste o código implementado:
+
    ```bash
    npm run lint
    npx tsc --noEmit
    ```
+
 2. Caso ocorram erros, inicie um loop de self-healing para reparar os problemas (e relate-os em `ERRORS.md` conforme as regras de Error Logging).
 3. Entregue um relatório de conclusão ao usuário, detalhando o que foi alterado e como a implementação atende aos critérios do caderno do NotebookLM.
