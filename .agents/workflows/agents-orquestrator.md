@@ -37,7 +37,7 @@ cat AGENTS.md
 
 1. Executar a checagem da biblioteca de conhecimento NotebookLM:
 ```bash
-python .agents/skills/notebooklm/scripts/notebook_manager.py list
+python .agents/skills/notebooklm/scripts/run.py notebook_manager.py list
 ```
 
 2. Executar a checagem determinística do payload do Veo 3:
