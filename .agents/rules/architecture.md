@@ -1,16 +1,16 @@
 ---
 trigger: always_on
-description: Arquitetura de arquivos e estrutura do Next.js 15 App Router no NANO-VEO3-API
+description: File architecture and Next.js 15 App Router structural standards for NANO-VEO3-API
 globs: ["app/**/*", "components/**/*", "lib/**/*"]
 ---
 
-# Objetivo
+# Architecture & Structure Guidelines
 
-Manter a modularidade, separação de conceitos e organização em camadas no NANO-VEO3-API.
+## Objective
+Maintain strict modularity, separation of concerns, and clean layered organization across NANO-VEO3-API.
 
-# Regras
-
-- **Estrutura de API**: Rotas REST devem ser centralizadas em `app/api/<entidade>/route.ts`.
-- **Layouts & Páginas**: Páginas principais em `app/page.tsx`, layouts compartilhados em `app/layout.tsx`.
-- **Componentes UI**: Reutilizáveis em `components/` e utilitários de estilo em `lib/utils.ts`.
-- **Separação de Camadas**: A lógica de comunicação com o SDK `@google/genai` deve ser mantida em funções isoladas ou em rotas da API em `app/api/veo/`.
+## Rules
+- **API Structure**: Centralize all REST routes in `app/api/<entity>/route.ts`.
+- **Layouts & Pages**: Define main pages in `app/page.tsx` and shared layouts in `app/layout.tsx`.
+- **UI Components**: Keep reusable components in `components/` and utility functions in `lib/utils.ts`.
+- **Layer Separation**: Isolate all `@google/genai` SDK logic into dedicated functions or API routes under `app/api/veo/`.

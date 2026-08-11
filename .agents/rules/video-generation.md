@@ -1,15 +1,15 @@
 ---
 trigger: always_on
-description: Padrões de geração e orquestração de vídeo via Google Veo 3 API
+description: Video generation and orchestration standards using Google Veo 3 API
 globs: ["app/api/veo/**/*", "lib/**/*"]
 ---
 
-# Objetivo
+# Video Generation Guidelines
 
-Garantir chamadas resilientes e tratadas na geração de vídeos com o Google Veo 3 (`@google/genai`).
+## Objective
+Ensure resilient, validated, and well-handled video generation calls using Google Veo 3 (`@google/genai`).
 
-# Regras
-
-- **Geração Assíncrona**: Chamadas para geração de vídeo iniciam operações longas que requerem polling de status (`/api/veo/operation`).
-- **Validação de Inputs**: Prompts e configurações (aspectRatio, durationSeconds) devem ser validados via Zod Schema.
-- **Grids de Mídia**: Previews e exibição de vídeos gerados devem utilizar players responsivos em grid plano.
+## Rules
+- **Asynchronous Generation**: Video generation calls launch long-running operations that require status polling (`/api/veo/operation`).
+- **Input Validation**: All prompts and parameters (`aspectRatio`, `durationSeconds`) MUST be validated via Zod Schema.
+- **Media Grids**: Video previews and player displays must use responsive flat CSS grids.

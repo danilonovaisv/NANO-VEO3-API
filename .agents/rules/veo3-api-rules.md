@@ -1,28 +1,28 @@
 ---
 trigger: always_on
-description: Regras e padrões de consumo da API Google Veo 3 e SDK @google/genai
+description: Rules and consumption standards for Google Veo 3 API and @google/genai SDK
 globs: ["app/api/veo/**/*", "lib/**/*"]
 ---
 
-# Regras de Integração com Google Veo 3 API
+# Google Veo 3 API Integration Rules
 
-> **Objetivo**: Padronizar requisições de geração de vídeo, controle de operações longas e tratamento de erros do Veo 3.
-
----
-
-## 1. Inicialização do SDK `@google/genai`
-- Utilize a classe `GoogleGenAI` importada de `@google/genai`.
-- Certifique-se de que a variável de ambiente `GEMINI_API_KEY` esteja presente antes de invocar a instância.
+> **Objective**: Standardize video generation requests, long-running operation polling, and error handling for Veo 3.
 
 ---
 
-## 2. Ciclo de Vida de Geração de Vídeo
-1. **Despacho de Requisição**: A requisição de geração (`generateVideos`) inicia uma operação de longa duração.
-2. **Polling de Operação**: Consulte a rota `/api/veo/operation` até que a propriedade `done` da operação seja `true`.
-3. **Download e Streaming**: Ao finalizar (`done: true`), utilize a URL de vídeo ou os bytes retornado de forma segura.
+## 1. `@google/genai` SDK Initialization
+- Use the `GoogleGenAI` class imported from `@google/genai`.
+- Ensure the `GEMINI_API_KEY` environment variable is defined before initializing the client instance.
 
 ---
 
-## 3. Resiliência e Timeouts
-- Defina limites razoáveis de tempo limite (timeout) para o polling de operação (ex: limite de 10 minutos).
-- Se a operação retornar um objeto `error`, trate a mensagem e repasse um erro estruturado ao cliente HTTP sem expor detalhes internos de infraestrutura da Google Cloud.
+## 2. Video Generation Lifecycle
+1. **Request Dispatch**: The generation call (`generateVideos`) starts a long-running operation.
+2. **Operation Polling**: Poll the `/api/veo/operation` endpoint until the operation `done` property equals `true`.
+3. **Download and Streaming**: Once completed (`done: true`), safely handle the returned video URL or binary data.
+
+---
+
+## 3. Resilience and Timeouts
+- Set reasonable timeout thresholds for operation polling (e.g., 10-minute timeout limit).
+- If the operation returns an `error` object, process the message and return a structured error to the HTTP client without leaking internal Google Cloud infrastructure details.

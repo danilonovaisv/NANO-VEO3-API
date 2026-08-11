@@ -1,15 +1,15 @@
 ---
 trigger: always_on
-description: Governança de execução de workflows e slash commands no NANO-VEO3-API
+description: Workflow execution governance and slash command standards for NANO-VEO3-API
 globs: ["*"]
 ---
 
-# Objetivo
+# Workflow Governance Guidelines
 
-Garantir conformidade com os workflows padronizados (`/audit-api`, `/test`, `/deploy-check`) e orquestração do Swarm.
+## Objective
+Ensure strict compliance with standardized workflows (`/audit-api`, `/test`, `/deploy-check`) and Agent Swarm orchestration.
 
-# Regras
-
-- **Slash Commands**: Mantenha workflows sincronizados com os comandos `/audit-api`, `/test`, `/deploy-check`.
-- **Gates de Qualidade**: Não pule validações de tipagem (`npx tsc --noEmit`) ou linter (`npm run lint`).
-- **Validação Determinística**: Execute sempre o script `.agents/skills/veo3-api-integration/scripts/test_payload.ts` para testar esquemas do Veo 3.
+## Rules
+- **Slash Commands**: Keep workflows synchronized with slash commands `/audit-api`, `/test`, `/deploy-check`.
+- **Quality Gates**: Never skip type-checking (`npx tsc --noEmit`) or linting (`npm run lint`).
+- **Deterministic Validation**: Always run `.agents/skills/veo3-api-integration/scripts/test_payload.ts` to validate Veo 3 API schemas.

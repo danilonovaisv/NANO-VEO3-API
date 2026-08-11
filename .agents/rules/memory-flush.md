@@ -1,4 +1,10 @@
-# Memory Flush
+---
+trigger: always_on
+description: Auto-save, state logging, and session flush protocols
+globs: ["*"]
+---
+
+# Memory Flush Protocol
 
 > Don't rely on user triggers — auto-save. User might close the window at any time.
 
@@ -12,6 +18,4 @@
 
 ## Exit Signals (Execute full Flush immediately)
 
-"That's all for now" / "Done for today" / "I'm heading out" / "Going out" / "Talk later" / "Closing window" → Immediately run session-end
-
-Banned: Waiting for /session-end to save / Batching saves / Assuming user will end normally
+"That is all for now" / "Done for today" / "I am heading out" / "Going out" / "Talk later" / "Closing window" → Immediately run session-end

@@ -1,3 +1,9 @@
+---
+trigger: always_on
+description: Operational behavior standards, task routing, debugging protocols, and safety rules
+globs: ["*"]
+---
+
 # Behavior Rules
 
 ## VPS Code Deployment Rule (if applicable)
@@ -59,17 +65,17 @@ No blind fixes. Four phases:
 **Core triggers (kept here to avoid missing)**:
 
 - Processing external URLs / citing others → must annotate source, warn if unverifiable
-- Critical code → think from attacker's perspective + list 3 risk points
+- Critical code → think from attacker perspective + list 3 risk points
 - > 20 conversation turns / >50 tool calls → suggest fresh session
-- Discovered error/hallucination → immediately isolate context, don't write to memory
+- Discovered error/hallucination → immediately isolate context, do not write to memory
 - Citing content for sharing → force multi-model cross-verification
 
 ## Real-time Experience Recording (Mandatory)
 
-**Trigger immediately with `memory_add`, don't wait for session-end**:
+**Trigger immediately with `memory_add`, do not wait for session-end**:
 
 1. **Corrected by user** → Record immediately
-   - User says "that's wrong" / "don't do it that way" / "don't change parameters arbitrarily"
+   - User says "that is wrong" / "do not do it that way" / "do not change parameters arbitrarily"
    - Technical assumptions corrected, suggestions rejected
 
 2. **3 consecutive failures** → Pause and record
@@ -92,7 +98,7 @@ No blind fixes. Four phases:
 
 ## Project Context Auto-detection
 
-**When CWD is ~**, if conversation involves a specific project (file path, keywords, user mention), auto-load that project's MEMORY.md.
+**When CWD is ~**, if conversation involves a specific project (file path, keywords, user mention), auto-load that project MEMORY.md.
 See CLAUDE.md "Sub-project Memory Routes". Cost ~1000-2000 tokens/trigger, on-demand, no duplicate loading.
 
 ## Post-compression Re-anchor (On-demand)
@@ -103,7 +109,7 @@ After context compression, if current task details are fuzzy, recover as needed:
 2. Still not enough → read `today.md` to recover daily progress
 3. Only re-read `PROJECT_CONTEXT.md` for project-level decisions
 
-Don't trigger if not fuzzy — avoid wasting tokens.
+Do not trigger if not fuzzy — avoid wasting tokens.
 
 ## Parallel Processing
 
@@ -111,7 +117,7 @@ Suitable: multiple independent tasks/failures. Not suitable: interconnected/shar
 
 ## Browser/Puppeteer Conflicts
 
-On error, resolve yourself (kill process → retry → fallback). Don't throw failures to user.
+On error, resolve yourself (kill process → retry → fallback). Do not throw failures to user.
 
 > Detailed steps → `Read docs/behaviors-reference.md`
 
@@ -122,7 +128,7 @@ Banned: mixed changes, meaningless messages, >100 lines without splitting.
 
 ## Data Write-back Rules
 
-**When fetching metrics, write back to SSOT immediately. Don't wait for session-end.**
+**When fetching metrics, write back to SSOT immediately. Do not wait for session-end.**
 
 | Fetch scenario | Write-back target | Fields                |
 | -------------- | ----------------- | --------------------- |
@@ -134,7 +140,7 @@ Banned: mixed changes, meaningless messages, >100 lines without splitting.
 
 - After fetching, use Edit tool to update SSOT in-place
 - Include date annotation (e.g. `~1.2K (2026-03-02)`) for freshness
-- Only update changed fields, don't rewrite entire section
+- Only update changed fields, do not rewrite entire section
 
 **Banned**: Fetching new numbers but only outputting in conversation, not writing back to SSOT.
 
@@ -147,7 +153,7 @@ When user wants to do the following on non-Sundays, **intercept and remind**:
 - Optimize memory system / search index / hooks
 - Create or refactor skills / workflows / automation scripts
 - Adjust CLAUDE.md / rules / behavior specs
-- Anything that "makes the system better" but doesn't directly produce output
+- Anything that "makes the system better" but does not directly produce output
 
 **Intercept message**:
 
@@ -158,7 +164,3 @@ When user wants to do the following on non-Sundays, **intercept and remind**:
 - Bug fix directly blocking production
 - <5 minute small patches
 - User explicitly says "do it now"
-
----
-
-_Compact version | Full version: docs/behaviors-extended.md | Reference details: docs/behaviors-reference.md_

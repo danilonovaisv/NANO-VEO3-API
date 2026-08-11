@@ -1,68 +1,78 @@
 ---
 trigger: always_on
+description: Automatic error tracking, logging format, and continuous learning protocol
+globs: ["*"]
 ---
 
 # ERROR-LOGGING.MD - Automatic Error Tracking & Learning
 
-> **Mục tiêu**: Ghi lại mọi lỗi xảy ra trong quá trình phát triển để học hỏi và cải thiện. Ngăn chặn lỗi lặp lại.
+> **Objective**: Log every error encountered during development to facilitate learning and continuous improvement. Prevent error recurrence.
 
 ---
 
-## 🎯 1. KHI NÀO GHI LỖI
+## 🎯 1. WHEN TO LOG ERRORS
 
-Agent PHẢI ghi lại lỗi vào file `ERRORS.md` trong các trường hợp sau:
+The Agent MUST log errors to the `ERRORS.md` file in the following cases:
 
-1. **Lỗi Cú pháp (Syntax Error)**:
-   - Thiếu dấu ngoặc, dấu chấm phẩy
-   - Import sai đường dẫn
-   - Typo trong tên biến/hàm
+1. **Syntax Errors**:
 
-2. **Lỗi Logic (Logic Error)**:
-   - Code chạy nhưng kết quả sai
-   - Điều kiện if/else không cover hết case
-   - Vòng lặp vô hạn
+- Missing brackets or semicolons
+- Incorrect import paths
+- Typos in variable or function names
 
-3. **Lỗi Tích hợp (Integration Error)**:
-   - API call thất bại
-   - Database query lỗi
-   - Module không tìm thấy
+1. **Logic Errors**:
 
-4. **Lỗi Runtime**:
-   - Null pointer exception
-   - Type mismatch
-   - Out of memory
+- Code executes but produces incorrect results
+- `if/else` conditions failing to cover all cases
+- Infinite loops
 
-5. **Lỗi Tác nhân (Agent Error - QUAN TRỌNG)**:
-   - **Hiểu sai (Misinterpretation)**: Agent hiểu sai ý định người dùng hoặc hiểu sai tài liệu.
-   - **Thực hiện sai (Execution Error)**: Làm sai logic đã thống nhất trong Plan, xóa nhầm code, hoặc quên import.
-   - **Bị treo (Hang/Loop)**: Agent rơi vào vòng lặp vô hạn hoặc treo khi gọi tool.
-   - **Ảo giác (Hallucination)**: Đưa ra thông tin không có thực về codebase hoặc tài liệu.
+1. **Integration Errors**:
 
-6. **Lỗi Quy trình & Kiểm thử (Process & Test Failure)**:
-   - **Test Fail**: BẤT KỲ khi nào một bản test (Unit, E2E, Regression) không vượt qua.
-   - **Build/Lint Fail**: Lỗi khi đóng gói hoặc kiểm tra chất lượng code.
-   - **Infrastructure Fail**: Lỗi môi trường, lỗi Docker, hoặc đầy bộ nhớ đĩa.
+- Failed API calls
+- Database query errors
+- Module not found
+
+1. **Runtime Errors**:
+
+- Null pointer exceptions
+- Type mismatches
+- Out-of-memory errors
+
+1. **Agent Errors (CRITICAL)**:
+
+- **Misinterpretation**: Agent misunderstands user intent or documentation.
+- **Execution Error**: Deviating from agreed logic in the Plan, deleting code, or omitting imports.
+- **Hang/Loop**: Agent enters an infinite loop or hangs during tool invocation.
+- **Hallucination**: Providing non-existent information regarding the codebase or API specs.
+
+1. **Process & Test Failures**:
+
+- **Test Failure**: Whenever a test (Unit, E2E, Regression) fails.
+- **Build/Lint Failure**: Errors during packaging or code quality checks.
+- **Infrastructure Failure**: Environment issues, Docker errors, or disk space exhaustion.
 
 ---
 
-## 📝 2. FORMAT GHI LỖI
+## 📝 2. ERROR LOGGING FORMAT
 
-Mỗi lỗi PHẢI tuân thủ cấu trúc sau trong `ERRORS.md`:
+Each error MUST adhere to the following structure in `ERRORS.md`:
 
 ```markdown
-## [YYYY-MM-DD HH:MM] - Tiêu đề Lỗi Ngắn Gọn
+## [YYYY-MM-DD HH:MM] - Concise Error Title
 
 - **Type**: [Syntax/Logic/Integration/Runtime/Agent/Process]
 - **Severity**: [Low/Medium/High/Critical]
 - **File**: `path/to/file.extension:line_number`
-- **Agent**: [Tên Agent thực hiện]
-- **Root Cause**: Mô tả nguyên nhân gốc rễ (1-2 câu)
-- **Error Message**: 
-  ```
-  [Code lỗi hoặc stack trace]
-  ```
-- **Fix Applied**: Hành động cụ thể đã thực hiện
-- **Prevention**: Cách tránh lặp lại lỗi này trong tương lai
+- **Agent**: [Name of executing Agent]
+- **Root Cause**: Description of root cause (1-2 sentences)
+- **Error Message**:
+```
+
+[Error code or stack trace]
+
+```
+- **Fix Applied**: Specific action taken
+- **Prevention**: How to prevent this error from recurring
 - **Status**: [Fixed/Investigating/Deferred]
 
 ---
@@ -70,35 +80,36 @@ Mỗi lỗi PHẢI tuân thủ cấu trúc sau trong `ERRORS.md`:
 
 ---
 
-## 🔄 3. QUY TRÌNH TỰ ĐỘNG
+## 🔄 3. AUTOMATED PROCESS
 
-1. **Phát hiện lỗi**: Khi Agent gặp lỗi (test fail, build fail, runtime error).
-2. **Phân loại**: Xác định Type và Severity.
-3. **Ghi nhận**: Append vào file `ERRORS.md` theo format chuẩn.
-4. **Thông báo**: Báo cho người dùng biết đã ghi lỗi và đường dẫn file.
-5. **Giải quyết**: Sửa lỗi và cập nhật Status.
-
----
-
-## 📍 4. VỊ TRÍ LƯU FILE
-
-- **File chính**: `ERRORS.md` (tại thư mục gốc dự án)
-- **Backup**: `.agent/logs/errors-[YYYY-MM].md` (theo tháng)
+1. **Detection**: When an error occurs (test failure, build failure, runtime error).
+2. **Classification**: Determine Type and Severity.
+3. **Logging**: Append to `ERRORS.md` using the standard format.
+4. **Notification**: Inform the user that the error has been logged and provide the file path.
+5. **Resolution**: Fix the error and update Status.
 
 ---
 
-## ⚠️ 5. LƯU Ý QUAN TRỌNG
+## 📍 4. FILE STORAGE LOCATION
 
-1. **Không bao giờ xóa lỗi cũ**: Lỗi là tài sản học tập.
-2. **Luôn cập nhật Status**: Đánh dấu Fixed khi đã giải quyết.
-3. **Privacy**: Không log thông tin nhạy cảm (API Key, Password).
-4. **Review định kỳ**: Cuối tuần xem lại các lỗi để rút kinh nghiệm.
+- **Main file**: `ERRORS.md` (in the project root directory)
+- **Backup**: `.agents/logs/errors-[YYYY-MM].md` (organized by month)
 
 ---
 
-## 🎓 6. HỌC TỪ LỖI
+## ⚠️ 5. IMPORTANT NOTES
 
-Mỗi lỗi lặp lại 2 lần trở lên PHẢI được biến thành:
-- **Rule mới**: Để ngăn chặn tự động
-- **Test case**: Để phát hiện sớm
-- **Checklist item**: Trong pre-flight check
+1. **Never delete old errors**: Errors are valuable historical learning assets.
+2. **Always update Status**: Mark as Fixed once resolved.
+3. **Privacy**: Do not log sensitive information (API Keys, Passwords, Secrets).
+4. **Periodic review**: Review errors at the end of every week to refine guardrails.
+
+---
+
+## 🎓 6. LEARNING FROM ERRORS
+
+Any error that recurs two or more times MUST be converted into:
+
+- **A new rule**: To automatically prevent it
+- **A test case**: To detect it early
+- **A checklist item**: For the pre-flight check

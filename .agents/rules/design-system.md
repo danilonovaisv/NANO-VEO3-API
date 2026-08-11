@@ -1,16 +1,19 @@
 ---
 trigger: always_on
-description: Regras de design system, tipografia e cores no NANO-VEO3-API
-globs: ["app/**/*.tsx", "components/**/*.tsx", "app/globals.css"]
+description: Visual design system and "Ghost Era" aesthetic guidelines for NANO-VEO3-API
+globs: ["app/**/*", "components/**/*"]
 ---
 
-# Objetivo
+# Design System Guidelines
 
-Garantir a consistência visual da interface e mídias no NANO-VEO3-API.
+## Objective
+Maintain a high-performance, minimalist, editorial, and responsive UI aesthetic across the application.
 
-# Regras
-
-- **Cores**: Proporção 60-30-10 (60% canvas/fundo `#040013`, 30% estrutural, 10% acento `#0048ff` / `#4fe6ff`).
-- **Tipografia**: Fontes legíveis com escalonamento fluido (`clamp()`).
-- **Layouts**: Layouts em grids planos responsivos Tailwind CSS sem distorções de proporção.
-- **Integridade Visual**: Logos de marcas devem se manter intactos e sem deformações.
+## Rules
+- **Color Palette**:
+  - `bluePrimary`: `#0048ff`
+  - `blueAccent`: `#4fe6ff`
+  - `background`: `#040013`
+- **Typography**: 'TT Norms Pro'. Use `clamp()` for fluid responsive text scaling.
+- **Grid Layout**: Major pages and sections MUST be organized in responsive flat CSS Grids.
+- **Asset Integrity**: Zero placeholder images policy; use real assets or valid generated visuals.

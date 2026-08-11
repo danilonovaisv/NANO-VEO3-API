@@ -1,82 +1,87 @@
 ---
 trigger: always_on
+description: Documentation sync protocol for skills, workflows, rules, and agents
+globs: ["docs/**/*", "*.md"]
 ---
 
 # DOCS-UPDATE.MD - Documentation Sync Protocol
 
-> **Mục tiêu**: Đảm bảo tài liệu luôn đồng bộ với code thực tế. Tránh outdated docs.
+> **Objective**: Ensure documentation remains synchronized with the actual codebase. Prevent outdated documentation.
 
 ---
 
-## 📋 1. CHECKLIST CẬP NHẬT DOCS
+## 📋 1. DOCS UPDATE CHECKLIST
 
-Mỗi khi thêm tính năng mới, Agent PHẢI kiểm tra và cập nhật các file sau:
+Whenever a new feature is added, the Agent MUST check and update the following files:
 
-### A. Khi thêm SKILL mới
-- [ ] `SKILLS.md` - Thêm skill vào danh sách chuẩn
-- [ ] `docs/SKILLS_GUIDE.vi.md` - Thêm vào nhóm phù hợp
-- [ ] `README.vi.md` - Cập nhật số lượng Skills
-- [ ] `README.md` - Cập nhật số lượng Skills (English)
+### A. When adding a new SKILL
 
-### B. Khi thêm WORKFLOW mới
-- [ ] `docs/WORKFLOW_GUIDE.vi.md` - Thêm section hướng dẫn
-- [ ] `README.vi.md` - Cập nhật số lượng Workflows + thêm vào danh sách `/command`
-- [ ] `README.md` - Tương tự như README.vi.md
+- [ ] `SKILLS.md` - Add the skill to the standard list
+- [ ] `docs/SKILLS_GUIDE.md` - Add to the appropriate category
+- [ ] `README.md` - Update the Skill count
 
-### C. Khi thêm RULE mới
-- [ ] `docs/RULES_GUIDE.vi.md` - Thêm vào bảng phân loại thích hợp (Auto/On-Demand).
-- [ ] **Lưu ý**: Phải tuân thủ "Hybrid Language Protocol" (Tên Anh - Mô tả Việt).
-- [ ] `README.vi.md` - Nếu là tính năng nổi bật → Thêm vào phần features
+### B. When adding a new WORKFLOW
 
-### D. Khi thêm AGENT mới
-- [ ] `docs/AGENTS_GUIDE.vi.md` - Mô tả vai trò và trách nhiệm
-- [ ] `README.vi.md` - Cập nhật số lượng Agents nếu thay đổi
+- [ ] `docs/WORKFLOW_GUIDE.md` - Add a guide section
+- [ ] `README.md` - Update the Workflow count + add to the `/command` list
 
----
+### C. When adding a new RULE
 
-## 🔄 2. QUY TRÌNH TỰ ĐỘNG
+- [ ] `docs/RULES_GUIDE.md` - Add to the appropriate classification table (Auto/On-Demand).
+- [ ] `README.md` - Add key feature rules to the Features section if applicable.
 
-1. **Phát hiện thay đổi**: Sau khi tạo file mới trong `.agent/`
-2. **Chạy script**: `node .agent/scripts/update-docs.js`
-3. **Review output**: Script sẽ hiển thị số liệu hiện tại
-4. **Cập nhật thủ công**: Dựa vào checklist ở trên
-5. **Commit docs**: Tạo commit riêng cho docs
+### D. When adding a new AGENT
+
+- [ ] `docs/AGENTS_GUIDE.md` - Describe roles and responsibilities
+- [ ] `README.md` - Update the agent count if changed
 
 ---
 
-## 📊 3. FORMAT CHUẨN
+## 🔄 2. AUTOMATED PROCESS
 
-### Trong README (Bảng thống kê):
+1. **Detect changes**: After creating a new file in `.agents/`
+2. **Run script**: `node .agents/scripts/update-docs.js`
+3. **Review output**: The script will display current statistics
+4. **Manual update**: Follow the checklist above
+5. **Commit docs**: Create a separate commit for documentation updates
+
+---
+
+## 📊 3. STANDARD FORMAT
+
+### In README (Statistics table)
+
 ```markdown
-| **XX** Bộ Kỹ năng (Skills) | **XX** Agent Chuyên gia | **XX** Quy trình (Workflows) |
+| **XX** Skill Sets | **XX** Expert Agents | **XX** Workflows |
 ```
 
-### Trong SKILLS_GUIDE:
+### In SKILLS_GUIDE
+
 ```markdown
-### 🛡️ Nhóm Bảo Mật (Security)
-*   **`skill-name`**: Mô tả ngắn gọn về skill
+### 🛡️ Security Group
+*   **`skill-name`**: Brief description of the skill
 ```
 
-### Trong WORKFLOW_GUIDE:
+### In WORKFLOW_GUIDE
+
 ```markdown
-### `/workflow-name` - Tiêu đề ngắn gọn
-- **Khi nào dùng**: Mô tả use case
-- **Cách dùng**: `/workflow-name [params]`
+### `/workflow-name` - Concise title
+- **When to use**: Description of the use case
+- **Usage**: `/workflow-name [params]`
 ```
 
 ---
 
-## ⚠️ 4. LƯU Ý QUAN TRỌNG
+## ⚠️ 4. IMPORTANT NOTES
 
-1. **Luôn cập nhật cả 2 ngôn ngữ**: README.md (EN) và README.vi.md (VI)
-2. **Giữ số liệu nhất quán**: Đếm chính xác số lượng files
-3. **Viết mô tả súc tích**: 1 dòng cho mỗi skill/workflow
-4. **Commit riêng**: Tách docs update ra commit riêng để dễ review
+1. **Maintain data consistency**: Accurately count total files and references.
+2. **Write concise descriptions**: One clear line per skill or workflow.
+3. **Separate commits**: Isolate documentation updates into dedicated commits for review.
 
 ---
 
-## 🎯 5. MỤC TIÊU
+## 🎯 5. OBJECTIVES
 
-- Docs luôn phản ánh đúng 100% tính năng hiện có
-- Người dùng mới có thể hiểu hệ thống chỉ từ README
-- Không có "hidden features" không được document
+- Documentation must 100% accurately reflect existing features.
+- New users should understand the system solely from the main README.
+- No undocumented "hidden features".

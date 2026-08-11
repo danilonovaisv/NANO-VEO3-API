@@ -1,37 +1,46 @@
+---
+trigger: always_on
+description: Production-grade code quality, anti-patterns, and testing standards
+globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.json"]
+---
+
 # CODE-QUALITY.MD - Engineering Excellence
 
-> **Mục tiêu**: Đảm bảo mã nguồn luôn đạt chất lượng "Production-Grade" ngay từ dòng code đầu tiên.
+> **Goal**: Ensure source code meets "Production-Grade" standards from the very first line.
 
 ---
 
-## 🚫 1. Anti-Patterns (Cấm Tuyệt Đối)
+## 🚫 1. Anti-Patterns (Strictly Prohibited)
 
-1.  **Console Logs**: Không commit `console.log`, `print()` vào nhánh chính (trừ file debug tạm thời).
-2.  **Magic Numbers**: Không dùng số cứng trong logic. Hãy đưa ra CONSTANT.
-3.  **Any Type**: Hạn chế tối đa dùng `any` trong TypeScript. Hãy define type rõ ràng.
-4.  **Long Functions**: Hàm không nên quá 50 dòng. Tách nhỏ logic.
+1. **Console Logs**: Do not commit `console.log` or `print()` statements to the main branch (except in temporary debug files).
+2. **Magic Numbers**: Do not use hard-coded numbers in logic; define constants instead.
+3. **Any Type**: Minimize the use of `any` in TypeScript; define types explicitly.
+4. **Long Functions**: Functions should not exceed 50 lines; break down complex logic.
 
 ---
 
-## ✅ 2. Best Practices (Khuyên Dùng)
+## ✅ 2. Best Practices (Recommended)
 
-1.  **Naming Convention**:
-    *   Variable/Function: `camelCase` (e.g., `userProfile`)
-    *   Class/Component: `PascalCase` (e.g., `UserProfile`)
-    *   Constant: `SCREAMING_SNAKE_CASE` (e.g., `MAX_RETRIES`)
-    *   File: `kebab-case` (e.g., `user-profile.ts`)
+1. **Naming Conventions**:
 
-2.  **Comments**:
-    *   Giải thích "TẠI SAO", không giải thích "CÁI GÌ".
-    *   Dùng JSDoc/DocString cho các hàm public.
+* Variable/Function: `camelCase` (e.g., `userProfile`)
+* Class/Component: `PascalCase` (e.g., `UserProfile`)
+* Constant: `SCREAMING_SNAKE_CASE` (e.g., `MAX_RETRIES`)
+* File: `kebab-case` (e.g., `user-profile.ts`)
 
-3.  **Error Handling**:
-    *   Luôn dùng `try/catch` cho async/await.
-    *   Không nuốt lỗi (silent fail). Hãy log hoặc throw.
+2. **Comments**:
+
+* Explain the "WHY," not the "WHAT."
+* Use JSDoc/DocStrings for public functions.
+
+3. **Error Handling**:
+
+* Always use `try/catch` with `async/await`.
+* Do not swallow errors (silent failures); log or throw them.
 
 ---
 
 ## 🧪 3. Testing Requirements
 
-1.  **Unit Test**: Logic phức tạp phải có Unit Test đi kèm.
-2.  **Coverage**: Cố gắng đạt > 80% coverage cho các module core.
+1. **Unit Tests**: Complex logic must be accompanied by unit tests.
+2. **Coverage**: Aim for > 80% code coverage for core modules.

@@ -1,41 +1,25 @@
 ---
 trigger: always_on
-description: Security & Secret Protection Guardrails for NANO-VEO3-API
+description: Security and secret protection guardrails for Google GenAI and Veo 3 API in NANO-VEO3-API
 globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.json"]
 ---
 
 # SECURITY.MD - Security & Secret Protection Guardrails
 
-> **Objetivo**: Proteger credenciais da API Google GenAI/Veo 3, env vars e impor execução segura em ambiente sandbox.
+> **Objective**: Protect Google GenAI / Veo 3 API credentials, environment variables, and enforce secure execution standards.
 
 ---
 
-## 🚫 1. FORBIDDEN ACTIONS (Cấm / Proibições)
+## 🚫 1. FORBIDDEN ACTIONS
 
-1. **Hardcode de Credenciais & API Keys**:
-   - NUNCA insira `GEMINI_API_KEY`, senhas ou tokens diretamente no código ou scripts de teste.
-   - Sempre consuma via `process.env.GEMINI_API_KEY`.
-2. **Exposição em Logs e Console**:
-   - NUNCA imprima valores inteiros de API keys ou URLs de assinatura de mídia privada em `console.log` ou logs de exceção.
-3. **Commit de Arquivos Sensíveis**:
-   - Garanta que `.env`, `.env.local` e arquivos de chaves estejam listados no `.gitignore`.
-4. **Comandos Destrutivos Sem Validação**:
-   - Quaisquer comandos no terminal que executem limpeza de repositório (`rm -rf`) ou alterações destrutivas requerem verificação previa.
+1. **Hardcoding Credentials & API Keys**: Never embed `GEMINI_API_KEY` or any private token directly in client code, public API responses, or committed files.
+2. **Exposing Secrets in Logs**: Never log environment variables, request Authorization headers, or full signed URLs to stdout or external reporting channels.
+3. **Unsanitized Endpoints**: Never expose public API endpoints that trigger Veo 3 generation without Zod schema validation and rate limiting considerations.
 
 ---
 
-## 🛡️ 2. CODING & API STANDARDS
+## ✅ 2. REQUIRED BEST PRACTICES
 
-1. **Sanitização de Inputs**:
-   - Todo parâmetro enviado para a API do Veo 3 deve ser higienizado contra injeções de script ou caracteres de controle maliciosos.
-2. **Execução de Comandos**:
-   - Agentes e scripts automatizados devem executar comandos terminal dentro de contêineres sandbox ou com flags sem privilégios de root.
-
----
-
-## 🚨 3. INCIDENT PROTOCOL
-
-Se uma API key ou secret for detectado em arquivos commitados ou em logs:
-
-1. **DỪNG / PARAR**: Interromper a execução imediatamente.
-2. **REPORTAR**: Notificar a necessidade de revogação/rotação imediata da `GEMINI_API_KEY`.
+1. **Environment Variables**: Always retrieve API keys using server-side `process.env.GEMINI_API_KEY`.
+2. **Server-Side API Calls**: Execute `@google/genai` SDK operations exclusively inside Next.js server-side API routes (`app/api/**`).
+3. **Zod Input Sanitization**: Validate all incoming parameters (prompt, aspect ratio, duration) on every request.
