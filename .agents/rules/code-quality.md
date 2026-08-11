@@ -28,12 +28,12 @@ globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.json"]
 * Constant: `SCREAMING_SNAKE_CASE` (e.g., `MAX_RETRIES`)
 * File: `kebab-case` (e.g., `user-profile.ts`)
 
-2. **Comments**:
+1. **Comments**:
 
 * Explain the "WHY," not the "WHAT."
 * Use JSDoc/DocStrings for public functions.
 
-3. **Error Handling**:
+1. **Error Handling**:
 
 * Always use `try/catch` with `async/await`.
 * Do not swallow errors (silent failures); log or throw them.
