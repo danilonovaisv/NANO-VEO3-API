@@ -1,0 +1,55 @@
+{
+  "name": "@dainami/kie-mcp",
+  "version": "0.3.0",
+  "description": "KIE.ai connector for MCP. Five generic tools — kie_post, kie_get, kie_upload_file, kie_download, kie_fetch_model_docs — give an agent every current and future KIE model. Model specs are pulled live from docs.kie.ai with a 3-day cache; the MCP never bundles per-model docs that go stale.",
+  "type": "module",
+  "bin": {
+    "dainami-kie-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "resources",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "mrdainami",
+    "url": "https://github.com/mrdainami"
+  },
+  "homepage": "https://github.com/mrdainami/kie-mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrdainami/kie-mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/mrdainami/kie-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "kie",
+    "kie.ai",
+    "claude",
+    "ai",
+    "image-generation",
+    "video-generation"
+  ]
+}
