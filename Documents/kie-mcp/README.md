@@ -103,9 +103,7 @@ You only do this once. The folder you create here is **permanent** — Claude wi
     "mcpServers": {
       "kie": {
         "command": "node",
-        "args": [
-          "/Users/YOUR_USERNAME/Documents/kie-mcp/dist/index.js"
-        ],
+        "args": ["/Users/YOUR_USERNAME/Documents/kie-mcp/dist/index.js"],
         "env": {
           "KIE_API_KEY": "paste-your-kie-key-here"
         }
@@ -122,9 +120,10 @@ On Windows, the config file lives at `%APPDATA%\Claude\claude_desktop_config.jso
 
 ### 5. Try it
 
-In co-work, ask: *"Make me a 9:16 video of a coffee cup using Seedance."* Claude will submit the job with `kie_post`, poll with `kie_get`, and return the video URL when it's done.
+In co-work, ask: _"Make me a 9:16 video of a coffee cup using Seedance."_ Claude will submit the job with `kie_post`, poll with `kie_get`, and return the video URL when it's done.
 
 **If something goes wrong:**
+
 - "command not found: npm" → Node.js isn't installed. Redo step 2.
 - "module not found" / "ENOENT dist/index.js" → you skipped `npm run build` in step 3. Run it again.
 - The MCP shows up but every call fails with an auth error → your `KIE_API_KEY` is wrong or missing. Re-check step 4.
@@ -142,14 +141,18 @@ Generation on KIE is **asynchronous** — submit a job, then poll for the result
      path: "/api/v1/jobs/createTask",
      body: {
        model: "gpt-image-2",
-       input: { prompt: "A serene cabin in the mountains, golden hour", aspect_ratio: "9:16", quality: "high" }
-     }
-   })
+       input: {
+         prompt: "A serene cabin in the mountains, golden hour",
+         aspect_ratio: "9:16",
+         quality: "high",
+       },
+     },
+   });
    // → body.data.taskId — save this immediately
    ```
 3. Agent **polls** with `kie_get` every ~20–30s until done:
    ```ts
-   kie_get({ path: "/api/v1/jobs/recordInfo?taskId=..." })
+   kie_get({ path: "/api/v1/jobs/recordInfo?taskId=..." });
    // data.state: waiting | generating | success | fail
    // on success → data.resultJson.resultUrls[]
    ```
@@ -161,13 +164,13 @@ Generation on KIE is **asynchronous** — submit a job, then poll for the result
 
 ## The 5 tools
 
-| Tool | What it does |
-|---|---|
-| `kie_post(path, body)` | POST to any KIE endpoint — **submit** a generation task (usually `/api/v1/jobs/createTask`). |
-| `kie_get(path)` | GET from any KIE endpoint — **poll** task status (usually `/api/v1/jobs/recordInfo?taskId=...`). |
-| `kie_upload_file(localPath, uploadPath?)` | Upload a local file to KIE storage → returns a hosted URL (~3-day TTL) for use as an `@Image`/`@Video` reference. |
-| `kie_download(url, destPath)` | Download a result URL to local disk (creates parent folders). |
-| `kie_fetch_model_docs(path \| url, force?)` | Fetch a model's live docs from docs.kie.ai (cached ~3 days) so the agent knows the exact payload shape. |
+| Tool                                        | What it does                                                                                                      |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `kie_post(path, body)`                      | POST to any KIE endpoint — **submit** a generation task (usually `/api/v1/jobs/createTask`).                      |
+| `kie_get(path)`                             | GET from any KIE endpoint — **poll** task status (usually `/api/v1/jobs/recordInfo?taskId=...`).                  |
+| `kie_upload_file(localPath, uploadPath?)`   | Upload a local file to KIE storage → returns a hosted URL (~3-day TTL) for use as an `@Image`/`@Video` reference. |
+| `kie_download(url, destPath)`               | Download a result URL to local disk (creates parent folders).                                                     |
+| `kie_fetch_model_docs(path \| url, force?)` | Fetch a model's live docs from docs.kie.ai (cached ~3 days) so the agent knows the exact payload shape.           |
 
 Different model families use slightly different envelopes (Veo, Suno, Flux-Kontext) — the agent reads the model docs and adjusts. The MCP stays generic, so new KIE models work without updating this package.
 
@@ -175,9 +178,9 @@ Different model families use slightly different envelopes (Veo, Suno, Flux-Konte
 
 ## Environment variables
 
-| Variable | Default | Required |
-|---|---|---|
-| `KIE_API_KEY` | — | **Yes** |
+| Variable       | Default              | Required                          |
+| -------------- | -------------------- | --------------------------------- |
+| `KIE_API_KEY`  | —                    | **Yes**                           |
 | `KIE_BASE_URL` | `https://api.kie.ai` | No (override for testing / proxy) |
 
 ---

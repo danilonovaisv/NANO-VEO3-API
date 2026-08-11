@@ -1,8 +1,37 @@
 {
   "concept": "Nutricao que conecta o futuro",
-  "visual_language": ["clara", "acolhedora", "contemporanea", "fluida", "tecnologica sem frieza"],
-  "architecture_alignment": ["curvas", "materiais naturais", "estruturas suspensas", "luz quente e controlada"],
-  "cgi_rules": ["produto fisicamente fiel", "materiais plausiveis", "movimento elegante", "hierarquia clara", "continuidade entre cenas"],
-  "post_production": ["aplicar textos finais em pos quando necessario", "usar logos oficiais", "respeitar safe areas da tela"],
-  "prohibited": ["deformacao de embalagem", "rotulo inventado", "texto ilegivel", "claims nao comprovados", "movimento artificial", "excesso de particulas", "morphing do produto"]
+  "visual_language": [
+    "clara",
+    "acolhedora",
+    "contemporanea",
+    "fluida",
+    "tecnologica sem frieza"
+  ],
+  "architecture_alignment": [
+    "curvas",
+    "materiais naturais",
+    "estruturas suspensas",
+    "luz quente e controlada"
+  ],
+  "cgi_rules": [
+    "produto fisicamente fiel",
+    "materiais plausiveis",
+    "movimento elegante",
+    "hierarquia clara",
+    "continuidade entre cenas"
+  ],
+  "post_production": [
+    "aplicar textos finais em pos quando necessario",
+    "usar logos oficiais",
+    "respeitar safe areas da tela"
+  ],
+  "prohibited": [
+    "deformacao de embalagem",
+    "rotulo inventado",
+    "texto ilegivel",
+    "claims nao comprovados",
+    "movimento artificial",
+    "excesso de particulas",
+    "morphing do produto"
+  ]
 }

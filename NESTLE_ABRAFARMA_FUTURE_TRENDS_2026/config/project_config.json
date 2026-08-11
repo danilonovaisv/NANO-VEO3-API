@@ -47,10 +47,7 @@
   },
   "clip_strategy": {
     "max_clip_seconds": 8,
-    "split_15s_into": [
-      "8s",
-      "7s"
-    ],
+    "split_15s_into": ["8s", "7s"],
     "each_clip_self_contained": true,
     "veo3_1_max_clip_seconds": 8,
     "model_per_clip": "veo3-1-first-last-frame-to-video"
@@ -73,11 +70,7 @@
     "preserve_official_logos": true,
     "no_overwrite_source_files": true
   },
-  "known_brands": [
-    "NAN COMFOR",
-    "Nestlé",
-    "ABRAFARMA"
-  ],
+  "known_brands": ["NAN COMFOR", "Nestlé", "ABRAFARMA"],
   "known_assets_confirmed": [
     "FRAME-1-Família_Comfor_FT26-LED01_CURVO-001_1792x1536px.png",
     "FRAME-2-Família_Comfor_FT26-LED01_CURVO-001_1792x1536px.png"

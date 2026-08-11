@@ -76,9 +76,7 @@
     },
     {
       "pattern_name": "premium_light_sweep",
-      "best_for_products": [
-        "all premium product categories"
-      ],
+      "best_for_products": ["all premium product categories"],
       "visual_description": "A horizontal or diagonal light beam sweeps across the packshot from left to right, creating a premium metallic highlight pass.",
       "camera_language": "Locked camera. Light in motion, not camera.",
       "lighting_language": "Sharp narrow beam. High specular on metallic surfaces. Does not overexpose product label.",

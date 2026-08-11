@@ -24,12 +24,18 @@ export async function POST(req: Request) {
     const model = (form.get("model") as string) || "veo-3.0-generate-001";
     const negativePrompt = (form.get("negativePrompt") as string) || undefined;
     const aspectRatio = (form.get("aspectRatio") as string) || undefined;
-    const durationSecondsStr = (form.get("durationSeconds") as string) || undefined;
-    const durationSeconds = durationSecondsStr ? parseInt(durationSecondsStr, 10) : undefined;
+    const durationSecondsStr =
+      (form.get("durationSeconds") as string) || undefined;
+    const durationSeconds = durationSecondsStr
+      ? parseInt(durationSecondsStr, 10)
+      : undefined;
     const generateAudioStr = (form.get("generateAudio") as string) || undefined;
-    const generateAudio = generateAudioStr ? generateAudioStr === "true" : undefined;
+    const generateAudio = generateAudioStr
+      ? generateAudioStr === "true"
+      : undefined;
     const resolution = (form.get("resolution") as string) || undefined;
-    const personGeneration = (form.get("personGeneration") as string) || undefined;
+    const personGeneration =
+      (form.get("personGeneration") as string) || undefined;
 
     const imageFile = form.get("imageFile");
     const imageBase64 = (form.get("imageBase64") as string) || undefined;
@@ -55,8 +61,10 @@ export async function POST(req: Request) {
     const config: Record<string, unknown> = {};
     if (aspectRatio) config.aspectRatio = aspectRatio;
     if (negativePrompt) config.negativePrompt = negativePrompt;
-    if (typeof durationSeconds === "number") config.durationSeconds = durationSeconds;
-    if (typeof generateAudio === "boolean") config.generateAudio = generateAudio;
+    if (typeof durationSeconds === "number")
+      config.durationSeconds = durationSeconds;
+    if (typeof generateAudio === "boolean")
+      config.generateAudio = generateAudio;
     if (resolution) config.resolution = resolution;
     if (personGeneration) config.personGeneration = personGeneration;
 

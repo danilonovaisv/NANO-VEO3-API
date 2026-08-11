@@ -50,16 +50,30 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const RESOURCES_DIR = path.resolve(__dirname, "..", "resources");
 
 const KIE_API_KEY = process.env.KIE_API_KEY;
-const KIE_BASE_URL = (process.env.KIE_BASE_URL ?? "https://api.kie.ai").replace(/\/+$/, "");
-const KIE_UPLOAD_URL = (process.env.KIE_UPLOAD_URL ?? "https://kieai.redpandaai.co/api/file-stream-upload");
-const KIE_DOCS_BASE = (process.env.KIE_DOCS_BASE ?? "https://docs.kie.ai").replace(/\/+$/, "");
+const KIE_BASE_URL = (process.env.KIE_BASE_URL ?? "https://api.kie.ai").replace(
+  /\/+$/,
+  ""
+);
+const KIE_UPLOAD_URL =
+  process.env.KIE_UPLOAD_URL ??
+  "https://kieai.redpandaai.co/api/file-stream-upload";
+const KIE_DOCS_BASE = (
+  process.env.KIE_DOCS_BASE ?? "https://docs.kie.ai"
+).replace(/\/+$/, "");
 
 // Per-user docs cache. Reused across sessions so we don't refetch each chat.
-const DOCS_CACHE_DIR = path.join(os.homedir(), ".cache", "dainami-kie-mcp", "docs");
+const DOCS_CACHE_DIR = path.join(
+  os.homedir(),
+  ".cache",
+  "dainami-kie-mcp",
+  "docs"
+);
 const DOCS_CACHE_TTL_MS = 3 * 24 * 60 * 60 * 1000; // 3 days
 
 if (!KIE_API_KEY) {
-  console.error("[dainami-kie-mcp] KIE_API_KEY environment variable is required");
+  console.error(
+    "[dainami-kie-mcp] KIE_API_KEY environment variable is required"
+  );
   process.exit(1);
 }
 
@@ -88,7 +102,7 @@ function httpRequest(
   headers: HttpHeaders,
   body?: string | Buffer,
   redirectCount = 0,
-  asBuffer = false,
+  asBuffer = false
 ): Promise<HttpResponse> {
   return new Promise((resolve, reject) => {
     let u: URL;
@@ -103,7 +117,7 @@ function httpRequest(
     const reqHeaders: HttpHeaders = { ...headers };
     if (body !== undefined && reqHeaders["Content-Length"] === undefined) {
       reqHeaders["Content-Length"] = String(
-        Buffer.isBuffer(body) ? body.length : Buffer.byteLength(body),
+        Buffer.isBuffer(body) ? body.length : Buffer.byteLength(body)
       );
     }
 
@@ -125,12 +139,18 @@ function httpRequest(
           redirectCount < 5
         ) {
           res.resume();
-          const newMethod =
-            status === 307 || status === 308 ? method : "GET";
+          const newMethod = status === 307 || status === 308 ? method : "GET";
           const newBody = newMethod === method ? body : undefined;
           const nextUrl = new URL(location, urlStr).toString();
           resolve(
-            httpRequest(newMethod, nextUrl, headers, newBody, redirectCount + 1, asBuffer),
+            httpRequest(
+              newMethod,
+              nextUrl,
+              headers,
+              newBody,
+              redirectCount + 1,
+              asBuffer
+            )
           );
           return;
         }
@@ -146,7 +166,7 @@ function httpRequest(
           });
         });
         res.on("error", reject);
-      },
+      }
     );
 
     req.on("error", reject);
@@ -158,7 +178,7 @@ function httpRequest(
 async function kieFetch(
   method: "GET" | "POST",
   endpoint: string,
-  body?: unknown,
+  body?: unknown
 ): Promise<FetchResult> {
   const url = endpoint.startsWith("http")
     ? endpoint
@@ -172,17 +192,22 @@ async function kieFetch(
       // Disable gzip — some KIE responses gzip silently and confuse downstream parsers
       "Accept-Encoding": "identity",
     },
-    body !== undefined ? JSON.stringify(body) : undefined,
+    body !== undefined ? JSON.stringify(body) : undefined
   );
 
-  const text = typeof res.body === "string" ? res.body : res.body.toString("utf8");
+  const text =
+    typeof res.body === "string" ? res.body : res.body.toString("utf8");
   let parsed: unknown = text;
   try {
     parsed = text.length > 0 ? JSON.parse(text) : null;
   } catch {
     // leave as text
   }
-  return { status: res.status, ok: res.status >= 200 && res.status < 300, body: parsed };
+  return {
+    status: res.status,
+    ok: res.status >= 200 && res.status < 300,
+    body: parsed,
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -214,22 +239,22 @@ function buildMultipartBody(
   fileName: string,
   fileBuffer: Buffer,
   contentType: string,
-  boundary: string,
+  boundary: string
 ): Buffer {
   const parts: Buffer[] = [];
   for (const [k, v] of Object.entries(fields)) {
     parts.push(
       Buffer.from(
         `--${boundary}\r\nContent-Disposition: form-data; name="${k}"\r\n\r\n${v}\r\n`,
-        "utf8",
-      ),
+        "utf8"
+      )
     );
   }
   parts.push(
     Buffer.from(
       `--${boundary}\r\nContent-Disposition: form-data; name="${fileField}"; filename="${fileName}"\r\nContent-Type: ${contentType}\r\n\r\n`,
-      "utf8",
-    ),
+      "utf8"
+    )
   );
   parts.push(fileBuffer);
   parts.push(Buffer.from(`\r\n--${boundary}--\r\n`, "utf8"));
@@ -255,7 +280,7 @@ async function kieUploadFile(args: UploadFileArgs) {
     fileBuffer = await fsp.readFile(absPath);
   } catch (e) {
     throw new Error(
-      `Could not read file at ${absPath}: ${e instanceof Error ? e.message : String(e)}`,
+      `Could not read file at ${absPath}: ${e instanceof Error ? e.message : String(e)}`
     );
   }
 
@@ -269,7 +294,7 @@ async function kieUploadFile(args: UploadFileArgs) {
     fileName,
     fileBuffer,
     contentType,
-    boundary,
+    boundary
   );
 
   const res = await httpRequest(
@@ -280,10 +305,11 @@ async function kieUploadFile(args: UploadFileArgs) {
       "Content-Type": `multipart/form-data; boundary=${boundary}`,
       "Accept-Encoding": "identity",
     },
-    body,
+    body
   );
 
-  const text = typeof res.body === "string" ? res.body : res.body.toString("utf8");
+  const text =
+    typeof res.body === "string" ? res.body : res.body.toString("utf8");
   let parsed: any = text;
   try {
     parsed = text.length > 0 ? JSON.parse(text) : null;
@@ -291,7 +317,8 @@ async function kieUploadFile(args: UploadFileArgs) {
     // leave as text
   }
   const url: string | null =
-    (parsed && parsed.data && (parsed.data.downloadUrl || parsed.data.url)) || null;
+    (parsed && parsed.data && (parsed.data.downloadUrl || parsed.data.url)) ||
+    null;
   return {
     ok: res.status >= 200 && res.status < 300 && Boolean(url),
     status: res.status,
@@ -330,7 +357,7 @@ async function kieDownload(args: DownloadArgs) {
     { "Accept-Encoding": "identity" },
     undefined,
     0,
-    true,
+    true
   );
   const ok = res.status >= 200 && res.status < 300;
   if (ok && Buffer.isBuffer(res.body)) {
@@ -371,7 +398,10 @@ function docsCachePathFor(url: string): string {
   return path.join(DOCS_CACHE_DIR, u.hostname, safe + ".md");
 }
 
-async function readCacheIfFresh(cachePath: string, ttlMs: number): Promise<string | null> {
+async function readCacheIfFresh(
+  cachePath: string,
+  ttlMs: number
+): Promise<string | null> {
   try {
     const stat = await fsp.stat(cachePath);
     if (Date.now() - stat.mtimeMs > ttlMs) return null;
@@ -389,13 +419,18 @@ async function writeCache(cachePath: string, content: string): Promise<void> {
 function resolveDocsUrl(args: FetchDocsArgs): string {
   let raw: string;
   if (args.url) {
-    raw = /^https?:\/\//i.test(args.url) ? args.url : `https://${args.url.replace(/^\/+/, "")}`;
+    raw = /^https?:\/\//i.test(args.url)
+      ? args.url
+      : `https://${args.url.replace(/^\/+/, "")}`;
   } else if (args.path) {
     const p = args.path.replace(/^\/+/, "");
-    const fullPath = p.startsWith("market/") || p.includes("-api/") ? `/${p}` : `/market/${p}`;
+    const fullPath =
+      p.startsWith("market/") || p.includes("-api/") ? `/${p}` : `/market/${p}`;
     raw = `${KIE_DOCS_BASE}${fullPath}`;
   } else {
-    throw new Error("kie_fetch_model_docs requires either { path } (e.g. 'google/nanobanana2') or { url }");
+    throw new Error(
+      "kie_fetch_model_docs requires either { path } (e.g. 'google/nanobanana2') or { url }"
+    );
   }
 
   // docs.kie.ai serves a compact markdown source when the URL ends in `.md`.
@@ -403,7 +438,11 @@ function resolveDocsUrl(args: FetchDocsArgs): string {
   // when the host is docs.kie.ai and the URL doesn't already specify a format.
   try {
     const u = new URL(raw);
-    if (u.hostname === "docs.kie.ai" && !u.pathname.endsWith(".md") && !u.search) {
+    if (
+      u.hostname === "docs.kie.ai" &&
+      !u.pathname.endsWith(".md") &&
+      !u.search
+    ) {
       u.pathname = u.pathname + ".md";
       return u.toString();
     }
@@ -432,7 +471,8 @@ async function kieFetchModelDocs(args: FetchDocsArgs) {
   }
 
   const res = await httpRequest("GET", url, { "Accept-Encoding": "identity" });
-  const text = typeof res.body === "string" ? res.body : res.body.toString("utf8");
+  const text =
+    typeof res.body === "string" ? res.body : res.body.toString("utf8");
   const ok = res.status >= 200 && res.status < 300;
 
   if (ok && text.length > 0) {
@@ -553,7 +593,7 @@ const server = new Server(
   {
     capabilities: { tools: {}, resources: {} },
     instructions: SERVER_INSTRUCTIONS,
-  },
+  }
 );
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
@@ -567,7 +607,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           path: {
             type: "string",
-            description: "Endpoint path (e.g. '/api/v1/jobs/createTask') or full URL.",
+            description:
+              "Endpoint path (e.g. '/api/v1/jobs/createTask') or full URL.",
           },
           body: {
             type: "object",
@@ -607,7 +648,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           },
           uploadPath: {
             type: "string",
-            description: "Optional namespace/folder on KIE's storage (e.g. 'aceofplates/refs').",
+            description:
+              "Optional namespace/folder on KIE's storage (e.g. 'aceofplates/refs').",
           },
         },
         required: ["localPath"],
@@ -673,27 +715,37 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
   try {
     if (name === "kie_post") {
       const result = await kieFetch("POST", args.path as string, args.body);
-      return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+      return {
+        content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+      };
     }
 
     if (name === "kie_get") {
       const result = await kieFetch("GET", args.path as string);
-      return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+      return {
+        content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+      };
     }
 
     if (name === "kie_upload_file") {
       const result = await kieUploadFile(args as unknown as UploadFileArgs);
-      return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+      return {
+        content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+      };
     }
 
     if (name === "kie_download") {
       const result = await kieDownload(args as unknown as DownloadArgs);
-      return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+      return {
+        content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+      };
     }
 
     if (name === "kie_fetch_model_docs") {
       const result = await kieFetchModelDocs(args as unknown as FetchDocsArgs);
-      return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+      return {
+        content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+      };
     }
 
     return {
@@ -716,5 +768,5 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
 const transport = new StdioServerTransport();
 await server.connect(transport);
 console.error(
-  `[dainami-kie-mcp] running on stdio (v0.3.0 — live-docs discovery via kie_fetch_model_docs)`,
+  `[dainami-kie-mcp] running on stdio (v0.3.0 — live-docs discovery via kie_fetch_model_docs)`
 );

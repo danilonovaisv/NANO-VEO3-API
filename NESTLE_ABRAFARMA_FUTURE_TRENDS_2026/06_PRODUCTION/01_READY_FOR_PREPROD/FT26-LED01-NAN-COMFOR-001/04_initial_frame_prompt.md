@@ -16,11 +16,13 @@ Style: Ultra-premium advertising CGI. High micro-contrast. Photorealistic. 16:9.
 No people. No hands. No text overlays. No watermarks.
 
 ## Technical Specs
+
 - Aspect ratio: 16:9 (for Veo 3.1 generation)
 - Resolution: 1080p (will be upscaled to 1792x1536 in post)
 - Source reference: public/input/FRAME-1-Família_Comfor_FT26-LED01_CURVO-001_1792x1536px.png
 
 ## Continuity Notes
+
 - This frame must transition smoothly into FRAME-2 via the Veo 3.1 first+last frame interpolation.
 - Camera angle, product positioning, lighting color temperature, and background gradient must remain consistent.
 - The three cans must maintain exact proportions and label legibility from this frame through to FRAME-2.

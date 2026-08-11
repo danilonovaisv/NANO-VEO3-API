@@ -1,16 +1,26 @@
 {
   "products": [
-    {"name": "Comfor", "status": "referenced"},
-    {"name": "Supreme", "status": "referenced"},
-    {"name": "Formulas Especiais", "status": "referenced"},
-    {"name": "Ninho Fases 1+", "status": "referenced"},
-    {"name": "Materna", "status": "referenced", "restrictions": ["nao incluir em LED03_GLP1 sem nova aprovacao"]},
-    {"name": "Nestle Vital", "status": "referenced"},
-    {"name": "Nutren Protein RTD", "status": "referenced"},
-    {"name": "Puravida Whey Concentrado", "status": "referenced"},
-    {"name": "Nestogeno", "status": "referenced"},
-    {"name": "Nutren Control", "status": "asset_link_requires_validation"},
-    {"name": "FiberMais", "status": "preparation_guide_missing"}
+    { "name": "Comfor", "status": "referenced" },
+    { "name": "Supreme", "status": "referenced" },
+    { "name": "Formulas Especiais", "status": "referenced" },
+    { "name": "Ninho Fases 1+", "status": "referenced" },
+    {
+      "name": "Materna",
+      "status": "referenced",
+      "restrictions": ["nao incluir em LED03_GLP1 sem nova aprovacao"]
+    },
+    { "name": "Nestle Vital", "status": "referenced" },
+    { "name": "Nutren Protein RTD", "status": "referenced" },
+    { "name": "Puravida Whey Concentrado", "status": "referenced" },
+    { "name": "Nestogeno", "status": "referenced" },
+    { "name": "Nutren Control", "status": "asset_link_requires_validation" },
+    { "name": "FiberMais", "status": "preparation_guide_missing" }
   ],
-  "rigid_asset_rules": ["preservar geometria da embalagem", "preservar rotulo e logo", "preservar proporcoes e cores", "nao criar variantes ou sabores", "validar todo packshot contra o asset oficial"]
+  "rigid_asset_rules": [
+    "preservar geometria da embalagem",
+    "preservar rotulo e logo",
+    "preservar proporcoes e cores",
+    "nao criar variantes ou sabores",
+    "validar todo packshot contra o asset oficial"
+  ]
 }

@@ -6,10 +6,7 @@
   "pixel_dimensions": null,
   "communication_objective": "Demonstrar possibilidades de receitas e consumo com produtos proteinados.",
   "main_message": "Nutricao pode fazer parte de experiencias praticas e atraentes.",
-  "products": [
-    "Nutren Protein RTD",
-    "Puravida Whey Concentrado"
-  ],
+  "products": ["Nutren Protein RTD", "Puravida Whey Concentrado"],
   "approved_claims": [],
   "mandatory_elements": [
     "fidelidade aos assets oficiais",

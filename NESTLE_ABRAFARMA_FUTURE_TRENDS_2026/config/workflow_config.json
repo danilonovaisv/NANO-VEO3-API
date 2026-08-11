@@ -16,10 +16,7 @@
         "Create agent map (config/agent_config.json)",
         "Create blocker report (reports/MISSING_INPUTS_AND_BLOCKERS.md)"
       ],
-      "outputs": [
-        "reports/",
-        "config/"
-      ],
+      "outputs": ["reports/", "config/"],
       "gate": "Gate 1"
     },
     "B_product_readiness": {
@@ -58,9 +55,7 @@
         "Save draft to 04_prompts/script_prompts/[ASSET_ID]_script_DRAFT.json",
         "STOP — wait for user approval before proceeding"
       ],
-      "outputs": [
-        "04_prompts/script_prompts/[ASSET_ID]_script.json"
-      ],
+      "outputs": ["04_prompts/script_prompts/[ASSET_ID]_script.json"],
       "gate": "Gate 3"
     },
     "D_keyframe_creation": {
@@ -103,10 +98,7 @@
         "Also save to public/output/ for script consumption",
         "STOP — wait for user approval of JSON"
       ],
-      "outputs": [
-        "04_prompts/video_json_prompts/",
-        "public/output/"
-      ],
+      "outputs": ["04_prompts/video_json_prompts/", "public/output/"],
       "gate": "Gate 6"
     },
     "F_video_generation": {
@@ -125,9 +117,7 @@
         "Log generation metadata to 06_PRODUCTION/[ASSET_ID]/07_generation_log.md",
         "Do NOT overwrite previous generations — use timestamp suffix"
       ],
-      "outputs": [
-        "06_PRODUCTION/06_GENERATIONS_RAW/"
-      ],
+      "outputs": ["06_PRODUCTION/06_GENERATIONS_RAW/"],
       "gate": "Gate 7"
     },
     "G_qa_and_delivery": {
@@ -149,10 +139,7 @@
         "Update Master Tracker (Tracker Sync Agent — preserve formula columns)",
         "Package delivery"
       ],
-      "outputs": [
-        "06_PRODUCTION/09_QA/",
-        "06_PRODUCTION/10_FINAL_EXPORTS/"
-      ],
+      "outputs": ["06_PRODUCTION/09_QA/", "06_PRODUCTION/10_FINAL_EXPORTS/"],
       "gate": "Gate 10"
     }
   }

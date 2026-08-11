@@ -14,7 +14,10 @@ if (fs.existsSync(path.join(process.cwd(), ".env"))) {
   for (const line of envContent.split("\n")) {
     const [k, ...v] = line.split("=");
     if (k && v.length > 0 && !process.env[k.trim()]) {
-      process.env[k.trim()] = v.join("=").trim().replace(/^["']|["']$/g, "");
+      process.env[k.trim()] = v
+        .join("=")
+        .trim()
+        .replace(/^["']|["']$/g, "");
     }
   }
 }
@@ -71,7 +74,7 @@ async function uploadFrameToEachlabs(
     throw new Error();
   }
 
-  const result = await response.json() as { url: string };
+  const result = (await response.json()) as { url: string };
   console.log();
   return result.url;
 }
@@ -79,7 +82,12 @@ async function uploadFrameToEachlabs(
 async function generateScene(sceneId: string, apiKey: string): Promise<void> {
   const jsonFile = fs
     .readdirSync(MASTER_DIR)
-    .find((f) => f.startsWith(sceneId + "_") && f.endsWith(".json") && !f.includes("BATCH"));
+    .find(
+      (f) =>
+        f.startsWith(sceneId + "_") &&
+        f.endsWith(".json") &&
+        !f.includes("BATCH")
+    );
 
   if (!jsonFile) {
     console.error();
@@ -95,44 +103,60 @@ async function generateScene(sceneId: string, apiKey: string): Promise<void> {
   console.log();
 
   // Upload frames
-  const firstFrameUrl = await uploadFrameToEachlabs(payload.input_frames.first_frame_path, apiKey);
-  const lastFrameUrl = await uploadFrameToEachlabs(payload.input_frames.last_frame_path, apiKey);
+  const firstFrameUrl = await uploadFrameToEachlabs(
+    payload.input_frames.first_frame_path,
+    apiKey
+  );
+  const lastFrameUrl = await uploadFrameToEachlabs(
+    payload.input_frames.last_frame_path,
+    apiKey
+  );
 
   // Dispatch generation
   console.log();
-  const dispatchResponse = await fetch("https://api.eachlabs.ai/v1/prediction", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-API-Key": apiKey,
-    },
-    body: JSON.stringify({
-      model: "veo3-1-first-last-frame-to-video",
-      version: "0.0.1",
-      input: {
-        first_frame_url: firstFrameUrl,
-        last_frame_url: lastFrameUrl,
-        prompt: payload.video_generation_prompt,
-        duration: 8,
-        resolution: "1080p",
-        generate_audio: false,
-        aspect_ratio: "16:9",
+  const dispatchResponse = await fetch(
+    "https://api.eachlabs.ai/v1/prediction",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": apiKey,
       },
-    }),
-  });
+      body: JSON.stringify({
+        model: "veo3-1-first-last-frame-to-video",
+        version: "0.0.1",
+        input: {
+          first_frame_url: firstFrameUrl,
+          last_frame_url: lastFrameUrl,
+          prompt: payload.video_generation_prompt,
+          duration: 8,
+          resolution: "1080p",
+          generate_audio: false,
+          aspect_ratio: "16:9",
+        },
+      }),
+    }
+  );
 
   if (!dispatchResponse.ok) {
     const err = await dispatchResponse.text();
     throw new Error();
   }
 
-  const prediction = await dispatchResponse.json() as { id: string; status: string };
+  const prediction = (await dispatchResponse.json()) as {
+    id: string;
+    status: string;
+  };
   console.log();
   console.log();
 
   // Polling
   console.log();
-  let finalResult: { id: string; status: string; output?: { video?: string; url?: string } } | null = null;
+  let finalResult: {
+    id: string;
+    status: string;
+    output?: { video?: string; url?: string };
+  } | null = null;
   let attempts = 0;
   const MAX_ATTEMPTS = 80; // ~20 minutos
 
@@ -150,10 +174,19 @@ async function generateScene(sceneId: string, apiKey: string): Promise<void> {
       continue;
     }
 
-    const pollResult = await pollResponse.json() as { id: string; status: string; output?: { video?: string; url?: string } };
-    process.stdout.write(`  [${new Date().toISOString()}] Status: ${pollResult.status}`);
+    const pollResult = (await pollResponse.json()) as {
+      id: string;
+      status: string;
+      output?: { video?: string; url?: string };
+    };
+    process.stdout
+      .write(`  [${new Date().toISOString()}] Status: ${pollResult.status}
+`);
 
-    if (pollResult.status === "succeeded" || pollResult.status === "completed") {
+    if (
+      pollResult.status === "succeeded" ||
+      pollResult.status === "completed"
+    ) {
       console.log(`
   Geracao concluida!`);
       finalResult = pollResult;
@@ -196,7 +229,10 @@ async function generateScene(sceneId: string, apiKey: string): Promise<void> {
   console.log(`  Tamanho: ${(videoBuffer.length / 1024 / 1024).toFixed(2)} MB`);
 
   // Save generation metadata
-  const metaPath = path.join(RAW_OUTPUT_DIR, `${sceneId}_FT26-NAN-COMFOR_${timestamp}_meta.json`);
+  const metaPath = path.join(
+    RAW_OUTPUT_DIR,
+    `${sceneId}_FT26-NAN-COMFOR_${timestamp}_meta.json`
+  );
   const meta = {
     scene_id: sceneId,
     scene_title: payload.scene_title,
@@ -214,8 +250,8 @@ async function generateScene(sceneId: string, apiKey: string): Promise<void> {
       "Upscale to 1792x1536 via Topaz Video Upscaler",
       "Retime to 60fps",
       "Export H.264 MP4 no audio to 10_FINAL_EXPORTS/",
-      "Await Gate 10 legal claim approval before delivery"
-    ]
+      "Await Gate 10 legal claim approval before delivery",
+    ],
   };
   fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2));
   console.log(`  Metadata salva: ${metaPath}`);
@@ -242,7 +278,9 @@ async function main() {
 
   console.log("");
   console.log("Pipeline concluido.");
-  console.log(`Outputs em: NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/06_PRODUCTION/06_GENERATIONS_RAW/`);
+  console.log(
+    `Outputs em: NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/06_PRODUCTION/06_GENERATIONS_RAW/`
+  );
 }
 
 main().catch(console.error);

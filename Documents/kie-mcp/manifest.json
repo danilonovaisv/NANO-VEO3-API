@@ -13,7 +13,14 @@
   "documentation": "https://github.com/mrdainami/kie-mcp#readme",
   "support": "https://github.com/mrdainami/kie-mcp/issues",
   "license": "MIT",
-  "keywords": ["kie", "kie.ai", "image-generation", "video-generation", "music-generation", "ai"],
+  "keywords": [
+    "kie",
+    "kie.ai",
+    "image-generation",
+    "video-generation",
+    "music-generation",
+    "ai"
+  ],
   "server": {
     "type": "node",
     "entry_point": "dist/index.js",
@@ -35,11 +42,26 @@
     }
   },
   "tools": [
-    { "name": "kie_post", "description": "POST to any KIE endpoint (usually createTask)." },
-    { "name": "kie_get", "description": "GET from any KIE endpoint (usually recordInfo for polling)." },
-    { "name": "kie_upload_file", "description": "Upload a local file to KIE storage; returns a hosted URL (~3d TTL)." },
-    { "name": "kie_download", "description": "Download a URL (e.g. a KIE result) to a local file." },
-    { "name": "kie_fetch_model_docs", "description": "Fetch a model's live docs page from docs.kie.ai (cached ~3 days)." }
+    {
+      "name": "kie_post",
+      "description": "POST to any KIE endpoint (usually createTask)."
+    },
+    {
+      "name": "kie_get",
+      "description": "GET from any KIE endpoint (usually recordInfo for polling)."
+    },
+    {
+      "name": "kie_upload_file",
+      "description": "Upload a local file to KIE storage; returns a hosted URL (~3d TTL)."
+    },
+    {
+      "name": "kie_download",
+      "description": "Download a URL (e.g. a KIE result) to a local file."
+    },
+    {
+      "name": "kie_fetch_model_docs",
+      "description": "Fetch a model's live docs page from docs.kie.ai (cached ~3 days)."
+    }
   ],
   "compatibility": {
     "claude_desktop": ">=0.10.0",

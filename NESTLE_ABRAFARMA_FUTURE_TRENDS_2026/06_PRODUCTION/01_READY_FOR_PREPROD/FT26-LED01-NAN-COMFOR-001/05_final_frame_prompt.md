@@ -16,11 +16,13 @@ No people. No hands. No text overlays beyond the #1 badge that is part of the pa
 Style: Ultra-premium advertising CGI. Photorealistic. 16:9.
 
 ## Technical Specs
+
 - Aspect ratio: 16:9 (for Veo 3.1 generation)
 - Resolution: 1080p (will be upscaled to 1792x1536 in post)
 - Source reference: public/input/FRAME-2-Família_Comfor_FT26-LED01_CURVO-001_1792x1536px.png
 
 ## Continuity Notes
+
 - The #1 badge MUST exactly match the badge in FRAME-2 source file. Do not invent badge content.
 - Can proportions, positions, lighting temperature, and background gradient must be consistent with initial frame.
 - Bird design must exactly match packaging artwork — white body, magenta outlines, pointed beak.

@@ -18,12 +18,7 @@
     "product_reference": "Nestlé NAN SUPREME",
     "first_frame": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/_VIDEOS/02_FAMILIA_SUPREME/01_INPUT/FRAME-1_FAMILIA_SUPREME_FT26-LED01_CURVO-001_1792×1536px.png",
     "last_frame": "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/_VIDEOS/02_FAMILIA_SUPREME/01_INPUT/FRAME-2_FAMILIA_SUPREME_FT26-LED01_CURVO-001_1792×1536px.png",
-    "locked_elements": [
-      "geometry",
-      "labels",
-      "nestle logo",
-      "badge claim"
-    ]
+    "locked_elements": ["geometry", "labels", "nestle logo", "badge claim"]
   },
   "shot": {
     "duration_seconds": 5,

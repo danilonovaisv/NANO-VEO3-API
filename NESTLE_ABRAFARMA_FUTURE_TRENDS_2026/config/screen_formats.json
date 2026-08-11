@@ -15,10 +15,7 @@
       "extension": ".mp4",
       "audio": false,
       "duration_seconds": 15,
-      "clip_split_strategy": [
-        "8s",
-        "7s"
-      ],
+      "clip_split_strategy": ["8s", "7s"],
       "safe_area_percent": 10,
       "aspect_ratio_native": "7:6",
       "status": "CONFIRMED",

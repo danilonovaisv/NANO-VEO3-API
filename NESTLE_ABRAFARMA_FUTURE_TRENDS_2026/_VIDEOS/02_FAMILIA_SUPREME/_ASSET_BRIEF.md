@@ -42,21 +42,22 @@ Confirmar frase sobre "Marca mais Inovadora da Categoria" — **PENDENTE APROVA�
 
 ## Frames de Referência (CONFIRMADOS)
 
-| Frame | Arquivo | Tamanho | Status |
-|---|---|---|---|
+| Frame             | Arquivo                                                                 | Tamanho | Status    |
+| ----------------- | ----------------------------------------------------------------------- | ------- | --------- |
 | FRAME-1 (inicial) | `01_INPUT/FRAME-1_FAMILIA_SUPREME_FT26-LED01_CURVO-001_1792×1536px.png` | 1.35 MB | CONFIRMED |
-| FRAME-2 (final) | `01_INPUT/FRAME-2_FAMILIA_SUPREME_FT26-LED01_CURVO-001_1792×1536px.png` | 2.22 MB | CONFIRMED |
-| HERO MOCKUP | `01_INPUT/02_FAMILIA_SUPREME_FT26-LED01_CURVO-001_1792×1536px.png` | 2.45 MB | CONFIRMED |
+| FRAME-2 (final)   | `01_INPUT/FRAME-2_FAMILIA_SUPREME_FT26-LED01_CURVO-001_1792×1536px.png` | 2.22 MB | CONFIRMED |
+| HERO MOCKUP       | `01_INPUT/02_FAMILIA_SUPREME_FT26-LED01_CURVO-001_1792×1536px.png`      | 2.45 MB | CONFIRMED |
 
 ## Prompt JSON Gerado — `04_MASTER/` (GATE 6 READY)
 
-| ID | Título | Motion | JSON |
-|---|---|---|---|
+| ID  | Título                              | Motion | JSON                                                                 |
+| --- | ----------------------------------- | ------ | -------------------------------------------------------------------- |
 | S01 | Cinematic Supreme Innovation Reveal | medium | `S01_FT26-NAN-SUPREME_Cinematic_Innovation_Reveal_veo3_payload.json` |
 
 **Master Payload:** `BATCH_A_ALL_SCENES_veo3_payload.json`
 
 **Modelo de geração:** `veo3-1-first-last-frame-to-video` (eachlabs.ai)
+
 > Veo 3 Highest Quality NÃO suporta first+last frame. Usar exclusivamente o modelo acima.
 
 ## Status — Atualizado 2026-08-06
@@ -72,26 +73,26 @@ Confirmar frase sobre "Marca mais Inovadora da Categoria" — **PENDENTE APROVA�
 
 ## Bloqueios
 
-| Blocker | Severidade | Ação Requerida |
-|---|---|---|
-| LEGAL — Claim não aprovado | HIGH | Confirmar "Marca mais Inovadora da Categoria" com compliance Nestlé antes da entrega |
-| LEGAL — Disclaimer ausente | MEDIUM | Definir se aplicável |
-| TÉCNICO — Upscaling | LOW | Topaz Video Upscaler: 1080p → 1792×1536 em post-produção |
+| Blocker                    | Severidade | Ação Requerida                                                                       |
+| -------------------------- | ---------- | ------------------------------------------------------------------------------------ |
+| LEGAL — Claim não aprovado | HIGH       | Confirmar "Marca mais Inovadora da Categoria" com compliance Nestlé antes da entrega |
+| LEGAL — Disclaimer ausente | MEDIUM     | Definir se aplicável                                                                 |
+| TÉCNICO — Upscaling        | LOW        | Topaz Video Upscaler: 1080p → 1792×1536 em post-produção                             |
 
 ## Gates
 
-| Gate | Status |
-|---|---|
-| Gate 1 — Asset audit | DONE ✅ |
-| Gate 2 — Briefing alignment | DONE ✅ |
-| Gate 3 — Script | DONE ✅ |
-| Gate 4 — Scene descriptions | DONE ✅ |
-| Gate 5 — Keyframe prompts | DONE ✅ |
-| Gate 6 — JSON prompt | **READY — aguardando aprovação do usuário** |
-| Gate 7 — Geração | NÃO INICIADO |
-| Gate 8 — QA | NÃO INICIADO |
-| Gate 9 — Tracker | NÃO INICIADO |
-| Gate 10 — Delivery | BLOCKED — legal pending |
+| Gate                        | Status                                      |
+| --------------------------- | ------------------------------------------- |
+| Gate 1 — Asset audit        | DONE ✅                                     |
+| Gate 2 — Briefing alignment | DONE ✅                                     |
+| Gate 3 — Script             | DONE ✅                                     |
+| Gate 4 — Scene descriptions | DONE ✅                                     |
+| Gate 5 — Keyframe prompts   | DONE ✅                                     |
+| Gate 6 — JSON prompt        | **READY — aguardando aprovação do usuário** |
+| Gate 7 — Geração            | NÃO INICIADO                                |
+| Gate 8 — QA                 | NÃO INICIADO                                |
+| Gate 9 — Tracker            | NÃO INICIADO                                |
+| Gate 10 — Delivery          | BLOCKED — legal pending                     |
 
 ## Checklist
 

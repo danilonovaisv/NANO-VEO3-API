@@ -1,16 +1,61 @@
 {
   "conflicts": [
-    {"id": "C001", "topic": "revisao arquitetonica", "description": "Materiais citam revisoes diferentes; confirmar qual documento prevalece.", "status": "open"},
-    {"id": "C002", "topic": "painel frontal", "description": "Dimensoes aparentam variar entre materiais e screenshots.", "status": "open"},
-    {"id": "C003", "topic": "gondolas", "description": "O titulo menciona nove nichos, mas os grupos listados parecem exceder esse total.", "status": "open"},
-    {"id": "C004", "topic": "Nutren Control", "description": "Link de asset identificado como possivelmente direcionado a Ascenda.", "status": "open"},
-    {"id": "C005", "topic": "Materna em GLP-1", "description": "Material de controle indica remocao; nao incluir sem nova aprovacao.", "status": "open"}
+    {
+      "id": "C001",
+      "topic": "revisao arquitetonica",
+      "description": "Materiais citam revisoes diferentes; confirmar qual documento prevalece.",
+      "status": "open"
+    },
+    {
+      "id": "C002",
+      "topic": "painel frontal",
+      "description": "Dimensoes aparentam variar entre materiais e screenshots.",
+      "status": "open"
+    },
+    {
+      "id": "C003",
+      "topic": "gondolas",
+      "description": "O titulo menciona nove nichos, mas os grupos listados parecem exceder esse total.",
+      "status": "open"
+    },
+    {
+      "id": "C004",
+      "topic": "Nutren Control",
+      "description": "Link de asset identificado como possivelmente direcionado a Ascenda.",
+      "status": "open"
+    },
+    {
+      "id": "C005",
+      "topic": "Materna em GLP-1",
+      "description": "Material de controle indica remocao; nao incluir sem nova aprovacao.",
+      "status": "open"
+    }
   ],
   "missing_information": [
-    {"id": "M001", "topic": "guides", "description": "Pasta guides nao localizada."},
-    {"id": "M002", "topic": "external_assets", "description": "Assets indicados em Dropbox ou SharePoint nao estao disponiveis localmente."},
-    {"id": "M003", "topic": "delivery", "description": "Duracao, codec, frame rate, resolucao e safe areas finais nao estao consolidados por tela."},
-    {"id": "M004", "topic": "Nina", "description": "Aparencia, voz, roteiro e assets aprovados da Nina nao foram localizados."},
-    {"id": "M005", "topic": "FiberMais", "description": "Guia de preparo nao foi localizado."}
+    {
+      "id": "M001",
+      "topic": "guides",
+      "description": "Pasta guides nao localizada."
+    },
+    {
+      "id": "M002",
+      "topic": "external_assets",
+      "description": "Assets indicados em Dropbox ou SharePoint nao estao disponiveis localmente."
+    },
+    {
+      "id": "M003",
+      "topic": "delivery",
+      "description": "Duracao, codec, frame rate, resolucao e safe areas finais nao estao consolidados por tela."
+    },
+    {
+      "id": "M004",
+      "topic": "Nina",
+      "description": "Aparencia, voz, roteiro e assets aprovados da Nina nao foram localizados."
+    },
+    {
+      "id": "M005",
+      "topic": "FiberMais",
+      "description": "Guia de preparo nao foi localizado."
+    }
   ]
 }

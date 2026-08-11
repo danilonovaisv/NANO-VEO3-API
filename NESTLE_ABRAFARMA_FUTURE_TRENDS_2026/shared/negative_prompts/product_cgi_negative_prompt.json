@@ -1,3 +1,22 @@
 {
-  "negative_prompt": ["deformed packaging", "altered product proportions", "invented label", "changed logo", "misspelled or illegible text", "incorrect cap or closure", "incorrect colors or materials", "unsupported claims", "invented flavor or variant", "product morphing", "rubbery motion", "unnatural liquid behavior", "flicker", "temporal inconsistency", "camera jitter", "excessive particles", "cropped mandatory product", "unsafe text placement"]
+  "negative_prompt": [
+    "deformed packaging",
+    "altered product proportions",
+    "invented label",
+    "changed logo",
+    "misspelled or illegible text",
+    "incorrect cap or closure",
+    "incorrect colors or materials",
+    "unsupported claims",
+    "invented flavor or variant",
+    "product morphing",
+    "rubbery motion",
+    "unnatural liquid behavior",
+    "flicker",
+    "temporal inconsistency",
+    "camera jitter",
+    "excessive particles",
+    "cropped mandatory product",
+    "unsafe text placement"
+  ]
 }

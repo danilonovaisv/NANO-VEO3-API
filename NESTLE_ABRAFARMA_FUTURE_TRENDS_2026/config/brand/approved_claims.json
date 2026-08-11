@@ -1,15 +1,66 @@
 {
   "policy": "Nenhum item deste arquivo deve ser tratado como aprovacao final sem evidencia explicita do cliente.",
   "claims": [
-    {"product": "Comfor", "source_text": "Marca Lider da Categoria", "source": "planilha de controle de assets", "status": "pending_final_validation"},
-    {"product": "Supreme", "source_text": "Unico e incomparavel com sinergia de nutrientes", "source": "planilha de controle de assets", "status": "pending_final_validation"},
-    {"product": "Supreme", "source_text": "O Primeiro da Categoria com Probioticos", "source": "planilha de controle de assets", "status": "pending_final_validation"},
-    {"product": "Formulas Especiais", "source_text": "Garanta o Portfolio Completo de Formulas Nestle Destinadas a Necessidades Especificas", "source": "planilha de controle de assets", "status": "pending_final_validation"},
-    {"product": "Ninho Fases 1+", "source_text": "Item mais vendido de Nao Medicamentos no Canal Farma", "source": "planilha de controle de assets", "status": "pending_final_validation"},
-    {"product": "Materna", "source_text": "A linha de suplementos para gestantes mais completa da categoria", "source": "planilha de controle de assets", "status": "pending_final_validation"},
-    {"product": "Nestle Vital", "source_text": "A marca #1 de suplementos maternos do Brasil", "evidence_noted": "IQVIA/FY2025", "source": "planilha de controle de assets", "status": "pending_final_validation"},
-    {"product": "Nutren Protein RTD", "source_text": "Nem toda bebida proteica e igual", "source": "planilha de controle de assets", "status": "pending_final_validation"},
-    {"product": "Puravida Whey Concentrado", "source_text": "Chegou a nova linha de Whey Protein Concentrado Puravida em 5 sabores irresistiveis", "source": "planilha de controle de assets", "status": "pending_final_validation"},
-    {"product": "Nestogeno", "source_text": "Marca com Maior Volume de Vendas da Categoria", "source": "planilha de controle de assets", "status": "pending_final_validation"}
+    {
+      "product": "Comfor",
+      "source_text": "Marca Lider da Categoria",
+      "source": "planilha de controle de assets",
+      "status": "pending_final_validation"
+    },
+    {
+      "product": "Supreme",
+      "source_text": "Unico e incomparavel com sinergia de nutrientes",
+      "source": "planilha de controle de assets",
+      "status": "pending_final_validation"
+    },
+    {
+      "product": "Supreme",
+      "source_text": "O Primeiro da Categoria com Probioticos",
+      "source": "planilha de controle de assets",
+      "status": "pending_final_validation"
+    },
+    {
+      "product": "Formulas Especiais",
+      "source_text": "Garanta o Portfolio Completo de Formulas Nestle Destinadas a Necessidades Especificas",
+      "source": "planilha de controle de assets",
+      "status": "pending_final_validation"
+    },
+    {
+      "product": "Ninho Fases 1+",
+      "source_text": "Item mais vendido de Nao Medicamentos no Canal Farma",
+      "source": "planilha de controle de assets",
+      "status": "pending_final_validation"
+    },
+    {
+      "product": "Materna",
+      "source_text": "A linha de suplementos para gestantes mais completa da categoria",
+      "source": "planilha de controle de assets",
+      "status": "pending_final_validation"
+    },
+    {
+      "product": "Nestle Vital",
+      "source_text": "A marca #1 de suplementos maternos do Brasil",
+      "evidence_noted": "IQVIA/FY2025",
+      "source": "planilha de controle de assets",
+      "status": "pending_final_validation"
+    },
+    {
+      "product": "Nutren Protein RTD",
+      "source_text": "Nem toda bebida proteica e igual",
+      "source": "planilha de controle de assets",
+      "status": "pending_final_validation"
+    },
+    {
+      "product": "Puravida Whey Concentrado",
+      "source_text": "Chegou a nova linha de Whey Protein Concentrado Puravida em 5 sabores irresistiveis",
+      "source": "planilha de controle de assets",
+      "status": "pending_final_validation"
+    },
+    {
+      "product": "Nestogeno",
+      "source_text": "Marca com Maior Volume de Vendas da Categoria",
+      "source": "planilha de controle de assets",
+      "status": "pending_final_validation"
+    }
   ]
 }

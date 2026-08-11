@@ -7,9 +7,7 @@
   "pixel_dimensions": "1792 x 1536 px",
   "communication_objective": "Destacar a linha Nestlé NAN SUPREME como a marca mais inovadora da categoria de nutrição infantil através de 1 cena fluida conectando o frame inicial ao frame final.",
   "main_message": "Marca mais Inovadora da Categoria",
-  "products": [
-    "Nestlé NAN SUPREME"
-  ],
+  "products": ["Nestlé NAN SUPREME"],
   "approved_claims": [
     "Marca mais Inovadora da Categoria (pendente aprovação legal final)"
   ],
@@ -31,12 +29,8 @@
     "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/_VIDEOS/02_FAMILIA_SUPREME/01_INPUT/FRAME-2_FAMILIA_SUPREME_FT26-LED01_CURVO-001_1792×1536px.png",
     "NESTLE_ABRAFARMA_FUTURE_TRENDS_2026/_VIDEOS/02_FAMILIA_SUPREME/04_MASTER/Supreme-LaminaA4-AF29Mai Anderson Arruda.pdf"
   ],
-  "reference_links": [
-    "https://www.dropbox.com/request/4cud7qenqzk7mi9b2hc1"
-  ],
-  "scene_order": [
-    "S01"
-  ],
+  "reference_links": ["https://www.dropbox.com/request/4cud7qenqzk7mi9b2hc1"],
+  "scene_order": ["S01"],
   "status": "GATE_6_READY",
   "missing_information": [
     "Aprovação legal formal do claim 'Marca mais Inovadora da Categoria' antes do Gate 10"

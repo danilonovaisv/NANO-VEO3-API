@@ -6,7 +6,10 @@ if (fs.existsSync(path.join(process.cwd(), ".env"))) {
   for (const line of envContent.split("\n")) {
     const [k, ...v] = line.split("=");
     if (k && v.length > 0 && !process.env[k.trim()]) {
-      process.env[k.trim()] = v.join("=").trim().replace(/^["']|["']$/g, "");
+      process.env[k.trim()] = v
+        .join("=")
+        .trim()
+        .replace(/^["']|["']$/g, "");
     }
   }
 }
@@ -68,7 +71,12 @@ async function uploadFrameToEachlabs(framePath, apiKey) {
 async function generateScene(sceneId, apiKey) {
   const jsonFile = fs
     .readdirSync(MASTER_DIR)
-    .find((f) => f.startsWith(sceneId + "_") && f.endsWith(".json") && !f.includes("BATCH"));
+    .find(
+      (f) =>
+        f.startsWith(sceneId + "_") &&
+        f.endsWith(".json") &&
+        !f.includes("BATCH")
+    );
 
   if (!jsonFile) {
     console.error(`Payload not found for ${sceneId}`);
@@ -80,29 +88,38 @@ async function generateScene(sceneId, apiKey) {
 
   console.log(`\nDispatching: ${sceneId} - ${payload.scene_title}`);
 
-  const firstFrameUrl = await uploadFrameToEachlabs(payload.input_frames.first_frame_path, apiKey);
-  const lastFrameUrl = await uploadFrameToEachlabs(payload.input_frames.last_frame_path, apiKey);
+  const firstFrameUrl = await uploadFrameToEachlabs(
+    payload.input_frames.first_frame_path,
+    apiKey
+  );
+  const lastFrameUrl = await uploadFrameToEachlabs(
+    payload.input_frames.last_frame_path,
+    apiKey
+  );
 
-  const dispatchResponse = await fetch("https://api.eachlabs.ai/v1/prediction", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-API-Key": apiKey,
-    },
-    body: JSON.stringify({
-      model: "veo3-1-first-last-frame-to-video",
-      version: "0.0.1",
-      input: {
-        first_frame_url: firstFrameUrl,
-        last_frame_url: lastFrameUrl,
-        prompt: payload.video_generation_prompt,
-        duration: 5,
-        resolution: "1080p",
-        generate_audio: false,
-        aspect_ratio: "16:9",
+  const dispatchResponse = await fetch(
+    "https://api.eachlabs.ai/v1/prediction",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": apiKey,
       },
-    }),
-  });
+      body: JSON.stringify({
+        model: "veo3-1-first-last-frame-to-video",
+        version: "0.0.1",
+        input: {
+          first_frame_url: firstFrameUrl,
+          last_frame_url: lastFrameUrl,
+          prompt: payload.video_generation_prompt,
+          duration: 5,
+          resolution: "1080p",
+          generate_audio: false,
+          aspect_ratio: "16:9",
+        },
+      }),
+    }
+  );
 
   if (!dispatchResponse.ok) {
     const err = await dispatchResponse.text();
@@ -118,16 +135,24 @@ async function generateScene(sceneId, apiKey) {
     await new Promise((r) => setTimeout(r, 15000));
     attempts++;
 
-    const pollResponse = await fetch(`https://api.eachlabs.ai/v1/prediction/${prediction.id}`, {
-      headers: { "X-API-Key": apiKey },
-    });
+    const pollResponse = await fetch(
+      `https://api.eachlabs.ai/v1/prediction/${prediction.id}`,
+      {
+        headers: { "X-API-Key": apiKey },
+      }
+    );
 
     if (!pollResponse.ok) continue;
 
     const pollResult = await pollResponse.json();
-    process.stdout.write(`  [${new Date().toISOString()}] Status: ${pollResult.status}\r`);
+    process.stdout.write(
+      `  [${new Date().toISOString()}] Status: ${pollResult.status}\r`
+    );
 
-    if (pollResult.status === "succeeded" || pollResult.status === "completed") {
+    if (
+      pollResult.status === "succeeded" ||
+      pollResult.status === "completed"
+    ) {
       console.log("\n  Generation complete!");
       finalResult = pollResult;
       break;

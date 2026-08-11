@@ -1,4 +1,5 @@
 # Dispatch Guide — FT26-LED01-NAN-COMFOR-001 — Batch A
+
 **Gerado em:** 2026-08-06 | **Gate atual:** 6 — aguardando aprovacao do usuario
 
 ---
@@ -14,13 +15,13 @@ Confirmar existencia e tamanho dos frames em 01_INPUT/:
 
 ## STEP 2 — Escolha a cena
 
-| ID | Titulo | Energia | Recomendacao |
-|---|---|---|---|
-| S01 | Cinematic Technology Reveal | medium | Equilibrio impacto + elegancia. Testar primeiro. |
-| S02 | Refined Scientific Product Sequence | low | Contido, sofisticado, hexagonos + DNA curves. |
-| S03 | Innovation and Nutrition Reveal | medium | Wing sweep muito proxima, boa continuidade. |
-| S04 | Poetic Molecular Choreography | low | Mais lento, poetico, glow dourado-magenta no selo. |
-| S05 | High-Impact Scientific Emergence | high | Face Punch maximo. Maior impacto visual. |
+| ID  | Titulo                              | Energia | Recomendacao                                       |
+| --- | ----------------------------------- | ------- | -------------------------------------------------- |
+| S01 | Cinematic Technology Reveal         | medium  | Equilibrio impacto + elegancia. Testar primeiro.   |
+| S02 | Refined Scientific Product Sequence | low     | Contido, sofisticado, hexagonos + DNA curves.      |
+| S03 | Innovation and Nutrition Reveal     | medium  | Wing sweep muito proxima, boa continuidade.        |
+| S04 | Poetic Molecular Choreography       | low     | Mais lento, poetico, glow dourado-magenta no selo. |
+| S05 | High-Impact Scientific Emergence    | high    | Face Punch maximo. Maior impacto visual.           |
 
 ---
 
@@ -30,6 +31,7 @@ Modelo: veo3-1-first-last-frame-to-video (versao 0.0.1)
 Endpoint: POST https://api.eachlabs.ai/v1/prediction
 
 Campos obrigatorios:
+
 - model: veo3-1-first-last-frame-to-video
 - input.first_frame_url: URL acessivel do FRAME-1
 - input.last_frame_url: URL acessivel do FRAME-2
@@ -40,6 +42,7 @@ Campos obrigatorios:
 - input.aspect_ratio: 16:9
 
 Header obrigatorio:
+
 - X-API-Key: valor de EACHLABS_API_KEY (nunca expor em logs ou commits)
 
 ---
@@ -69,6 +72,7 @@ Download: GET http://localhost:3000/api/veo/download
 ## ATENCAO — Gate 10 bloqueado ate aprovacao legal
 
 A entrega final esta BLOQUEADA ate:
+
 - Confirmacao da frase Marca Lider da Categoria com compliance Nestlé
 - Definicao do disclaimer se aplicavel
 
